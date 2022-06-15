@@ -43,11 +43,12 @@ public class ConexaoBD {
                         
                      // metodo 3:
                         String URL = "jdbc:postgresql://localhost:5432/rpg_database";
-                        Properties parameters = new Properties();
-                        parameters.put("user", "postgres");
-                        parameters.put("password", "postgres");
+                        Properties properties = new Properties();
+                        properties.put("user", "postgres");
+                        properties.put("password", "postgres");
 
-                        conexao = DriverManager.getConnection( URL, parameters);
+                        conexao = DriverManager.getConnection( URL, properties);
+                        
                         if (conexao != null) {
                                System.out.println("Conectado ao banco de dados com sucesso!!!!");
                         }

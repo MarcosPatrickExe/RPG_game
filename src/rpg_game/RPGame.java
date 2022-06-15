@@ -1,12 +1,15 @@
 package rpg_game;
 import rpg_game.ConexaoBD;
+import rpg_game.Telas.*;
 
  /* @author Patrick
  */
 public class RPGame {
 
     public static void main(String[] args) {
-             new ConexaoBD().abrirConexao();
+            // new ConexaoBD().abrirConexao();
+            
+            new Menu_Inicial().setVisible(true);
     }
     
 }
@@ -23,3 +26,21 @@ public class RPGame {
 
 // conexao v2 com o banco:
 // https://dzone.com/articles/how-to-connect-postgresql-with-java-application#:~:text=%20How%20to%20Connect%20PostgreSQL%20With%20Java%20Application,in%20our%20case%29%20to%20access%20the...%20More%20
+
+
+
+/*
+        public class JFrameCenterPositionTest extends JFrame {
+            public JFrameCenterPositionTest() {
+               setTitle("JFrameCenter Position");
+               add(new JLabel("JFrame set to center of the screen", SwingConstants.CENTER),                BorderLayout.CENTER);
+               setSize(400, 300);
+               setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               setLocationRelativeTo(null); // this method display the JFrame to center position of a screen
+               setVisible(true);
+            }
+            public static void main (String[] args) {
+               new JFrameCenterPositionTest();
+            }
+    }
+*/
