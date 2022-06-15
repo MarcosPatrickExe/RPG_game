@@ -2,8 +2,17 @@ package rpg_game.Telas;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * @author Patrick
@@ -23,10 +32,47 @@ public class Menu_Inicial extends javax.swing.JFrame {
           widthScreen = dim.getWidth();
           heightScreen = dim.getHeight();
          
+          // MAXIMIZANDO A TELA DO GAME
           super.setExtendedState( super.getExtendedState() | JFrame.MAXIMIZED_BOTH);
          //System.out.println("width:  "+dim.getWidth()+"  \n height:  "+dim.getHeight());
+         //this.getContentPane().setBackground(Color.gray); //colocando cor preta no fundo
          
-         this.getContentPane().setBackground(Color.gray);
+         
+         URL url_image;
+         Image img;
+  //       JLabel fundo;
+         
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+         try{
+                url_image = new URL("https://lh5.googleusercontent.com/proxy/5mD0bhPsejeYVwnxD4CnrbPhNeFcee0iJwCjY-T8Dqje9aCq3YkIWzTA1TAogoiZsKIMlzNEa-d2qkKUSIB2r0ndLZ9KKiw_a_GHgo39O5Ju7zwT0qqGRPTG4uyBnQJzb3sCkI-BF29S7wB6ZE8n_SaIWPE=w1200-h630-p-k-no-nu");
+                img = ImageIO.read( url_image ); //has private access in imageIO [deve-se nao instanciar ImageIO]
+            //     fundo =  new JLabel(   new ImageIcon(img)  );
+            //     fundo.setMinimumSize(dim);
+            //     setContentPane( fundo  );// adiciona o label/imagem sem precisar do metodo "super.add()"
+                 
+                JPanel fundoImagem = new JPanel(){
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                               super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+                               g.drawImage( img, 0, 0,  (int) widthScreen, (int) heightScreen, this);
+                        }
+                };
+                
+               fundoImagem.setBounds(0, 0, (int) widthScreen, (int) heightScreen);
+               super.add(fundoImagem);
+                
+               
+         }catch(MalformedURLException  e){
+               System.out.println("Erro ao acessar a imagem oferecida pela URL... \n"+e.getMessage());
+               
+         }catch(IOException  ioe){
+               System.out.println("Erro ao adicionar a imagem dentro da programa......  \n"+ioe.getMessage());
+         }   
+         
+  
+         
+      //  this.container.setLayout(null);
     }
 
     /**
@@ -38,6 +84,10 @@ public class Menu_Inicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -48,10 +98,39 @@ public class Menu_Inicial extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 102)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(245, 245, 245));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RPG game");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(500, 100, 306, 124);
+        jLabel1.getAccessibleContext().setAccessibleParent(this);
+
+        jButton1.setText("INICIAR CAMPANHA");
+        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(490, 350, 140, 32);
+        jButton1.getAccessibleContext().setAccessibleParent(this);
+
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(90, 250, 230, 150);
+
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,5 +168,8 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
