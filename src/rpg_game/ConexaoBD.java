@@ -12,7 +12,7 @@ public class ConexaoBD {
     
         private static Connection conexao= null;
         
-        public void abrirConexao(){
+        public static void abrirConexao(String database, String host, short port, String user, String password ){
                     
                 try{
                      /*
@@ -47,10 +47,10 @@ public class ConexaoBD {
                         properties.put("user", "postgres");
                         properties.put("password", "postgres");
 
-                        conexao = DriverManager.getConnection( URL, properties);
+                        ConexaoBD.conexao = DriverManager.getConnection( URL, properties);
                         
-                        if (conexao != null) {
-                               System.out.println("Conectado ao banco de dados com sucesso!!!!");
+                        if ( ConexaoBD.conexao != null) {
+                                JOptionPane.showMessageDialog(null, "Conexão com o banco estabelecida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
                         }
                         
                         
@@ -61,14 +61,19 @@ public class ConexaoBD {
         }
         
         
-        public void encerrarConexao(){
+        public static void encerrarConexao(){
                  try{
-                        conexao.close();
+                        ConexaoBD.conexao.close();
                         
                  }catch(SQLException sqlE){
                         JOptionPane.showMessageDialog(null, "Houve um erro ao tentar desconectar com o banco", "Errro!!!", JOptionPane.ERROR_MESSAGE);
                         sqlE.printStackTrace();
                 }
+        }
+        
+        
+        public static Connection getConection(){
+                   return ConexaoBD.conexao;
         }
     
 }
