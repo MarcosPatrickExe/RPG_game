@@ -23,7 +23,7 @@ public class ConexaoBD extends javax.swing.JFrame {
         
             this.setLocationRelativeTo(null);
             
-            if ( connection.ConexaoBD_Setup.getConexao()!=null ){ // Se estiver conectado ao banco.....
+            if ( connection.ConexaoBD_Setup.getConexao() !=null ){ // Se estiver conectado ao banco.....
                     btn_new_connection.setVisible(true);
                     btn_conect.setEnabled(false);
             }else{
@@ -159,10 +159,13 @@ public class ConexaoBD extends javax.swing.JFrame {
                 String user = this.text_user.getText() ;
                 int password =  Integer.valueOf( this.text_password.getText() );
                 
-                
-                if (   ConexaoBD_Setup.conexao_Setup( database, host, port, user, password) != null ){
-                    
-                         JOptionPane.showMessageDialog(null, "Conexão com o banco estabelecida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                try{
+                  
+                    if (   ConexaoBD_Setup.conexao_Setup( database, host, port, user, password) != null  )
+                             JOptionPane.showMessageDialog(null, "Conexão com o banco estabelecida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                  
+                }catch(ClassNotFoundException cnfe){
+                         System.out.println("Erro ao tentar realizar uma conexão com o banco..... "+cnfe);
                 }
                 
     }//GEN-LAST:event_btn_conectActionPerformed
