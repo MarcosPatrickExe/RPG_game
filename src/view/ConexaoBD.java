@@ -6,6 +6,8 @@
 package view;
 
 import connection.ConexaoBD_Setup;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 
@@ -160,12 +162,19 @@ public class ConexaoBD extends javax.swing.JFrame {
                 int password =  Integer.valueOf( this.text_password.getText() );
                 
                 try{
-                  
-                    if (   ConexaoBD_Setup.conexao_Setup( database, host, port, user, password) != null  )
-                             JOptionPane.showMessageDialog(null, "Conexão com o banco estabelecida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
-                  
+                            ConexaoBD_Setup.conexao_Setup( database, host, port, user, password);
+                            Connection conexao = ConexaoBD_Setup.abrirConexao();
+                            
+                            if ( conexao != null  )
+                                      JOptionPane.showMessageDialog(null, "Conexão com o banco bem sucedida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                                  
+                            conexao.close();
+                            
                 }catch(ClassNotFoundException cnfe){
                          System.out.println("Erro ao tentar realizar uma conexão com o banco..... "+cnfe);
+                         
+                }catch(SQLException ex){
+                         ex.printStackTrace();
                 }
                 
     }//GEN-LAST:event_btn_conectActionPerformed

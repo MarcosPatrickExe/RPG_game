@@ -1,6 +1,7 @@
 package DAO.intefaces;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.List;
 import model.Personagem;
 
 /**
@@ -10,17 +11,17 @@ import model.Personagem;
 
 public interface IPersonagemDAO {
             
-          public boolean criar_personagem( String nome, int nivel, int pontos_magia, int pontos_vida, int velocidade, int ataque_especial, int defesa_especial, int ataque, int defesa, int XP,  int evasao, String sprite );
+          public boolean criar_personagem( String nome, int nivel, int pontos_magia, int pontos_vida, int velocidade, int ataque_especial, int defesa_especial, int ataque, int defesa, int XP,  int evasao, String sprite, int classe_id );
            
-          public void atualiza_personagemPorID( int ID, Personagem person );
+          public void atualiza_personagemPorID( int ID, Personagem person ) throws SQLException;
           
-          public void excluir_personagemPorID( int ID);
+          public void excluir_personagemPorID( int ID) throws SQLException;
     
-          public ArrayList<Personagem> obter_personagens ();
+          public List<Personagem> obter_personagens () throws SQLException;
           
-          public Personagem obter_Personagem_por_ID ( int ID);
+          public Personagem obter_Personagem_por_ID ( int ID) throws SQLException;
           
-          public Personagem obter_Personagem_por_nome (String nome);
+          public Personagem obter_Personagem_por_nome (String nome) throws SQLException;
 }
 
 

@@ -7,7 +7,6 @@ import connection.ConexaoBD_Setup;
 public class RPGame {
 
 public static void main(String[] args) {
-          //  ConexaoBD.abrirConexao();
             
             new Menu_Inicial().setVisible(true);
     }

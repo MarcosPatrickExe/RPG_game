@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * @author Patrick
  */
@@ -18,7 +21,43 @@ public class Personagem {
         private int XP;
         private int evasao;
         private String sprite;
+        private int classe_id;
 
+        public Personagem( int ID, String nome, int nivel, int pontos_magia, int pontos_vida, int velocidade, int ataque_especial, int defesa_especial, int ataque, int defesa, int XP, int evasao, String sprite, int classe_id) {
+                this.ID = ID;    
+                this.nome = nome;
+                this.nivel = nivel;
+                this.pontos_magia = pontos_magia;
+                this.pontos_vida = pontos_vida;
+                this.velocidade = velocidade;
+                this.ataque_especial = ataque_especial;
+                this.defesa_especial = defesa_especial;
+                this.ataque = ataque;
+                this.defesa = defesa;
+                this.XP = XP;
+                this.evasao = evasao;
+                this.sprite = sprite;
+                this.classe_id = classe_id;
+        }
+        
+         public Personagem( ResultSet rs  ) throws SQLException{
+                this.ID = rs.getInt("ID");
+                this.nome = rs.getString("nome");
+                this.nivel = rs.getInt("nivel");
+                this.pontos_magia = rs.getInt("pontos_magia");
+                this.pontos_vida = rs.getInt("pontos_vida");
+                this.velocidade = rs.getInt("velocidade");
+                this.ataque_especial = rs.getInt("ataque_especial");
+                this.defesa_especial = rs.getInt("defesa_especial");
+                this.ataque = rs.getInt("ataque");
+                this.defesa = rs.getInt("defesa");
+                this.XP = rs.getInt("XP");
+                this.evasao = rs.getInt("evasao");
+                this.sprite = rs.getString("sprite");
+                this.classe_id = rs.getInt("classe_id") ;
+         }
+        
+        
         public int getID() {
             return ID;
         }
@@ -71,6 +110,11 @@ public class Personagem {
             return sprite;
         }
 
+        public int getClasse_id() {
+            return classe_id;
+        }
+
+        
         public void setID(int ID) {
             this.ID = ID;
         }
@@ -122,6 +166,9 @@ public class Personagem {
         public void setSprite(String sprite) {
             this.sprite = sprite;
         }
-        
+
+        public void setClasse_id(int classe_id) {
+            this.classe_id = classe_id;
+        }
         
 }

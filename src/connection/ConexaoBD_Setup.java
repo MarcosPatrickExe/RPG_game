@@ -19,7 +19,7 @@ public class ConexaoBD_Setup {
         private static String user;
         private static int password;
         
-        public static Connection conexao_Setup( String database, String host, short port, String user, int password ) throws ClassNotFoundException{
+        public static void conexao_Setup( String database, String host, short port, String user, int password ) throws ClassNotFoundException{
                   Class.forName("org.postgresql.Driver");
             
                   ConexaoBD_Setup.database = database;
@@ -28,8 +28,6 @@ public class ConexaoBD_Setup {
                   ConexaoBD_Setup.user = user;
                   ConexaoBD_Setup.password = password;
                   ConexaoBD_Setup.URL = "jdbc:postgresql://"+host+":"+port+"/"+database;
-      
-                  return abrirConexao();
         }
         
         
@@ -82,12 +80,14 @@ public class ConexaoBD_Setup {
                       
                         
                 }catch(SQLException sqlE){
-                        JOptionPane.showMessageDialog(null, "Houve erro de conexao", "Erro!!!", JOptionPane.ERROR_MESSAGE);
-                        sqlE.printStackTrace();
+                         JOptionPane.showMessageDialog(null, "Houve um erro de conexão com o banco de dados", "Erro!!!", JOptionPane.ERROR_MESSAGE);
+                         sqlE.printStackTrace();
+                        
+                }finally{
+                    
+                          return conexao;
                 }
                 
-                
-               return conexao;
         }
         
         

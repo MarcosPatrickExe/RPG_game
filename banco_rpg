@@ -1,0 +1,597 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2022-06-22 12:20:13
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 211 (class 1259 OID 16458)
+-- Name: Acessorio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Acessorio" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    descricao character varying(200),
+    preco real,
+    imagem bytea
+);
+
+
+ALTER TABLE public."Acessorio" OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16477)
+-- Name: Arma; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Arma" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    dano integer,
+    tipo character varying(10),
+    descricao character varying(200),
+    preco real,
+    imagem bytea
+);
+
+
+ALTER TABLE public."Arma" OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16484)
+-- Name: Classe; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Classe" (
+    "ID" integer NOT NULL,
+    nome character varying(20),
+    dinheiro real,
+    habilidade_id integer NOT NULL
+);
+
+
+ALTER TABLE public."Classe" OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16470)
+-- Name: Escudo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Escudo" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    resistencia integer,
+    tipo character varying(10),
+    descricao character varying(200),
+    preco real,
+    imagem bytea
+);
+
+
+ALTER TABLE public."Escudo" OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16489)
+-- Name: Habilidade_Especial; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Habilidade_Especial" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    descricao character varying(200)
+);
+
+
+ALTER TABLE public."Habilidade_Especial" OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16494)
+-- Name: Itens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Itens" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    preco real,
+    descricao character varying(200),
+    imagem bytea
+);
+
+
+ALTER TABLE public."Itens" OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16441)
+-- Name: Personagem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem" (
+    "ID" integer NOT NULL,
+    nome character varying(20),
+    nivel smallint,
+    pontos_vida integer NOT NULL,
+    pontos_magia integer NOT NULL,
+    velocidade integer,
+    "XP" integer,
+    evasao integer,
+    ataque integer,
+    defesa integer,
+    ataque_especial integer,
+    defesa_especial integer,
+    sprite bytea,
+    classe_id integer NOT NULL
+);
+
+
+ALTER TABLE public."Personagem" OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16544)
+-- Name: Personagem_Acessorio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem_Acessorio" (
+    "Personagem_id" integer NOT NULL,
+    "Acessorio_id" integer NOT NULL,
+    equipado boolean,
+    quantidade integer
+);
+
+
+ALTER TABLE public."Personagem_Acessorio" OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16574)
+-- Name: Personagem_Arma; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem_Arma" (
+    "Personagem_id" integer NOT NULL,
+    "Arma_id" integer NOT NULL,
+    quantidade integer,
+    equipado boolean
+);
+
+
+ALTER TABLE public."Personagem_Arma" OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16559)
+-- Name: Personagem_Escudo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem_Escudo" (
+    "Personagem_id" integer NOT NULL,
+    "Escudo_id" integer NOT NULL,
+    quantidade integer,
+    equipado boolean
+);
+
+
+ALTER TABLE public."Personagem_Escudo" OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16514)
+-- Name: Personagem_Itens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem_Itens" (
+    "Personagem_id" integer NOT NULL,
+    "Item_id" integer NOT NULL,
+    quantidade integer
+);
+
+
+ALTER TABLE public."Personagem_Itens" OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16529)
+-- Name: Personagem_Tecnicas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Personagem_Tecnicas" (
+    "Personagem_id" integer NOT NULL,
+    "Tecnicas_id" integer NOT NULL
+);
+
+
+ALTER TABLE public."Personagem_Tecnicas" OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16453)
+-- Name: Tecnicas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Tecnicas" (
+    "ID" integer NOT NULL,
+    nome character varying(50),
+    custo_mana integer,
+    dano integer,
+    tipo character varying(5),
+    descricao character varying(200),
+    precisao integer
+);
+
+
+ALTER TABLE public."Tecnicas" OWNER TO postgres;
+
+--
+-- TOC entry 3390 (class 0 OID 16458)
+-- Dependencies: 211
+-- Data for Name: Acessorio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Acessorio" ("ID", nome, descricao, preco, imagem) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3392 (class 0 OID 16477)
+-- Dependencies: 213
+-- Data for Name: Arma; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Arma" ("ID", nome, dano, tipo, descricao, preco, imagem) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3393 (class 0 OID 16484)
+-- Dependencies: 214
+-- Data for Name: Classe; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Classe" ("ID", nome, dinheiro, habilidade_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3391 (class 0 OID 16470)
+-- Dependencies: 212
+-- Data for Name: Escudo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Escudo" ("ID", nome, resistencia, tipo, descricao, preco, imagem) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3394 (class 0 OID 16489)
+-- Dependencies: 215
+-- Data for Name: Habilidade_Especial; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Habilidade_Especial" ("ID", nome, descricao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3395 (class 0 OID 16494)
+-- Dependencies: 216
+-- Data for Name: Itens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Itens" ("ID", nome, preco, descricao, imagem) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3388 (class 0 OID 16441)
+-- Dependencies: 209
+-- Data for Name: Personagem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem" ("ID", nome, nivel, pontos_vida, pontos_magia, velocidade, "XP", evasao, ataque, defesa, ataque_especial, defesa_especial, sprite, classe_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3398 (class 0 OID 16544)
+-- Dependencies: 219
+-- Data for Name: Personagem_Acessorio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem_Acessorio" ("Personagem_id", "Acessorio_id", equipado, quantidade) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3400 (class 0 OID 16574)
+-- Dependencies: 221
+-- Data for Name: Personagem_Arma; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem_Arma" ("Personagem_id", "Arma_id", quantidade, equipado) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3399 (class 0 OID 16559)
+-- Dependencies: 220
+-- Data for Name: Personagem_Escudo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem_Escudo" ("Personagem_id", "Escudo_id", quantidade, equipado) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3396 (class 0 OID 16514)
+-- Dependencies: 217
+-- Data for Name: Personagem_Itens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem_Itens" ("Personagem_id", "Item_id", quantidade) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3397 (class 0 OID 16529)
+-- Dependencies: 218
+-- Data for Name: Personagem_Tecnicas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Personagem_Tecnicas" ("Personagem_id", "Tecnicas_id") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3389 (class 0 OID 16453)
+-- Dependencies: 210
+-- Data for Name: Tecnicas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Tecnicas" ("ID", nome, custo_mana, dano, tipo, descricao, precisao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3216 (class 2606 OID 16464)
+-- Name: Acessorio Acessorio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Acessorio"
+    ADD CONSTRAINT "Acessorio_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3220 (class 2606 OID 16483)
+-- Name: Arma Arma_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Arma"
+    ADD CONSTRAINT "Arma_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3222 (class 2606 OID 16488)
+-- Name: Classe Classe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Classe"
+    ADD CONSTRAINT "Classe_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3218 (class 2606 OID 16476)
+-- Name: Escudo Escudo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Escudo"
+    ADD CONSTRAINT "Escudo_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3224 (class 2606 OID 16493)
+-- Name: Habilidade_Especial Habilidade_Especial_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Habilidade_Especial"
+    ADD CONSTRAINT "Habilidade_Especial_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3226 (class 2606 OID 16500)
+-- Name: Itens Itens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Itens"
+    ADD CONSTRAINT "Itens_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3232 (class 2606 OID 16558)
+-- Name: Personagem_Acessorio Personagem_Acessorio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Acessorio"
+    ADD CONSTRAINT "Personagem_Acessorio_pkey" PRIMARY KEY ("Personagem_id", "Acessorio_id");
+
+
+--
+-- TOC entry 3236 (class 2606 OID 16578)
+-- Name: Personagem_Arma Personagem_Arma_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Arma"
+    ADD CONSTRAINT "Personagem_Arma_pkey" PRIMARY KEY ("Personagem_id", "Arma_id");
+
+
+--
+-- TOC entry 3234 (class 2606 OID 16563)
+-- Name: Personagem_Escudo Personagem_Escudo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Escudo"
+    ADD CONSTRAINT "Personagem_Escudo_pkey" PRIMARY KEY ("Personagem_id", "Escudo_id");
+
+
+--
+-- TOC entry 3228 (class 2606 OID 16518)
+-- Name: Personagem_Itens Personagem_Itens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Itens"
+    ADD CONSTRAINT "Personagem_Itens_pkey" PRIMARY KEY ("Personagem_id", "Item_id");
+
+
+--
+-- TOC entry 3230 (class 2606 OID 16543)
+-- Name: Personagem_Tecnicas Personagem_Tecnicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Tecnicas"
+    ADD CONSTRAINT "Personagem_Tecnicas_pkey" PRIMARY KEY ("Personagem_id", "Tecnicas_id");
+
+
+--
+-- TOC entry 3212 (class 2606 OID 16513)
+-- Name: Personagem Personagem_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem"
+    ADD CONSTRAINT "Personagem_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3214 (class 2606 OID 16457)
+-- Name: Tecnicas Tecnicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tecnicas"
+    ADD CONSTRAINT "Tecnicas_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 3244 (class 2606 OID 16552)
+-- Name: Personagem_Acessorio Acessorio_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Acessorio"
+    ADD CONSTRAINT "Acessorio_id" FOREIGN KEY ("Acessorio_id") REFERENCES public."Acessorio"("ID");
+
+
+--
+-- TOC entry 3248 (class 2606 OID 16584)
+-- Name: Personagem_Arma Arma_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Arma"
+    ADD CONSTRAINT "Arma_id" FOREIGN KEY ("Arma_id") REFERENCES public."Arma"("ID");
+
+
+--
+-- TOC entry 3246 (class 2606 OID 16569)
+-- Name: Personagem_Escudo Escudo_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Escudo"
+    ADD CONSTRAINT "Escudo_id" FOREIGN KEY ("Escudo_id") REFERENCES public."Escudo"("ID");
+
+
+--
+-- TOC entry 3240 (class 2606 OID 16524)
+-- Name: Personagem_Itens Item_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Itens"
+    ADD CONSTRAINT "Item_id" FOREIGN KEY ("Item_id") REFERENCES public."Itens"("ID");
+
+
+--
+-- TOC entry 3239 (class 2606 OID 16519)
+-- Name: Personagem_Itens Personagem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Itens"
+    ADD CONSTRAINT "Personagem_id" FOREIGN KEY ("Personagem_id") REFERENCES public."Personagem"("ID");
+
+
+--
+-- TOC entry 3241 (class 2606 OID 16532)
+-- Name: Personagem_Tecnicas Personagem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Tecnicas"
+    ADD CONSTRAINT "Personagem_id" FOREIGN KEY ("Personagem_id") REFERENCES public."Personagem"("ID");
+
+
+--
+-- TOC entry 3243 (class 2606 OID 16547)
+-- Name: Personagem_Acessorio Personagem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Acessorio"
+    ADD CONSTRAINT "Personagem_id" FOREIGN KEY ("Personagem_id") REFERENCES public."Personagem"("ID");
+
+
+--
+-- TOC entry 3245 (class 2606 OID 16564)
+-- Name: Personagem_Escudo Personagem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Escudo"
+    ADD CONSTRAINT "Personagem_id" FOREIGN KEY ("Personagem_id") REFERENCES public."Personagem"("ID");
+
+
+--
+-- TOC entry 3247 (class 2606 OID 16579)
+-- Name: Personagem_Arma Personagem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Arma"
+    ADD CONSTRAINT "Personagem_id" FOREIGN KEY ("Personagem_id") REFERENCES public."Personagem"("ID");
+
+
+--
+-- TOC entry 3242 (class 2606 OID 16537)
+-- Name: Personagem_Tecnicas Tecnicas_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem_Tecnicas"
+    ADD CONSTRAINT "Tecnicas_id" FOREIGN KEY ("Tecnicas_id") REFERENCES public."Tecnicas"("ID");
+
+
+--
+-- TOC entry 3237 (class 2606 OID 16507)
+-- Name: Personagem classe_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Personagem"
+    ADD CONSTRAINT classe_id FOREIGN KEY (classe_id) REFERENCES public."Classe"("ID") NOT VALID;
+
+
+--
+-- TOC entry 3238 (class 2606 OID 16502)
+-- Name: Classe habilidade_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Classe"
+    ADD CONSTRAINT habilidade_id FOREIGN KEY (habilidade_id) REFERENCES public."Habilidade_Especial"("ID") NOT VALID;
+
+
+-- Completed on 2022-06-22 12:20:27
+
+--
+-- PostgreSQL database dump complete
+--
+
