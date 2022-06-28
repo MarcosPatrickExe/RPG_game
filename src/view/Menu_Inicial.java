@@ -112,12 +112,12 @@ public class Menu_Inicial extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(300, 100, 990, 560));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(300, 100));
-        setMinimumSize(new java.awt.Dimension(991, 576));
+        setMinimumSize(new java.awt.Dimension(991, 596));
         setName("Tela inical"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(991, 576));
+        setPreferredSize(new java.awt.Dimension(991, 596));
         setResizable(false);
-        setSize(new java.awt.Dimension(991, 576));
+        setSize(new java.awt.Dimension(991, 596));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titulo.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 122)); // NOI18N
@@ -184,7 +184,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_sairActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 110, 30));
+        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 110, 40));
 
         lab_aviso.setForeground(new java.awt.Color(204, 204, 204));
         lab_aviso.setText("  (Disponível em breve.....)");
@@ -207,7 +207,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_configuracoesActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_configuracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 170, 40));
+        getContentPane().add(btn_configuracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 170, 50));
 
         lab_aviso2.setForeground(new java.awt.Color(204, 204, 204));
         lab_aviso2.setText("( Somente para ADMs )");
@@ -246,7 +246,8 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_iniciar_campanhaMouseExited
 
     private void btn_gerenciar_personagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerenciar_personagemActionPerformed
-              JOptionPane.showMessageDialog(rootPane, "Clicou!");
+            //  JOptionPane.showMessageDialog(rootPane, "Clicou!");
+            new GerenciarPersonagem().setVisible(true);
     }//GEN-LAST:event_btn_gerenciar_personagemActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
