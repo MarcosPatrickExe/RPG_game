@@ -29,12 +29,8 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
         lab_titulo_fundo = new javax.swing.JPanel();
         lab_titulo = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -63,16 +59,32 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         spn_HP = new javax.swing.JSpinner();
         spn_MP = new javax.swing.JSpinner();
         txt_XP = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jSlider1 = new javax.swing.JSlider();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         pnl_fundo_perfil = new javax.swing.JPanel();
-        lab_perfil = new javax.swing.JLabel();
+        lab_perfil_imagem = new javax.swing.JLabel();
         btn_escolher_imagem = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
+        lab_perfil = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lab_sprite_lateral_esquerda = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         lab_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,78 +102,46 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
         getContentPane().add(lab_titulo_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 70));
 
-        jPanel5.setBackground(new java.awt.Color(204, 0, 51));
+        jTabbedPane2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Equipamento");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel2)
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 240, -1));
-
-        jPanel2.setBackground(new java.awt.Color(22, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(13, 17, 25));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.black, java.awt.Color.black));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(153, 0, 0));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Atributos");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, -30, 190, 110));
-
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 50));
-
         jLabel3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel3.setText("Nome:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 70, 50));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 50));
 
         txt_nome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_nome.setText("jhon");
         txt_nome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_nome.setMargin(new java.awt.Insets(5, 10, 5, 5));
-        jPanel2.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 220, 30));
+        jPanel2.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 330, 30));
 
         jLabel4.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel4.setText("Level:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 70, 50));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 90, 50));
 
         txt_level.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_level.setText("20");
         txt_level.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 60, 30));
+        jPanel2.add(txt_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 60, 30));
 
         jLabel5.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel5.setText("HP:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 50));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 50));
 
         jLabel6.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel6.setText("MP:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 40, 50));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 40, 50));
 
         jLabel7.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel7.setText("XP:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, 50));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 50, 50));
 
         jLabel8.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel8.setText("Velocidade:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 120, 40));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 120, 40));
 
         jLabel9.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel9.setText("Evasão:");
@@ -169,19 +149,19 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel10.setText("Força:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 80, 60));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 80, 60));
 
         jLabel11.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel11.setText("Destreza:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 100, 40));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 100, 40));
 
         jLabel12.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel12.setText("Classe:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 80, 50));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 80, 50));
 
         combo_classe.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         combo_classe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 140, 30));
+        jPanel2.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 330, 30));
 
         txt_evasao.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_evasao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -189,156 +169,191 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
         txt_forca.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_forca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 60, 30));
+        jPanel2.add(txt_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 60, 30));
 
         txt_destreza.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_destreza.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 60, 30));
+        jPanel2.add(txt_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 60, 30));
 
         txt_velocidade.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_velocidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 60, 30));
+        jPanel2.add(txt_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 60, 30));
 
         jLabel14.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel14.setText("ATK:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel15.setText("DEF:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 170, -1, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 210, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel16.setText("SP. DEF:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 220, -1, -1));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jLabel17.setText("SP. ATK:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, -1, -1));
 
         txt_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, 70, 30));
+        jPanel2.add(txt_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, 70, 30));
 
         txt_sp_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 70, 30));
+        jPanel2.add(txt_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 70, 30));
 
         txt_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 70, 30));
+        jPanel2.add(txt_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 70, 30));
 
         txt_sp_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(txt_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 230, 70, 30));
+        jPanel2.add(txt_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, 70, 30));
 
         spn_HP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jPanel2.add(spn_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 80, 30));
+        jPanel2.add(spn_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 90, 30));
 
         spn_MP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jPanel2.add(spn_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 80, 30));
+        jPanel2.add(spn_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 90, 30));
 
         txt_XP.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPanel2.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 60, 30));
+        jPanel2.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 60, 30));
+
+        jPanel7.setBackground(new java.awt.Color(49, 60, 81));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel2.setText("Defina os valores de todos os atributos do seu personagem");
+        jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+
+        jTabbedPane2.addTab("Atributos", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(13, 17, 25));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(49, 60, 81));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setText("Selecione os equipamentos que o personagem terá. Você pode selecionar vários segurando o botão CTRL.");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+
+        jTabbedPane2.addTab("Equipamento", jPanel3);
+
+        jPanel1.setBackground(new java.awt.Color(13, 17, 25));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnl_fundo_perfil.setLayout(null);
+
+        lab_perfil_imagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lab_perfil_imagem.setText("foto aqui");
+        pnl_fundo_perfil.add(lab_perfil_imagem);
+        lab_perfil_imagem.setBounds(40, 60, 80, 30);
+
+        jPanel1.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 170, 160));
+
+        btn_escolher_imagem.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
+        btn_escolher_imagem.setText("Selecionar");
+        btn_escolher_imagem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_escolher_imagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btn_escolher_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 100, 30));
+
+        jPanel6.setBackground(new java.awt.Color(49, 60, 81));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel18.setText("Escolha as imagens para cada sprite do personagem. Somente a imagem do  perfeil é obrigatória.");
+        jPanel6.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 820, 40));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 40));
+
+        lab_perfil.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lab_perfil.setText("PERFIL");
+        jPanel1.add(lab_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, 30));
+
+        jPanel5.setLayout(null);
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 160, 160));
+
+        lab_sprite_lateral_esquerda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lab_sprite_lateral_esquerda.setText("COSTAS");
+        jPanel1.add(lab_sprite_lateral_esquerda, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, 30));
+
+        jPanel8.setLayout(null);
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 170, 160));
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel13.setText("FRENTE");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, 30));
+
+        jPanel9.setLayout(null);
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 160, 160));
+
+        jPanel10.setLayout(null);
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 160, 160));
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel19.setText("LADO ESQUERDO");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 150, 30));
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel20.setText("LADO DIREITO");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 69, -1, 30));
+
+        jButton3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
+        jButton3.setText("Selecionar");
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 100, 30));
+
+        jButton4.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
+        jButton4.setText("Selecionar");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 100, 30));
+
+        jButton5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButton5.setText("Selecionar");
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 120, 30));
+
+        jButton6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButton6.setText("Selecionar");
+        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 280, 110, 30));
+
+        jTabbedPane2.addTab("Sprites", jPanel1);
+
+        getContentPane().add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 940, 420));
 
         jButton1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
         jButton1.setText("Salvar");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 180, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 190, 50));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 900, 100));
-
-        jSlider1.setMaximum(999);
-        jSlider1.setMinimum(10);
-        jPanel2.add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
-
-        jTabbedPane2.addTab("ATRIBUTOS", jPanel2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 938, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("EQUIPAMENTO", jPanel3);
-
-        jPanel1.setBackground(new java.awt.Color(22, 0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lab_perfil.setText("jLabel1");
-
-        javax.swing.GroupLayout pnl_fundo_perfilLayout = new javax.swing.GroupLayout(pnl_fundo_perfil);
-        pnl_fundo_perfil.setLayout(pnl_fundo_perfilLayout);
-        pnl_fundo_perfilLayout.setHorizontalGroup(
-            pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_fundo_perfilLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(lab_perfil)
-                .addGap(72, 72, 72))
-        );
-        pnl_fundo_perfilLayout.setVerticalGroup(
-            pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_fundo_perfilLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(lab_perfil)
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 190, 190));
-
-        btn_escolher_imagem.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        btn_escolher_imagem.setText("Escolher imagem");
-        btn_escolher_imagem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_escolher_imagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btn_escolher_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, 30));
-
-        jPanel6.setBackground(new java.awt.Color(76, 0, 0));
-
-        jLabel18.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Image do perfil");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addGap(31, 31, 31))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 230, 50));
-
-        jTabbedPane2.addTab("SPRITES", jPanel1);
-
-        getContentPane().add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 940, 460));
+        jButton2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        jButton2.setText("Voltar");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 190, 50));
 
         lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
-        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 990, 500));
+        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 990, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,16 +394,24 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     private javax.swing.JButton btn_escolher_imagem;
     private javax.swing.JComboBox<String> combo_classe;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -397,16 +420,20 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JSlider jSlider1;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lab_fundo;
     private javax.swing.JLabel lab_perfil;
+    private javax.swing.JLabel lab_perfil_imagem;
+    private javax.swing.JLabel lab_sprite_lateral_esquerda;
     private javax.swing.JLabel lab_titulo;
     private javax.swing.JPanel lab_titulo_fundo;
     private javax.swing.JPanel pnl_fundo_perfil;
