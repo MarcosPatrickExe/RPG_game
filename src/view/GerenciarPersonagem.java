@@ -16,6 +16,7 @@ public class GerenciarPersonagem extends java.awt.Frame {
      */
     public GerenciarPersonagem() {
         initComponents();
+        
     }
 
     /**

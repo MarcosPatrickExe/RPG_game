@@ -22,6 +22,8 @@ public class Menu_Inicial extends javax.swing.JFrame {
 
     public static double widthScreen;  //   1366.0  
     public static double heightScreen; //768.0
+    private Color corPadrao = new Color(60,63,65);
+    
     private JFrame ConexaoBD = new ConexaoBD();
     
     /**
@@ -45,10 +47,11 @@ public class Menu_Inicial extends javax.swing.JFrame {
        
      //    setBounds(300, 100, 990, 560);
       //   setPreferredSize(new Dimension(990, 560));
-         btn_iniciar_campanha.setBackground( new Color(60,63,65) );
-         btn_gerenciar_personagem.setBackground( new Color(60,63,65) );
-         btn_configuracoes.setBackground( new Color(60,63,65) );
-         btn_sair.setBackground( new Color(60,63,65) );
+         btn_iniciar_campanha.setBackground( this.corPadrao );
+         btn_duelo_rapido.setBackground( this.corPadrao );
+         btn_gerenciar_personagem.setBackground( this.corPadrao );
+         btn_configuracoes.setBackground( this.corPadrao );
+         btn_sair.setBackground( this.corPadrao );
          this.setLocationRelativeTo(null);
        //  getContentPane().setBackground(Color.BLACK);
          
@@ -132,6 +135,8 @@ public class Menu_Inicial extends javax.swing.JFrame {
         btn_iniciar_campanha.setForeground(new java.awt.Color(255, 255, 255));
         btn_iniciar_campanha.setText("Iniciar campanha");
         btn_iniciar_campanha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_iniciar_campanha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_iniciar_campanha.setEnabled(false);
         btn_iniciar_campanha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_iniciar_campanhaMouseEntered(evt);
@@ -152,6 +157,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
         btn_gerenciar_personagem.setForeground(new java.awt.Color(255, 255, 255));
         btn_gerenciar_personagem.setText("Gerenciar personagem");
         btn_gerenciar_personagem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_gerenciar_personagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_gerenciar_personagem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_gerenciar_personagemMouseEntered(evt);
@@ -171,6 +177,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
         btn_sair.setForeground(new java.awt.Color(255, 255, 255));
         btn_sair.setText("Sair");
         btn_sair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_sairMouseEntered(evt);
@@ -194,6 +201,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
         btn_configuracoes.setForeground(new java.awt.Color(255, 255, 255));
         btn_configuracoes.setText("Configurações");
         btn_configuracoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_configuracoes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_configuracoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_configuracoesMouseEntered(evt);
@@ -217,6 +225,18 @@ public class Menu_Inicial extends javax.swing.JFrame {
         btn_duelo_rapido.setForeground(new java.awt.Color(255, 255, 255));
         btn_duelo_rapido.setText("Duelo rápido multiplayer");
         btn_duelo_rapido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_duelo_rapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_duelo_rapido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_duelo_rapidoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_duelo_rapidoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_duelo_rapidoMouseExited(evt);
+            }
+        });
         getContentPane().add(btn_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 260, 40));
 
         lab_duelo_rapido.setText("(Disponível em breve.....)");
@@ -238,11 +258,11 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_iniciar_campanhaActionPerformed
 
     private void btn_iniciar_campanhaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_iniciar_campanhaMouseEntered
-               btn_iniciar_campanha.setBackground(Color.red);
+               btn_iniciar_campanha.setBackground( Color.red );
     }//GEN-LAST:event_btn_iniciar_campanhaMouseEntered
 
     private void btn_iniciar_campanhaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_iniciar_campanhaMouseExited
-               btn_iniciar_campanha.setBackground( new Color(60,63,65) );
+               btn_iniciar_campanha.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_iniciar_campanhaMouseExited
 
     private void btn_gerenciar_personagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerenciar_personagemActionPerformed
@@ -251,7 +271,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gerenciar_personagemActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
-             this.dispose();
+             super.dispose();
              System.exit(0);
     }//GEN-LAST:event_btn_sairActionPerformed
 
@@ -268,21 +288,34 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_sairMouseEntered
 
     private void btn_sairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sairMouseExited
-          btn_sair.setBackground( CorPersonalizada.CINZA.cor  );
+           btn_sair.setBackground( CorPersonalizada.CINZA.cor  );
     }//GEN-LAST:event_btn_sairMouseExited
 
     private void btn_gerenciar_personagemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gerenciar_personagemMouseExited
-          btn_gerenciar_personagem.setBackground( CorPersonalizada.CINZA.cor );
+           btn_gerenciar_personagem.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_gerenciar_personagemMouseExited
 
     private void btn_configuracoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_configuracoesMouseExited
-          btn_configuracoes.setBackground( CorPersonalizada.CINZA.cor );
+           btn_configuracoes.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_configuracoesMouseExited
 
     private void btn_configuracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_configuracoesActionPerformed
-          this.ConexaoBD.setVisible(true);
+           this.ConexaoBD.setVisible(true);
     }//GEN-LAST:event_btn_configuracoesActionPerformed
 
+    private void btn_duelo_rapidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseClicked
+          // TODO add your handling code here:
+    }//GEN-LAST:event_btn_duelo_rapidoMouseClicked
+
+    private void btn_duelo_rapidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseEntered
+           this.btn_duelo_rapido.setBackground( Color.red);
+    }//GEN-LAST:event_btn_duelo_rapidoMouseEntered
+
+    private void btn_duelo_rapidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseExited
+           this.btn_duelo_rapido.setBackground( CorPersonalizada.CINZA.cor );
+    }//GEN-LAST:event_btn_duelo_rapidoMouseExited
+
+    
     enum CorPersonalizada{
            CINZA(   new Color(60,63,65) );
            

@@ -1,16 +1,78 @@
 package view;
 
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+
 /**
  * @author Patrick
  * 
  */
 public class Consulta_Personagem extends javax.swing.JFrame {
 
+    private static final Color corBotaoSelecionado = new Color(204,0,51); // vermelho claro
+    private static final Color corBotaoNaoSelecionado = new Color(22,0,0);  // vermelho escuro
+    
+    private static final Color letraSemFocus = new Color(187, 187, 187);
+    private static final Color letraComFocus = new Color(255, 255, 255);
+    private static int contador = 0;
+    
     /**
      * Creates new form Consulta_Personagem
      */
     public Consulta_Personagem() {
         initComponents();
+        
+        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        this.pnl_imagem_perfil.setBackground( new Color(60,63,65) );
+        
+       // this.btn_armas.setBackground( Consulta_Personagem.corBotaoSelecionado );
+        
+        JButton[] botoesEquipamento = new JButton[4];
+        botoesEquipamento[0] = this.btn_armas;
+        botoesEquipamento[1] = this.btn_escudos;
+        botoesEquipamento[2] = this.btn_acessorios;
+        botoesEquipamento[3] = this.btn_itens;
+        
+        do{  
+          botoesEquipamento[contador]
+               .addMouseListener(  
+                        new java.awt.event.MouseAdapter() {
+
+                            @Override
+                            public void mouseEntered(MouseEvent e) {
+                                   // super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
+                                 botoesEquipamento[contador]
+                                         .setBackground( Consulta_Personagem.corBotaoSelecionado );
+                                 
+                                 botoesEquipamento[contador]
+                                         .setForeground( Consulta_Personagem.letraComFocus );
+                            }
+
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                     //    super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                                  botoesEquipamento[contador]
+                                         .setBackground( Consulta_Personagem.corBotaoSelecionado );
+                            }
+
+                            @Override
+                            public void mouseExited(MouseEvent e) {
+                                 //  super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
+                                  botoesEquipamento[contador]
+                                         .setBackground( Consulta_Personagem.corBotaoNaoSelecionado );
+                                  
+                                  botoesEquipamento[contador]
+                                         .setForeground( Consulta_Personagem.letraSemFocus );
+                            }
+                        }
+                );
+            
+          ++contador;
+        }while(contador < botoesEquipamento.length );
+        
+        
     }
 
     /**
@@ -69,12 +131,12 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         lab_atk_dado = new javax.swing.JLabel();
         lab_def_dado = new javax.swing.JLabel();
         pnl_fundo_equipamento = new javax.swing.JPanel();
-        lab_armas = new javax.swing.JLabel();
-        lab_escudos = new javax.swing.JLabel();
-        lab_acessorios = new javax.swing.JLabel();
         pnl_fundo_titulo_equipamento = new javax.swing.JPanel();
         lab_equipamento = new javax.swing.JLabel();
-        lab_itens = new javax.swing.JLabel();
+        btn_armas = new javax.swing.JButton();
+        btn_escudos = new javax.swing.JButton();
+        btn_itens = new javax.swing.JButton();
+        btn_acessorios = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         list_equipamentos = new javax.swing.JList<>();
         pnl_equipamento_fundo = new javax.swing.JPanel();
@@ -203,7 +265,7 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         pnl_fundo_sobre.add(progress_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 250, -1));
 
         progress_MP.setForeground(new java.awt.Color(0, 153, 255));
-        pnl_fundo_sobre.add(progress_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 112, 250, 20));
+        pnl_fundo_sobre.add(progress_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 250, 20));
 
         lab_level_dado.setFont(new java.awt.Font("Gill Sans MT Condensed", 1, 36)); // NOI18N
         lab_level_dado.setForeground(new java.awt.Color(102, 102, 102));
@@ -334,20 +396,6 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         pnl_fundo_equipamento.setBackground(new java.awt.Color(22, 0, 0));
         pnl_fundo_equipamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lab_armas.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        lab_armas.setText("Armas");
-        pnl_fundo_equipamento.add(lab_armas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 80, 60));
-
-        lab_escudos.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        lab_escudos.setForeground(new java.awt.Color(255, 255, 255));
-        lab_escudos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Downloads\\image-removebg-preview (8).png")); // NOI18N
-        lab_escudos.setText("Escudos");
-        pnl_fundo_equipamento.add(lab_escudos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 140, 60));
-
-        lab_acessorios.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        lab_acessorios.setText("Acessórios");
-        pnl_fundo_equipamento.add(lab_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 110, 60));
-
         pnl_fundo_titulo_equipamento.setBackground(new java.awt.Color(76, 0, 0));
         pnl_fundo_titulo_equipamento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_titulo_equipamento.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,11 +406,35 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         lab_equipamento.setText("equipamento:");
         pnl_fundo_titulo_equipamento.add(lab_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 60));
 
-        pnl_fundo_equipamento.add(pnl_fundo_titulo_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, -1));
+        pnl_fundo_equipamento.add(pnl_fundo_titulo_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 60));
 
-        lab_itens.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        lab_itens.setText("Itens");
-        pnl_fundo_equipamento.add(lab_itens, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 214, -1, 50));
+        btn_armas.setBackground(new java.awt.Color(22, 0, 0));
+        btn_armas.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_armas.setText("Armas");
+        btn_armas.setBorder(null);
+        btn_armas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnl_fundo_equipamento.add(btn_armas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 190, 60));
+
+        btn_escudos.setBackground(new java.awt.Color(22, 0, 0));
+        btn_escudos.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_escudos.setText("Escudos");
+        btn_escudos.setBorder(null);
+        btn_escudos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnl_fundo_equipamento.add(btn_escudos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 180, 50));
+
+        btn_itens.setBackground(new java.awt.Color(22, 0, 0));
+        btn_itens.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_itens.setText("Itens");
+        btn_itens.setBorder(null);
+        btn_itens.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnl_fundo_equipamento.add(btn_itens, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 230, 190, 60));
+
+        btn_acessorios.setBackground(new java.awt.Color(22, 0, 0));
+        btn_acessorios.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_acessorios.setText("Acessórios");
+        btn_acessorios.setBorder(null);
+        btn_acessorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnl_fundo_equipamento.add(btn_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 60));
 
         getContentPane().add(pnl_fundo_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 160, 290));
 
@@ -382,21 +454,24 @@ public class Consulta_Personagem extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 260, 190));
 
+        pnl_equipamento_fundo.setBackground(null);
         pnl_equipamento_fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lab_imagem_equipamento.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lab_imagem_equipamento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lab_imagem_equipamento.setText("foto do equipamento");
-        pnl_equipamento_fundo.add(lab_imagem_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        pnl_equipamento_fundo.add(lab_imagem_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        getContentPane().add(pnl_equipamento_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, 200, 190));
+        getContentPane().add(pnl_equipamento_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 190, 190));
 
         txtarea_descricao.setBackground(new java.awt.Color(22, 0, 0));
         txtarea_descricao.setColumns(20);
         txtarea_descricao.setForeground(new java.awt.Color(255, 255, 255));
         txtarea_descricao.setRows(5);
-        txtarea_descricao.setText("ffeffef");
+        txtarea_descricao.setText("DESCRIÇÃO AQUI");
         txtarea_descricao.setAlignmentX(2.5F);
         txtarea_descricao.setAlignmentY(2.5F);
+        txtarea_descricao.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        txtarea_descricao.setEnabled(false);
         txtarea_descricao.setMargin(new java.awt.Insets(10, 10, 0, 0));
         jScrollPane3.setViewportView(txtarea_descricao);
 
@@ -520,7 +595,11 @@ public class Consulta_Personagem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_acessorios;
+    private javax.swing.JButton btn_armas;
     private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_escudos;
+    private javax.swing.JButton btn_itens;
     private javax.swing.JComboBox<String> combo_pesquisar_por;
     private javax.swing.JTextField input_valor_pesquisa;
     private javax.swing.JLabel jLabel1;
@@ -536,8 +615,6 @@ public class Consulta_Personagem extends javax.swing.JFrame {
     private javax.swing.JLabel lab_MP;
     private javax.swing.JLabel lab_MP_atual_dado;
     private javax.swing.JLabel lab_XP;
-    private javax.swing.JLabel lab_acessorios;
-    private javax.swing.JLabel lab_armas;
     private javax.swing.JLabel lab_atk;
     private javax.swing.JLabel lab_atk_dado;
     private javax.swing.JLabel lab_categoria;
@@ -548,7 +625,6 @@ public class Consulta_Personagem extends javax.swing.JFrame {
     private javax.swing.JLabel lab_destreza;
     private javax.swing.JLabel lab_destreza_dado;
     private javax.swing.JLabel lab_equipamento;
-    private javax.swing.JLabel lab_escudos;
     private javax.swing.JLabel lab_evasao;
     private javax.swing.JLabel lab_evasao_dado;
     private javax.swing.JLabel lab_forca;
@@ -556,7 +632,6 @@ public class Consulta_Personagem extends javax.swing.JFrame {
     private javax.swing.JLabel lab_fundo;
     private javax.swing.JLabel lab_imagem_equipamento;
     private javax.swing.JLabel lab_imagem_personagem;
-    private javax.swing.JLabel lab_itens;
     private javax.swing.JLabel lab_level;
     private javax.swing.JLabel lab_level_dado;
     private javax.swing.JLabel lab_nome;
