@@ -2,75 +2,90 @@ package view;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
  * @author Patrick
  * 
  */
-public class Consulta_Personagem extends javax.swing.JFrame {
+public class ConsultaPersonagem extends javax.swing.JFrame {
 
+    private static final Icon hand_icon = new ImageIcon("https://github.com/MarcosPatrickExe/images-for-all-repositories/blob/main/rpg_game/icon_hand.png?raw=true");                    
     private static final Color corBotaoSelecionado = new Color(204,0,51); // vermelho claro
     private static final Color corBotaoNaoSelecionado = new Color(22,0,0);  // vermelho escuro
     
     private static final Color letraSemFocus = new Color(187, 187, 187);
     private static final Color letraComFocus = new Color(255, 255, 255);
-    private static int contador = 0;
+    private static final Color hpBar = new Color(102,204,0);
+    private static final Color mpBar = new Color(0,153,255);
+    private static final Color xpBar = new Color(255,102,0);
     
     /**
      * Creates new form Consulta_Personagem
      */
-    public Consulta_Personagem() {
+    public ConsultaPersonagem() {
         initComponents();
         
         super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
-        this.pnl_imagem_perfil.setBackground( new Color(60,63,65) );
+        //this.pnl_imagem_perfil.setBackground( new Color(60,63,65) );
         
-       // this.btn_armas.setBackground( Consulta_Personagem.corBotaoSelecionado );
         
-        JButton[] botoesEquipamento = new JButton[4];
-        botoesEquipamento[0] = this.btn_armas;
-        botoesEquipamento[1] = this.btn_escudos;
-        botoesEquipamento[2] = this.btn_acessorios;
-        botoesEquipamento[3] = this.btn_itens;
+      //  System.out.println("hand_icon: "+ConsultaPersonagem.hand_icon.toString());
+       
+        this.progress_HP.setForeground( ConsultaPersonagem.hpBar );
+        this.progress_MP.setForeground( ConsultaPersonagem.mpBar );
+        this.progress_XP.setForeground( ConsultaPersonagem.xpBar );
+      
+      //  this.txtarea_descricao.setBackground( corBotaoNaoSelecionado);
+      
+        this.btn_armas.setForeground( letraSemFocus );
+        this.btn_escudos.setForeground( letraSemFocus );
+        this.btn_acessorios.setForeground( letraSemFocus );
+        this.btn_itens.setForeground( letraSemFocus );
+                
         
-        do{  
-          botoesEquipamento[contador]
-               .addMouseListener(  
-                        new java.awt.event.MouseAdapter() {
-
+        List<JButton> botoesEquipamento = new ArrayList<JButton>();
+        botoesEquipamento.add( this.btn_armas );
+        botoesEquipamento.add( this.btn_escudos );
+        botoesEquipamento.add( this.btn_acessorios);
+        botoesEquipamento.add( this.btn_itens);
+        
+        
+        for(JButton but : botoesEquipamento){
+          
+                but.addMouseListener(new java.awt.event.MouseAdapter() {
+                            
                             @Override
                             public void mouseEntered(MouseEvent e) {
                                    // super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                                 botoesEquipamento[contador]
-                                         .setBackground( Consulta_Personagem.corBotaoSelecionado );
-                                 
-                                 botoesEquipamento[contador]
-                                         .setForeground( Consulta_Personagem.letraComFocus );
+                                   
+                                   but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
+                                   but.setForeground(ConsultaPersonagem.letraComFocus );
+                                   but.setIcon(ConsultaPersonagem.hand_icon );
                             }
 
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                      //    super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                                  botoesEquipamento[contador]
-                                         .setBackground( Consulta_Personagem.corBotaoSelecionado );
+                                   but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
                             }
 
                             @Override
                             public void mouseExited(MouseEvent e) {
-                                 //  super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                                  botoesEquipamento[contador]
-                                         .setBackground( Consulta_Personagem.corBotaoNaoSelecionado );
-                                  
-                                  botoesEquipamento[contador]
-                                         .setForeground( Consulta_Personagem.letraSemFocus );
+                                   //  super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
+                                   but.setBackground(ConsultaPersonagem.corBotaoNaoSelecionado );
+                                   but.setForeground(ConsultaPersonagem.letraSemFocus );
+                                   but.setIcon( null );
                             }
-                        }
+                    }
                 );
             
-          ++contador;
-        }while(contador < botoesEquipamento.length );
+        }
         
         
     }
@@ -184,10 +199,13 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         lab_categoria.setText("Valor:");
         pnl_fundo_consulta.add(lab_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
+        input_valor_pesquisa.setBackground(new java.awt.Color(102, 102, 102));
         input_valor_pesquisa.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        input_valor_pesquisa.setText("ID, nome, etc.....");
+        input_valor_pesquisa.setForeground(new java.awt.Color(255, 255, 255));
+        input_valor_pesquisa.setText("300");
         pnl_fundo_consulta.add(input_valor_pesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, 30));
 
+        btn_buscar.setBackground(new java.awt.Color(51, 51, 51));
         btn_buscar.setFont(new java.awt.Font("Gill Sans MT Condensed", 1, 36)); // NOI18N
         btn_buscar.setForeground(new java.awt.Color(255, 255, 255));
         btn_buscar.setText("Buscar");
@@ -205,6 +223,7 @@ public class Consulta_Personagem extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         list_personagens.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        list_personagens.setSelectionForeground(new java.awt.Color(51, 0, 0));
         jScrollPane1.setViewportView(list_personagens);
 
         pnl_fundo_consulta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 250, 300));
@@ -214,7 +233,9 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         jLabel4.setText("Resultado:");
         pnl_fundo_consulta.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 110, 40));
 
+        combo_pesquisar_por.setBackground(new java.awt.Color(102, 102, 102));
         combo_pesquisar_por.setFont(new java.awt.Font("Gill Sans MT", 1, 18)); // NOI18N
+        combo_pesquisar_por.setForeground(new java.awt.Color(255, 255, 255));
         combo_pesquisar_por.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "Level", "Escudo", "Arma", "Item", "Classe" }));
         combo_pesquisar_por.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnl_fundo_consulta.add(combo_pesquisar_por, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 100, 30));
@@ -230,8 +251,9 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         pnl_imagem_perfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lab_imagem_personagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_imagem_personagem.setText("foto aqui");
-        pnl_imagem_perfil.add(lab_imagem_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 65, 90, 33));
+        lab_imagem_personagem.setForeground(new java.awt.Color(204, 204, 204));
+        lab_imagem_personagem.setText("foto do avatar");
+        pnl_imagem_perfil.add(lab_imagem_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, 33));
 
         pnl_fundo_sobre.add(pnl_imagem_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 160));
 
@@ -260,11 +282,16 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         lab_level.setText("LV:");
         pnl_fundo_sobre.add(lab_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 40, 60));
 
-        progress_HP.setBackground(new java.awt.Color(204, 0, 0));
+        progress_HP.setBackground(new java.awt.Color(22, 0, 0));
         progress_HP.setForeground(new java.awt.Color(102, 204, 0));
+        progress_HP.setMaximum(999);
+        progress_HP.setValue(500);
         pnl_fundo_sobre.add(progress_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 250, -1));
 
+        progress_MP.setBackground(new java.awt.Color(22, 0, 0));
         progress_MP.setForeground(new java.awt.Color(0, 153, 255));
+        progress_MP.setMaximum(300);
+        progress_MP.setValue(50);
         pnl_fundo_sobre.add(progress_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 250, 20));
 
         lab_level_dado.setFont(new java.awt.Font("Gill Sans MT Condensed", 1, 36)); // NOI18N
@@ -282,21 +309,24 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         lab_XP.setText("XP:");
         pnl_fundo_sobre.add(lab_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
 
+        progress_XP.setBackground(new java.awt.Color(22, 0, 0));
         progress_XP.setForeground(new java.awt.Color(255, 102, 0));
+        progress_XP.setMaximum(1000);
+        progress_XP.setValue(800);
         pnl_fundo_sobre.add(progress_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 250, -1));
 
         lab_HP_atual_dado.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        lab_HP_atual_dado.setForeground(new java.awt.Color(102, 102, 102));
+        lab_HP_atual_dado.setForeground(new java.awt.Color(204, 204, 204));
         lab_HP_atual_dado.setText("XX");
         pnl_fundo_sobre.add(lab_HP_atual_dado, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 72, 30, 30));
 
         lab_MP_atual_dado.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        lab_MP_atual_dado.setForeground(new java.awt.Color(102, 102, 102));
+        lab_MP_atual_dado.setForeground(new java.awt.Color(204, 204, 204));
         lab_MP_atual_dado.setText("XX");
         pnl_fundo_sobre.add(lab_MP_atual_dado, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 89, 30, 60));
 
         jLabel7.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("XX");
         pnl_fundo_sobre.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 142, 30, 30));
 
@@ -417,10 +447,26 @@ public class Consulta_Personagem extends javax.swing.JFrame {
 
         btn_escudos.setBackground(new java.awt.Color(22, 0, 0));
         btn_escudos.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_escudos.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://github.com/MarcosPatrickExe/images-for-all-repositories/blob/main/rpg_game/icon_hand.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
         btn_escudos.setText("Escudos");
         btn_escudos.setBorder(null);
         btn_escudos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnl_fundo_equipamento.add(btn_escudos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 180, 50));
+        btn_escudos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_escudosActionPerformed(evt);
+            }
+        });
+        pnl_fundo_equipamento.add(btn_escudos, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 200, 50));
 
         btn_itens.setBackground(new java.awt.Color(22, 0, 0));
         btn_itens.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
@@ -434,7 +480,7 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         btn_acessorios.setText("Acessórios");
         btn_acessorios.setBorder(null);
         btn_acessorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnl_fundo_equipamento.add(btn_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 60));
+        pnl_fundo_equipamento.add(btn_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 170, 220, 60));
 
         getContentPane().add(pnl_fundo_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 160, 290));
 
@@ -450,16 +496,19 @@ public class Consulta_Personagem extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         list_equipamentos.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        list_equipamentos.setSelectionForeground(new java.awt.Color(51, 0, 0));
         jScrollPane2.setViewportView(list_equipamentos);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 260, 190));
 
-        pnl_equipamento_fundo.setBackground(null);
+        pnl_equipamento_fundo.setBackground(new java.awt.Color(51, 51, 51));
         pnl_equipamento_fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lab_imagem_equipamento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lab_imagem_equipamento.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lab_imagem_equipamento.setForeground(new java.awt.Color(204, 204, 204));
+        lab_imagem_equipamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_imagem_equipamento.setText("foto do equipamento");
-        pnl_equipamento_fundo.add(lab_imagem_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        pnl_equipamento_fundo.add(lab_imagem_equipamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 190, -1));
 
         getContentPane().add(pnl_equipamento_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 370, 190, 190));
 
@@ -470,8 +519,8 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         txtarea_descricao.setText("DESCRIÇÃO AQUI");
         txtarea_descricao.setAlignmentX(2.5F);
         txtarea_descricao.setAlignmentY(2.5F);
-        txtarea_descricao.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txtarea_descricao.setEnabled(false);
+        txtarea_descricao.setCaretColor(new java.awt.Color(22, 0, 0));
+        txtarea_descricao.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         txtarea_descricao.setMargin(new java.awt.Insets(10, 10, 0, 0));
         jScrollPane3.setViewportView(txtarea_descricao);
 
@@ -559,6 +608,10 @@ public class Consulta_Personagem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_escudosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_escudosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_escudosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -576,20 +629,21 @@ public class Consulta_Personagem extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Consulta_Personagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaPersonagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Consulta_Personagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaPersonagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Consulta_Personagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaPersonagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Consulta_Personagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaPersonagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consulta_Personagem().setVisible(true);
+                new ConsultaPersonagem().setVisible(true);
             }
         });
     }

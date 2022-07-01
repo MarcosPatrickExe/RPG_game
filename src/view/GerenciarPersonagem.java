@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package view;
-import view.Consulta_Personagem;
 /**
  *
  * @author Patrick
  */
-public class GerenciarPersonagem extends java.awt.Frame {
+public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
 
     /**
      * Creates new form GerenciarPersonagem
@@ -17,6 +16,7 @@ public class GerenciarPersonagem extends java.awt.Frame {
     public GerenciarPersonagem() {
         initComponents();
         
+        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -27,17 +27,17 @@ public class GerenciarPersonagem extends java.awt.Frame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_criar = new javax.swing.JButton();
+        btn_alterar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
+        btn_consulta = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lab_fundo = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(902, 559));
         setPreferredSize(new java.awt.Dimension(902, 559));
-        setSize(new java.awt.Dimension(902, 559));
+        setSize(new java.awt.Dimension(902, 556));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
@@ -45,32 +45,46 @@ public class GerenciarPersonagem extends java.awt.Frame {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Criar personagem");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 440, 210));
-
-        jButton2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Alterar personagem");
-        jButton2.setEnabled(false);
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 470, 210));
-
-        jButton3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jButton3.setText("Excluir personagem");
-        jButton3.setEnabled(false);
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 470, 200));
-
-        jButton4.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jButton4.setText("Consultar personagem");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_criar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_criar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
+        btn_criar.setForeground(new java.awt.Color(204, 204, 204));
+        btn_criar.setText("Criar personagem");
+        btn_criar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_criar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_criarActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 440, 200));
+        add(btn_criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 440, 120));
+
+        btn_alterar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_alterar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
+        btn_alterar.setForeground(new java.awt.Color(204, 204, 204));
+        btn_alterar.setText("Alterar personagem");
+        btn_alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(btn_alterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 470, 120));
+
+        btn_excluir.setBackground(new java.awt.Color(102, 102, 102));
+        btn_excluir.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
+        btn_excluir.setForeground(new java.awt.Color(204, 204, 204));
+        btn_excluir.setText("Excluir personagem");
+        btn_excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 470, 120));
+
+        btn_consulta.setBackground(new java.awt.Color(102, 102, 102));
+        btn_consulta.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
+        btn_consulta.setForeground(new java.awt.Color(204, 204, 204));
+        btn_consulta.setText("Consultar personagem");
+        btn_consulta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultaActionPerformed(evt);
+            }
+        });
+        add(btn_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 440, 120));
 
         jPanel1.setBackground(new java.awt.Color(36, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null, null));
         jPanel1.setPreferredSize(new java.awt.Dimension(911, 546));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -79,7 +93,7 @@ public class GerenciarPersonagem extends java.awt.Frame {
         jLabel1.setText("Gerenciar personagem");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 360, 70));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 70));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 80));
 
         lab_fundo.setForeground(null);
         lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
@@ -92,12 +106,16 @@ public class GerenciarPersonagem extends java.awt.Frame {
      * Exit the Application
      */
     private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
-        System.exit(0);
+          System.exit(0);
     }//GEN-LAST:event_exitForm
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-          new Consulta_Personagem().setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btn_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultaActionPerformed
+          new ConsultaPersonagem().setVisible(true);
+    }//GEN-LAST:event_btn_consultaActionPerformed
+
+    private void btn_criarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_criarActionPerformed
+          new CadastroPersonagem().setVisible(true);
+    }//GEN-LAST:event_btn_criarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,10 +130,10 @@ public class GerenciarPersonagem extends java.awt.Frame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_alterar;
+    private javax.swing.JButton btn_consulta;
+    private javax.swing.JButton btn_criar;
+    private javax.swing.JButton btn_excluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_fundo;
