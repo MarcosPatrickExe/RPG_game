@@ -16,7 +16,8 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
     public GerenciarPersonagem() {
         initComponents();
         
-        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE );
+        this.setLocationRelativeTo( null);
     }
 
     /**
@@ -43,45 +44,49 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
                 exitForm(evt);
             }
         });
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_criar.setBackground(new java.awt.Color(102, 102, 102));
         btn_criar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
         btn_criar.setForeground(new java.awt.Color(204, 204, 204));
         btn_criar.setText("Criar personagem");
-        btn_criar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_criar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
+        btn_criar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_criar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_criarActionPerformed(evt);
             }
         });
-        add(btn_criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 440, 120));
+        getContentPane().add(btn_criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 400, 140));
 
         btn_alterar.setBackground(new java.awt.Color(102, 102, 102));
         btn_alterar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
         btn_alterar.setForeground(new java.awt.Color(204, 204, 204));
         btn_alterar.setText("Alterar personagem");
-        btn_alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(btn_alterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 470, 120));
+        btn_alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
+        btn_alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btn_alterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 400, 140));
 
         btn_excluir.setBackground(new java.awt.Color(102, 102, 102));
         btn_excluir.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
         btn_excluir.setForeground(new java.awt.Color(204, 204, 204));
         btn_excluir.setText("Excluir personagem");
-        btn_excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 470, 120));
+        btn_excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
+        btn_excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 400, 140));
 
         btn_consulta.setBackground(new java.awt.Color(102, 102, 102));
         btn_consulta.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 48)); // NOI18N
         btn_consulta.setForeground(new java.awt.Color(204, 204, 204));
         btn_consulta.setText("Consultar personagem");
-        btn_consulta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_consulta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
+        btn_consulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_consulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_consultaActionPerformed(evt);
             }
         });
-        add(btn_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 440, 120));
+        getContentPane().add(btn_consulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 400, 140));
 
         jPanel1.setBackground(new java.awt.Color(36, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null, null));
@@ -93,11 +98,10 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
         jLabel1.setText("Gerenciar personagem");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 360, 70));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 80));
 
-        lab_fundo.setForeground(null);
         lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
-        add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 66, 910, 490));
+        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 66, 910, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

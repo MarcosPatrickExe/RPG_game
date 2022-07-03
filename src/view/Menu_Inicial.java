@@ -47,12 +47,12 @@ public class Menu_Inicial extends javax.swing.JFrame {
        
      //    setBounds(300, 100, 990, 560);
       //   setPreferredSize(new Dimension(990, 560));
-         btn_iniciar_campanha.setBackground( this.corPadrao );
-         btn_duelo_rapido.setBackground( this.corPadrao );
-         btn_gerenciar_personagem.setBackground( this.corPadrao );
-         btn_configuracoes.setBackground( this.corPadrao );
-         btn_sair.setBackground( this.corPadrao );
-         this.setLocationRelativeTo(null);
+         this.btn_iniciar_campanha.setBackground( this.corPadrao );
+         this.btn_duelo_rapido.setBackground( this.corPadrao );
+         this.btn_gerenciar_personagem.setBackground( this.corPadrao );
+         this.btn_configuracoes.setBackground( this.corPadrao );
+         this.btn_sair.setBackground( this.corPadrao );
+         this.setLocationRelativeTo( null);
        //  getContentPane().setBackground(Color.BLACK);
          
             /*
@@ -108,16 +108,15 @@ public class Menu_Inicial extends javax.swing.JFrame {
         lab_aviso2 = new javax.swing.JLabel();
         btn_duelo_rapido = new javax.swing.JToggleButton();
         lab_duelo_rapido = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lab_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu");
+        setTitle("Menu inicial");
         setBounds(new java.awt.Rectangle(300, 100, 990, 560));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(300, 100));
         setMinimumSize(new java.awt.Dimension(991, 596));
         setName("Tela inical"); // NOI18N
-        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(991, 596));
         setResizable(false);
         setSize(new java.awt.Dimension(991, 596));
@@ -150,7 +149,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_iniciar_campanhaActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_iniciar_campanha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 200, 40));
+        getContentPane().add(btn_iniciar_campanha, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 200, 40));
         btn_iniciar_campanha.getAccessibleContext().setAccessibleParent(this);
 
         btn_gerenciar_personagem.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
@@ -171,7 +170,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_gerenciar_personagemActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_gerenciar_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 250, 50));
+        getContentPane().add(btn_gerenciar_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 250, 40));
 
         btn_sair.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         btn_sair.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,11 +190,11 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_sairActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, 110, 40));
+        getContentPane().add(btn_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, 110, 40));
 
         lab_aviso.setForeground(new java.awt.Color(204, 204, 204));
         lab_aviso.setText("  (Disponível em breve.....)");
-        getContentPane().add(lab_aviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 170, 40));
+        getContentPane().add(lab_aviso, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 170, 40));
 
         btn_configuracoes.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         btn_configuracoes.setForeground(new java.awt.Color(255, 255, 255));
@@ -215,17 +214,18 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_configuracoesActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_configuracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, 170, 50));
+        getContentPane().add(btn_configuracoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 170, 40));
 
         lab_aviso2.setForeground(new java.awt.Color(204, 204, 204));
         lab_aviso2.setText("( Somente para ADMs )");
-        getContentPane().add(lab_aviso2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 150, -1));
+        getContentPane().add(lab_aviso2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 150, 20));
 
         btn_duelo_rapido.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         btn_duelo_rapido.setForeground(new java.awt.Color(255, 255, 255));
         btn_duelo_rapido.setText("Duelo rápido multiplayer");
         btn_duelo_rapido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_duelo_rapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_duelo_rapido.setEnabled(false);
         btn_duelo_rapido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_duelo_rapidoMouseClicked(evt);
@@ -237,16 +237,22 @@ public class Menu_Inicial extends javax.swing.JFrame {
                 btn_duelo_rapidoMouseExited(evt);
             }
         });
-        getContentPane().add(btn_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 260, 40));
+        btn_duelo_rapido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_duelo_rapidoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 250, 40));
 
+        lab_duelo_rapido.setForeground(new java.awt.Color(204, 204, 204));
         lab_duelo_rapido.setText("(Disponível em breve.....)");
-        getContentPane().add(lab_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, -1));
+        getContentPane().add(lab_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(991, 576));
-        jLabel1.setMinimumSize(new java.awt.Dimension(991, 576));
-        jLabel1.setPreferredSize(new java.awt.Dimension(991, 576));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 580));
+        lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
+        lab_fundo.setMaximumSize(new java.awt.Dimension(991, 596));
+        lab_fundo.setMinimumSize(new java.awt.Dimension(991, 596));
+        lab_fundo.setPreferredSize(new java.awt.Dimension(991, 596));
+        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 596));
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -280,40 +286,44 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_gerenciar_personagemMouseEntered
 
     private void btn_configuracoesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_configuracoesMouseEntered
-           btn_configuracoes.setBackground( Color.red );
+            btn_configuracoes.setBackground( Color.red );
     }//GEN-LAST:event_btn_configuracoesMouseEntered
 
     private void btn_sairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sairMouseEntered
-           btn_sair.setBackground( Color.red );
+            btn_sair.setBackground( Color.red );
     }//GEN-LAST:event_btn_sairMouseEntered
 
     private void btn_sairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_sairMouseExited
-           btn_sair.setBackground( CorPersonalizada.CINZA.cor  );
+            btn_sair.setBackground( CorPersonalizada.CINZA.cor  );
     }//GEN-LAST:event_btn_sairMouseExited
 
     private void btn_gerenciar_personagemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gerenciar_personagemMouseExited
-           btn_gerenciar_personagem.setBackground( CorPersonalizada.CINZA.cor );
+            btn_gerenciar_personagem.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_gerenciar_personagemMouseExited
 
     private void btn_configuracoesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_configuracoesMouseExited
-           btn_configuracoes.setBackground( CorPersonalizada.CINZA.cor );
+            btn_configuracoes.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_configuracoesMouseExited
 
     private void btn_configuracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_configuracoesActionPerformed
-           this.ConexaoBD.setVisible(true);
+            this.ConexaoBD.setVisible(true);
     }//GEN-LAST:event_btn_configuracoesActionPerformed
 
     private void btn_duelo_rapidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseClicked
-          // TODO add your handling code here:
+            // TODO add your handling code here:
     }//GEN-LAST:event_btn_duelo_rapidoMouseClicked
 
     private void btn_duelo_rapidoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseEntered
-           this.btn_duelo_rapido.setBackground( Color.red);
+            this.btn_duelo_rapido.setBackground( Color.red);
     }//GEN-LAST:event_btn_duelo_rapidoMouseEntered
 
     private void btn_duelo_rapidoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoMouseExited
-           this.btn_duelo_rapido.setBackground( CorPersonalizada.CINZA.cor );
+            this.btn_duelo_rapido.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_duelo_rapidoMouseExited
+
+    private void btn_duelo_rapidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_duelo_rapidoActionPerformed
+            JOptionPane.showMessageDialog(this, "Funcionalidade ainda não implementada....", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btn_duelo_rapidoActionPerformed
 
     
     enum CorPersonalizada{
@@ -372,10 +382,10 @@ public class Menu_Inicial extends javax.swing.JFrame {
     private javax.swing.JButton btn_gerenciar_personagem;
     private javax.swing.JButton btn_iniciar_campanha;
     private javax.swing.JButton btn_sair;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lab_aviso;
     private javax.swing.JLabel lab_aviso2;
     private javax.swing.JLabel lab_duelo_rapido;
+    private javax.swing.JLabel lab_fundo;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,25 +7,36 @@ package view;
 
 import connection.ConexaoBD_Setup;
 import java.sql.Connection;
-import java.sql.SQLException;
-import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Patrick
  */
-public class ConexaoBD extends javax.swing.JFrame {
+public class ConexaoBD extends JFrame {
 
+      /*
+          restore and store image bytea from postgre database:
+          https://stackoverflow.com/questions/6078525/displaying-image-from-postgresql-database-bytea
+    
+    
+          https://stackoverflow.com/questions/15127100/store-and-retrieve-images-in-postgresql-using-java
+    
+    */
+    
+    
+    
+    
     /**
      * Creates new form ConexaoBD
      */
     public ConexaoBD() {
             initComponents();
-        
+            
             this.setLocationRelativeTo(null);
             
-            if ( connection.ConexaoBD_Setup.getConexao() !=null ){ // Se estiver conectado ao banco.....
+            if ( ConexaoBD_Setup.conexaoEstabelecida == true ){ // Se estiver conectado ao banco.....
                     btn_new_connection.setVisible(true);
                     btn_conect.setEnabled(false);
             }else{
@@ -45,7 +56,6 @@ public class ConexaoBD extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         pan_card_setup = new javax.swing.JPanel();
-        btn_conect = new javax.swing.JButton();
         lab_database = new javax.swing.JLabel();
         text_database = new javax.swing.JTextField();
         lab_user = new javax.swing.JLabel();
@@ -56,22 +66,84 @@ public class ConexaoBD extends javax.swing.JFrame {
         text_port = new javax.swing.JTextField();
         text_user = new javax.swing.JTextField();
         text_password = new javax.swing.JTextField();
-        lab_titulo = new javax.swing.JLabel();
+        btn_conect = new javax.swing.JButton();
         btn_new_connection = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lab_titulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configurações");
+        setBackground(new java.awt.Color(23, 0, 0));
         setMinimumSize(new java.awt.Dimension(599, 455));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pan_card_setup.setBackground(new java.awt.Color(36, 0, 0));
+        pan_card_setup.setBackground(new java.awt.Color(30, 0, 0));
         pan_card_setup.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lab_database.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lab_database.setForeground(new java.awt.Color(255, 255, 255));
+        lab_database.setText("Nome do banco:");
+        pan_card_setup.add(lab_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 160, 30));
+
+        text_database.setBackground(new java.awt.Color(102, 102, 102));
+        text_database.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        text_database.setForeground(new java.awt.Color(255, 255, 255));
+        text_database.setText("rpg_database");
+        pan_card_setup.add(text_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 200, 30));
+
+        lab_user.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lab_user.setForeground(new java.awt.Color(255, 255, 255));
+        lab_user.setText("Usuario:");
+        pan_card_setup.add(lab_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 178, 90, 50));
+
+        lab_port.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lab_port.setForeground(new java.awt.Color(255, 255, 255));
+        lab_port.setText("Porta:");
+        pan_card_setup.add(lab_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, 50));
+
+        lab_host.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lab_host.setForeground(new java.awt.Color(255, 255, 255));
+        lab_host.setText("Nome/IP do Host:");
+        pan_card_setup.add(lab_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 170, 50));
+
+        lab_password.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lab_password.setForeground(new java.awt.Color(255, 255, 255));
+        lab_password.setText("Senha:");
+        pan_card_setup.add(lab_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, 50));
+
+        text_host.setBackground(new java.awt.Color(102, 102, 102));
+        text_host.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        text_host.setForeground(new java.awt.Color(255, 255, 255));
+        text_host.setText("localhost");
+        pan_card_setup.add(text_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 200, 30));
+
+        text_port.setBackground(new java.awt.Color(102, 102, 102));
+        text_port.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        text_port.setForeground(new java.awt.Color(255, 255, 255));
+        text_port.setText("5432");
+        pan_card_setup.add(text_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 200, 30));
+
+        text_user.setBackground(new java.awt.Color(102, 102, 102));
+        text_user.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        text_user.setForeground(new java.awt.Color(255, 255, 255));
+        text_user.setText("postgres");
+        pan_card_setup.add(text_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 188, 140, 30));
+
+        text_password.setBackground(new java.awt.Color(102, 102, 102));
+        text_password.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        text_password.setForeground(new java.awt.Color(255, 255, 255));
+        text_password.setText("postgres");
+        pan_card_setup.add(text_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 140, -1));
+
+        getContentPane().add(pan_card_setup, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 680, 290));
+
+        btn_conect.setBackground(new java.awt.Color(51, 51, 51));
         btn_conect.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btn_conect.setForeground(new java.awt.Color(255, 255, 255));
         btn_conect.setText("Conectar ao banco de dados");
         btn_conect.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_conect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -80,71 +152,11 @@ public class ConexaoBD extends javax.swing.JFrame {
                 btn_conectActionPerformed(evt);
             }
         });
-        pan_card_setup.add(btn_conect, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 270, 40));
+        getContentPane().add(btn_conect, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, 270, 40));
 
-        lab_database.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_database.setForeground(new java.awt.Color(255, 255, 255));
-        lab_database.setText("Nome do banco:");
-        pan_card_setup.add(lab_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 150, 30));
-
-        text_database.setBackground(new java.awt.Color(153, 153, 153));
-        text_database.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        text_database.setForeground(new java.awt.Color(102, 102, 102));
-        text_database.setText("rpg_database");
-        pan_card_setup.add(text_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 200, 30));
-
-        lab_user.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_user.setForeground(new java.awt.Color(255, 255, 255));
-        lab_user.setText("Usuario:");
-        pan_card_setup.add(lab_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 90, 80));
-
-        lab_port.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_port.setForeground(new java.awt.Color(255, 255, 255));
-        lab_port.setText("Porta:");
-        pan_card_setup.add(lab_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, 50));
-
-        lab_host.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_host.setForeground(new java.awt.Color(255, 255, 255));
-        lab_host.setText("Nome/IP do Host:");
-        pan_card_setup.add(lab_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 160, 50));
-
-        lab_password.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_password.setForeground(new java.awt.Color(255, 255, 255));
-        lab_password.setText("Senha:");
-        pan_card_setup.add(lab_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 322, -1, 40));
-
-        text_host.setBackground(new java.awt.Color(153, 153, 153));
-        text_host.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        text_host.setForeground(new java.awt.Color(102, 102, 102));
-        text_host.setText("localhost");
-        pan_card_setup.add(text_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 200, 30));
-
-        text_port.setBackground(new java.awt.Color(153, 153, 153));
-        text_port.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        text_port.setForeground(new java.awt.Color(102, 102, 102));
-        text_port.setText("5432");
-        pan_card_setup.add(text_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 200, 30));
-
-        text_user.setBackground(new java.awt.Color(153, 153, 153));
-        text_user.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        text_user.setForeground(new java.awt.Color(102, 102, 102));
-        text_user.setText("postgres");
-        pan_card_setup.add(text_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 275, 140, 30));
-
-        text_password.setBackground(new java.awt.Color(153, 153, 153));
-        text_password.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        text_password.setForeground(new java.awt.Color(102, 102, 102));
-        text_password.setText("postgres");
-        pan_card_setup.add(text_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 140, -1));
-
-        lab_titulo.setBackground(new java.awt.Color(255, 255, 255));
-        lab_titulo.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 55)); // NOI18N
-        lab_titulo.setForeground(new java.awt.Color(255, 255, 255));
-        lab_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_titulo.setText("Configurar banco de dados");
-        pan_card_setup.add(lab_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 510, 60));
-
+        btn_new_connection.setBackground(new java.awt.Color(51, 51, 51));
         btn_new_connection.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btn_new_connection.setForeground(new java.awt.Color(255, 255, 255));
         btn_new_connection.setText("Nova conexão");
         btn_new_connection.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_new_connection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,9 +165,19 @@ public class ConexaoBD extends javax.swing.JFrame {
                 btn_new_connectionActionPerformed(evt);
             }
         });
-        pan_card_setup.add(btn_new_connection, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 160, 40));
+        getContentPane().add(btn_new_connection, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 160, 40));
 
-        getContentPane().add(pan_card_setup, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 470, 510));
+        jPanel1.setBackground(new java.awt.Color(36, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(204, 102, 0), new java.awt.Color(204, 102, 0), null, null));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lab_titulo.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 55)); // NOI18N
+        lab_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        lab_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lab_titulo.setText("Configurar banco de dados");
+        jPanel1.add(lab_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -10, -1, 80));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 510));
@@ -164,34 +186,38 @@ public class ConexaoBD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_conectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conectActionPerformed
-                String database = this.text_database.getText() ;
-                String host = this.text_host.getText() ;
-                short port = Short.valueOf( this.text_port.getText() ) ;
-                String user = this.text_user.getText() ;
-                int password =  Integer.valueOf( this.text_password.getText() );
-                
-                try{
-                            ConexaoBD_Setup.conexao_Setup( database, host, port, user, password);
-                            Connection conexao = ConexaoBD_Setup.abrirConexao();
-                            
-                            if ( conexao != null  )
-                                      JOptionPane.showMessageDialog(null, "Conexão com o banco bem sucedida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
-                                  
-                            conexao.close();
+              
+                try{        
+                        String database = this.text_database.getText() ;
+                        String host = this.text_host.getText() ;
+                        short port = Short.parseShort(this.text_port.getText() ) ;
+                        String user = this.text_user.getText() ;
+                        String password =  this.text_password.getText();
+
+
+                        ConexaoBD_Setup.conexao_Setup( database, host, port, user, password);
+                        Connection conexao = ConexaoBD_Setup.abrirConexao();
+
+                        if ( conexao != null  ){
+                               JOptionPane.showMessageDialog(null, "Conexão com o banco bem sucedida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                               ConexaoBD_Setup.conexaoEstabelecida = true;
+                        }
+
+                        ConexaoBD_Setup.encerrarConexao(conexao);
                             
                 }catch(ClassNotFoundException cnfe){
                          JOptionPane.showMessageDialog(null, "Erro ao tentar realizar uma conexão com o banco.....", "Error!!!", JOptionPane.ERROR_MESSAGE);
                        //  System.out.println("Erro ao tentar realizar uma conexão com o banco..... "+cnfe);
                          
-                }catch(SQLException ex){
-                         JOptionPane.showMessageDialog(null, "Erro ao tentar realizar uma conexão com o banco (SQL Exception).....", "Error!!!", JOptionPane.ERROR_MESSAGE);
-                         ex.printStackTrace();
+                }catch(java.lang.NumberFormatException errorFormat){
+                        JOptionPane.showMessageDialog(null, "Erro ao tentar realizar conversão de um formato de dado para outro.....", "Error!!!", JOptionPane.ERROR_MESSAGE);
+                        errorFormat.printStackTrace();
                 }
                 
     }//GEN-LAST:event_btn_conectActionPerformed
 
     private void btn_new_connectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_new_connectionActionPerformed
-               connection.ConexaoBD_Setup.encerrarConexao(); 
+               ConexaoBD_Setup.conexaoEstabelecida = false;
                
                this.text_database.setText("");
                this.text_host.setText("");
@@ -244,6 +270,7 @@ public class ConexaoBD extends javax.swing.JFrame {
     private javax.swing.JButton btn_new_connection;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_database;
     private javax.swing.JLabel lab_host;
     private javax.swing.JLabel lab_password;

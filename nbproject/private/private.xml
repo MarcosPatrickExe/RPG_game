@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/Consulta_Personagem.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/Menu_Inicial.java</file>
             <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/CadastroPersonagem.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/connection/ConexaoBD_Setup.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/ConexaoBD.java</file>
             <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/GerenciarPersonagem.java</file>
         </group>
     </open-files>

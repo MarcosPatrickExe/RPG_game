@@ -58,32 +58,33 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         
         for(JButton but : botoesEquipamento){
           
-                but.addMouseListener(new java.awt.event.MouseAdapter() {
+            but.addMouseListener(
+                   
+                 new java.awt.event.MouseAdapter() {
                             
-                            @Override
-                            public void mouseEntered(MouseEvent e) {
-                                   // super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
-                                   
-                                   but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
-                                   but.setForeground(ConsultaPersonagem.letraComFocus );
-                                   but.setIcon(ConsultaPersonagem.hand_icon );
-                            }
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                           // super.mouseEntered(e); //To change body of generated methods, choose Tools | Templates.
 
-                            @Override
-                            public void mouseClicked(MouseEvent e) {
-                                     //    super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                                   but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
-                            }
-
-                            @Override
-                            public void mouseExited(MouseEvent e) {
-                                   //  super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
-                                   but.setBackground(ConsultaPersonagem.corBotaoNaoSelecionado );
-                                   but.setForeground(ConsultaPersonagem.letraSemFocus );
-                                   but.setIcon( null );
-                            }
+                           but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
+                           but.setForeground(ConsultaPersonagem.letraComFocus );
+                           but.setIcon(ConsultaPersonagem.hand_icon );
                     }
-                );
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                             //    super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                           but.setBackground(ConsultaPersonagem.corBotaoSelecionado );
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                           //  super.mouseExited(e); //To change body of generated methods, choose Tools | Templates.
+                           but.setBackground(ConsultaPersonagem.corBotaoNaoSelecionado );
+                           but.setForeground(ConsultaPersonagem.letraSemFocus );
+                           but.setIcon( null );
+                    }
+           });
             
         }
         
@@ -169,7 +170,9 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         lab_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultar personagem");
         setMinimumSize(new java.awt.Dimension(998, 576));
+        setName("Consulta"); // NOI18N
         setSize(new java.awt.Dimension(991, 576));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

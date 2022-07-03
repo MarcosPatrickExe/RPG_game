@@ -69,43 +69,52 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
 
-                String sql = "UPDATE personagem "
-                                 + "SET  nome = ?, "
-                                 + "nivel = ?, "
-                                 + "pontos_magia, "
-                                 + "pontos_vida = ?, "
-                                 + "velocidade = ?, "
-                                 + "ataque_especial = ?, "
-                                 + "defesa_especial = ?, "
-                                 + "ataque = ?, "
-                                 + "defesa = ?, "
-                                 + "XP = ?, "
-                                 + "evasao = ?, "
-                                 + "sprite = ?"
-                                 + "classe_id = ?"
-                                 + "WHERE ID = ? ";
+                String sql =  "UPDATE personagem "
+                            + "SET nome = ?, "
+                            + "nivel = ?, "
+                            + "HP_maximo= ?, "
+                            + "MP_maximo = ?, "
+                            + "velocidade = ?, "
+                            + "XP = ?, "
+                            + "evasao = ?, "
+                            + "ataque = ?, "
+                            + "defesa = ?, "
+                            + "ataque_especial = ?, "
+                            + "defesa_especial = ?, "
+                            + "classe_id = ?"
+                            + "sprite_id = ?"
+                            + "destreza = ?"
+                            + "forca = ?"
+                            + "HP_atual= ?, "
+                            + "MP_atual = ?, "
+                            + "WHERE ID = ? ";
 
                 preStmt =  conexao.prepareStatement( sql );
 
                 preStmt.setString( 1, person.getNome() );
                 preStmt.setInt( 2, person.getNivel() );
-                preStmt.setInt( 3, person.getPontos_magia());
-                preStmt.setInt( 4, person.getPontos_vida());
+                preStmt.setInt( 3, person.getPontos_vida());
+                preStmt.setInt( 4, person.getPontos_magia());
                 preStmt.setInt( 5, person.getVelocidade());
-                preStmt.setInt( 6, person.getAtaque_especial());
-                preStmt.setInt( 7, person.getDefesa_especial());
+                preStmt.setInt( 6, person.getXP());
+                preStmt.setInt( 7, person.getEvasao());
                 preStmt.setInt( 8, person.getAtaque());
                 preStmt.setInt( 9, person.getDefesa());
-                preStmt.setInt( 10, person.getXP());
-                preStmt.setInt( 11, person.getEvasao());
-                preStmt.setString( 12, person.getSprite());
-                preStmt.setInt( 13, person.getClasse_id());
+                preStmt.setInt( 10, person.getAtaque_especial());
+                preStmt.setInt( 11, person.getDefesa_especial());
+                preStmt.setInt( 12, person.getClasse_id());
+                preStmt.setInt( 13, person.getSprite_id());
+                preStmt.setInt( 14, person.getDestreza());
+                preStmt.setInt( 15, person.getForca());
+                preStmt.setInt( 16, person.getHP_atual());
+                preStmt.setInt( 17, person.getMP_atual());
+                
 
                 if ( preStmt.executeUpdate() ==1)
                          JOptionPane.showMessageDialog(null, "O personagem com ID "+ID+"foi atualizado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
 
                 preStmt.close();
-                conexao.close();
+                ConexaoBD_Setup.encerrarConexao(conexao);
     }
 
     
@@ -116,14 +125,14 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
            
                 String sql = "DELETE FROM personagem WHERE ID = ?";
-                preStmt =  conexao.prepareStatement( sql );
+                preStmt =  conexao.prepareStatement(sql);
                 preStmt.setInt( 1, ID );
 
                 if ( preStmt.executeUpdate() ==1)
                          JOptionPane.showMessageDialog(null, "O personagem com ID "+ID+"foi atulizado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
 
                 preStmt.close();
-                conexao.close();
+                ConexaoBD_Setup.encerrarConexao(conexao);
     }
 
     
@@ -136,18 +145,19 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Personagem pers;
                 
                 String query = "SELECT * from personagem";
-                PreparedStatement ps = con.prepareStatement( query );
-                ResultSet resultado = ps.executeQuery();
+                preStmt = con.prepareStatement( query );
+                ResultSet resultado = preStmt.executeQuery();
                
                 while ( resultado.next() ){
-                         pers = new Personagem( resultado  );
-                         
-                         personagens.add ( pers );
+                    pers = new Personagem( resultado );
+
+                    personagens.add ( pers );
                 }
                 
                 resultado.close();
-                ps.close();
-                con.close();
+                preStmt.close();
+                ConexaoBD_Setup.encerrarConexao(con);
+                
                 
                 return personagens;
     }
@@ -171,7 +181,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 
                resultado.close();
                preStmt.close();
-               con.close();
+               ConexaoBD_Setup.encerrarConexao(con);
                
                return pers;
     }
@@ -196,7 +206,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 
                 resultado.close();
                 preStmt.close();
-                con.close();
+                ConexaoBD_Setup.encerrarConexao(con);
                 
                 return pers;
     }
