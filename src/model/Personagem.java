@@ -75,8 +75,8 @@ public class Personagem {
                 this.ID = rs.getInt("ID");
                 this.nome = rs.getString("nome");
                 this.nivel = rs.getInt("nivel");
-                this.pontos_vida = rs.getInt("pontos_vida");
-                this.pontos_magia = rs.getInt("pontos_magia");
+                this.pontos_vida = rs.getInt("HP_maximo");
+                this.pontos_magia = rs.getInt("MP_maximo");
                 this.velocidade = rs.getInt("velocidade");
                 this.XP = rs.getInt("XP");
                 this.evasao = rs.getInt("evasao");
@@ -85,7 +85,7 @@ public class Personagem {
                 this.ataque_especial = rs.getInt("ataque_especial");
                 this.defesa_especial = rs.getInt("defesa_especial");
                 this.classe_id = rs.getInt("classe_id") ;
-                this.sprite_id = rs.getInt("sprite");
+                this.sprite_id = rs.getInt("sprite_id");
                 this.destreza = rs.getInt("destreza");
                 this.forca = rs.getInt("forca");
                 this.HP_atual = rs.getInt("HP_atual");

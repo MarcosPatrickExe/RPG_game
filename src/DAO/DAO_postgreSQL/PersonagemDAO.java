@@ -20,38 +20,71 @@ import javax.swing.JOptionPane;
 public class PersonagemDAO implements IPersonagemDAO{
 
         @Override
-        public boolean criar_personagem ( String nome, int nivel, int pontos_magia, int pontos_vida, int velocidade, int ataque_especial, int defesa_especial, int ataque, int defesa, int XP,  int evasao, String sprite,  int classe_id) {
+        public boolean criar_personagem ( 
+                   String nome, int nivel, 
+                     int pontos_vida, int pontos_magia,
+                        int velocidade, int XP, int evasao,
+                          int ataque, int defesa, 
+                            int ataque_especial, int defesa_especial,
+                               int classe_id, int sprite_id,
+                                 int destreza, int forca,
+                                   int HP_atual, int MP_atual
+                                //       ,int acessorio_id, 
+                                   ) {
 
+            
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 boolean sucesso = false;
                 PreparedStatement preStmt = null;
 
                 try{
-                                String sql = "INSERT INTO personagem "
-                                                 + "( nome, nivel, pontos_magia, pontos_vida, velocidade, ataque_especial, defesa_especial, ataque, defesa, XP, evasao, sprite, classe_id) "
-                                                 + "values ( ?, ?, ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?, ? ) ";
+                                String sql = "INSERT INTO personagem ("
+                                                + "nome, "
+                                                + "nivel, "
+                                                + "HP_maximo, "
+                                                + "MP_maximo, "
+                                                + "velocidade, "
+                                                + "XP, "
+                                                + "evasao, "
+                                                + "ataque, "
+                                                + "defesa, "
+                                                + "ataque_especial, "
+                                                + "defesa_especial, "
+                                                + "classe_id, "
+                                                + "sprite_id, "
+                                                + "destreza, "
+                                                + "forca, "
+                                                + "HP_atual, "
+                                                + "MP_atual "
+                                                + "values ( ?, ?, ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?, ?)";
 
+                                
                                 preStmt =  conexao.prepareStatement( sql );
 
                                 preStmt.setString(1, nome);
                                 preStmt.setInt(2, nivel);
-                                preStmt.setInt(3, pontos_magia);
-                                preStmt.setInt(4, pontos_vida);
+                                preStmt.setInt(3, pontos_vida);
+                                preStmt.setInt(4, pontos_magia);
                                 preStmt.setInt(5,velocidade);
-                                preStmt.setInt(6, ataque_especial);
-                                preStmt.setInt(7, defesa_especial);
+                                preStmt.setInt(6, XP);
+                                preStmt.setInt(7, evasao);
                                 preStmt.setInt(8, ataque);
                                 preStmt.setInt(9, defesa);
-                                preStmt.setInt(10, XP);
-                                preStmt.setInt(11, evasao);
-                                preStmt.setString(12, sprite);
-                                preStmt.setInt(13, classe_id);
+                                preStmt.setInt(10, ataque_especial);
+                                preStmt.setInt(11, defesa_especial);
+                                preStmt.setInt(12, classe_id);
+                                preStmt.setInt(13, sprite_id);
+                                preStmt.setInt(14, destreza);
+                                preStmt.setInt(15, forca);
+                                preStmt.setInt(16, HP_atual);
+                                preStmt.setInt(17, MP_atual);
+                                
 
                                 if ( preStmt.executeUpdate() ==1)
                                            sucesso = true;
 
                                 preStmt.close();
-                                conexao.close();
+                                ConexaoBD_Setup.encerrarConexao(conexao);
                                 
                 }catch(SQLException sql){
                         sql.printStackTrace();
@@ -144,7 +177,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 List<Personagem> personagens = new ArrayList<Personagem>();
                 Personagem pers;
                 
-                String query = "SELECT * from personagem";
+                String query = "SELECT * from Personagem";
                 preStmt = con.prepareStatement( query );
                 ResultSet resultado = preStmt.executeQuery();
                

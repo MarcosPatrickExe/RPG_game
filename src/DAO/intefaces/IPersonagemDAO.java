@@ -11,8 +11,17 @@ import model.Personagem;
 
 public interface IPersonagemDAO {
             
-          public boolean criar_personagem( String nome, int nivel, int pontos_magia, int pontos_vida, int velocidade, int ataque_especial, int defesa_especial, int ataque, int defesa, int XP,  int evasao, String sprite, int classe_id );
+          public boolean criar_personagem( 
+                  String nome, int nivel, 
+                     int pontos_vida, int pontos_magia,
+                        int velocidade, int XP, int evasao,
+                          int ataque, int defesa, 
+                            int ataque_especial, int defesa_especial,
+                               int classe_id, int sprite_id,
+                                 int destreza, int forca,
+                                   int HP_atual, int MP_atual );
            
+          
           public void atualiza_personagemPorID( int ID, Personagem person ) throws SQLException;
           
           public void excluir_personagemPorID( int ID) throws SQLException;

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/connection/ConexaoBD_Setup.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>50</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/Menu_Inicial.java</file>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/CadastroPersonagem.java</file>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/connection/ConexaoBD_Setup.java</file>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/ConexaoBD.java</file>
-            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/view/GerenciarPersonagem.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/DAO/DAO_postgreSQL/TecnicaDAO.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/DAO/DAO_postgreSQL/ItemDAO.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/DAO/DAO_postgreSQL/ArmaDAO.java</file>
+            <file>file:/C:/Users/Patrick/Documents/Arquivos%20de%20Programacao/rpg_game/RPG_game/src/model/Item.java</file>
         </group>
     </open-files>
 </project-private>

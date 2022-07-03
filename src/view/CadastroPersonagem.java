@@ -29,13 +29,15 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo( null);
         
+        
+        
+        
+        
+        
+        
+        
       // cor azul de fundo para pnl:  [13,17,25]
-        
-        
-        
-        
-        
-        
+      
         /* // TESTANDO LAMBDA
         
         Pessoa pes = new Pessoa(){
@@ -185,7 +187,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         btn_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 190, 50));
 
-        tabbed_informacoes.setBackground(new java.awt.Color(38, 38, 38));
+        tabbed_informacoes.setBackground(new java.awt.Color(49, 60, 81));
         tabbed_informacoes.setForeground(new java.awt.Color(204, 204, 204));
         tabbed_informacoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabbed_informacoes.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
