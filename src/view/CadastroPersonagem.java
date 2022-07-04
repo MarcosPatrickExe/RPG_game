@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package view;
+import DAO.DAO_postgreSQL.ClasseDAO;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import model.Classe;
 
 /**
  *
@@ -29,10 +35,31 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo( null);
         
+        ClasseDAO classeDAO = new ClasseDAO();
+        
+        try { 
+                List<Classe> classes = classeDAO.obter_classes();
+
+                String[] classeNames = new String[classes.size()];
+                int contador=0;
+
+                for( Classe classe : classes){
+                    classeNames[contador] = classe.getNome();
+                    contador++;
+                }
+                 
+        
+                this.combo_classe.setModel( 
+                        new DefaultComboBoxModel(classeNames)
+                );
+        
+        }catch (SQLException ex){ ex.printStackTrace(); }
+        
+      
+       
         
         
-        
-        
+        // String avg[] = new String[]{"dwdwd", "dwdwd"};
         
         
         
@@ -70,36 +97,40 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         btn_salvar = new javax.swing.JButton();
         tabbed_informacoes = new javax.swing.JTabbedPane();
         pnl_fundo_atributos = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lab_nome = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lab_level = new javax.swing.JLabel();
         txt_level = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lab_HP_max = new javax.swing.JLabel();
+        lab_MP_max = new javax.swing.JLabel();
+        lab_XP = new javax.swing.JLabel();
+        lab_velocidade = new javax.swing.JLabel();
+        lab_evasao = new javax.swing.JLabel();
+        lab_forca = new javax.swing.JLabel();
+        lab_destreza = new javax.swing.JLabel();
+        lab_classe = new javax.swing.JLabel();
         combo_classe = new javax.swing.JComboBox<>();
         txt_evasao = new javax.swing.JTextField();
         txt_forca = new javax.swing.JTextField();
         txt_destreza = new javax.swing.JTextField();
         txt_velocidade = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lab_atk = new javax.swing.JLabel();
+        lab_def = new javax.swing.JLabel();
+        lab_sp_def = new javax.swing.JLabel();
+        lab_sp_atk = new javax.swing.JLabel();
         txt_atk = new javax.swing.JTextField();
         txt_sp_atk = new javax.swing.JTextField();
         txt_def = new javax.swing.JTextField();
         txt_sp_def = new javax.swing.JTextField();
-        spn_HP = new javax.swing.JSpinner();
-        spn_MP = new javax.swing.JSpinner();
+        spn_HP_max = new javax.swing.JSpinner();
+        spn_MP_max = new javax.swing.JSpinner();
         txt_XP = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        lab_HP_atual = new javax.swing.JLabel();
+        lab_MP_atual = new javax.swing.JLabel();
+        spn_HP_atual = new javax.swing.JSpinner();
+        spn_MP_atual = new javax.swing.JSpinner();
         pnl_fundo_equipamento = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -108,13 +139,13 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_armas = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        list_escudos = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        list_acessorios = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        list_itens = new javax.swing.JList<>();
         combo_equipar_arma = new javax.swing.JComboBox<>();
         combo_equipar_escudo = new javax.swing.JComboBox<>();
         combo_equipar_acessorio = new javax.swing.JComboBox<>();
@@ -196,155 +227,155 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         pnl_fundo_atributos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.black, java.awt.Color.black));
         pnl_fundo_atributos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("Nome:");
-        pnl_fundo_atributos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 50));
+        lab_nome.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_nome.setForeground(new java.awt.Color(204, 204, 204));
+        lab_nome.setText("Nome:");
+        pnl_fundo_atributos.add(lab_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 70, 50));
 
         txt_nome.setBackground(new java.awt.Color(102, 102, 102));
         txt_nome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_nome.setForeground(new java.awt.Color(255, 255, 255));
         txt_nome.setBorder(null);
         txt_nome.setMargin(new java.awt.Insets(5, 10, 5, 5));
-        pnl_fundo_atributos.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 330, 30));
+        pnl_fundo_atributos.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 85, 160, 25));
 
-        jLabel4.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setText("Level:");
-        pnl_fundo_atributos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 60, 50));
+        lab_level.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_level.setForeground(new java.awt.Color(204, 204, 204));
+        lab_level.setText("Level:");
+        pnl_fundo_atributos.add(lab_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 60, 50));
 
         txt_level.setBackground(new java.awt.Color(102, 102, 102));
         txt_level.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_level.setForeground(new java.awt.Color(255, 255, 255));
         txt_level.setText("1");
         txt_level.setBorder(null);
-        pnl_fundo_atributos.add(txt_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 100, 30));
+        pnl_fundo_atributos.add(txt_level, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 100, 30));
 
-        jLabel5.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("HP:");
-        pnl_fundo_atributos.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 50));
+        lab_HP_max.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_HP_max.setForeground(new java.awt.Color(204, 204, 204));
+        lab_HP_max.setText("HP Máx.:");
+        pnl_fundo_atributos.add(lab_HP_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, 50));
 
-        jLabel6.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel6.setText("MP:");
-        pnl_fundo_atributos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 40, 50));
+        lab_MP_max.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_MP_max.setForeground(new java.awt.Color(204, 204, 204));
+        lab_MP_max.setText("MP Máx.:");
+        pnl_fundo_atributos.add(lab_MP_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 110, 50));
 
-        jLabel7.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel7.setText("XP:");
-        pnl_fundo_atributos.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 50, 50));
+        lab_XP.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_XP.setForeground(new java.awt.Color(204, 204, 204));
+        lab_XP.setText("XP:");
+        pnl_fundo_atributos.add(lab_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 50, 50));
 
-        jLabel8.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setText("Velocidade:");
-        pnl_fundo_atributos.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 120, 40));
+        lab_velocidade.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_velocidade.setForeground(new java.awt.Color(204, 204, 204));
+        lab_velocidade.setText("Velocidade:");
+        pnl_fundo_atributos.add(lab_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 120, 40));
 
-        jLabel9.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("Evasão:");
-        pnl_fundo_atributos.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 100, 50));
+        lab_evasao.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_evasao.setForeground(new java.awt.Color(204, 204, 204));
+        lab_evasao.setText("Evasão:");
+        pnl_fundo_atributos.add(lab_evasao, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 100, 50));
 
-        jLabel10.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Força:");
-        pnl_fundo_atributos.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 80, 60));
+        lab_forca.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_forca.setForeground(new java.awt.Color(204, 204, 204));
+        lab_forca.setText("Força:");
+        pnl_fundo_atributos.add(lab_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 80, 60));
 
-        jLabel11.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel11.setText("Destreza:");
-        pnl_fundo_atributos.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 100, 40));
+        lab_destreza.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_destreza.setForeground(new java.awt.Color(204, 204, 204));
+        lab_destreza.setText("Destreza:");
+        pnl_fundo_atributos.add(lab_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 100, 50));
 
-        jLabel12.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel12.setText("Classe:");
-        pnl_fundo_atributos.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 80, 50));
+        lab_classe.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_classe.setForeground(new java.awt.Color(204, 204, 204));
+        lab_classe.setText("Classe:");
+        pnl_fundo_atributos.add(lab_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 80, 50));
 
         combo_classe.setBackground(new java.awt.Color(102, 102, 102));
         combo_classe.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         combo_classe.setForeground(new java.awt.Color(255, 255, 255));
         combo_classe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1" }));
-        pnl_fundo_atributos.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 330, 30));
+        pnl_fundo_atributos.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 160, 30));
 
         txt_evasao.setBackground(new java.awt.Color(102, 102, 102));
         txt_evasao.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_evasao.setForeground(new java.awt.Color(255, 255, 255));
         txt_evasao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_evasao, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 60, 30));
+        pnl_fundo_atributos.add(txt_evasao, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 60, 30));
 
         txt_forca.setBackground(new java.awt.Color(102, 102, 102));
         txt_forca.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_forca.setForeground(new java.awt.Color(255, 255, 255));
         txt_forca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 60, 30));
+        pnl_fundo_atributos.add(txt_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 60, 30));
 
         txt_destreza.setBackground(new java.awt.Color(102, 102, 102));
         txt_destreza.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_destreza.setForeground(new java.awt.Color(255, 255, 255));
         txt_destreza.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 60, 30));
+        pnl_fundo_atributos.add(txt_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 60, 30));
 
         txt_velocidade.setBackground(new java.awt.Color(102, 102, 102));
         txt_velocidade.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_velocidade.setForeground(new java.awt.Color(255, 255, 255));
         txt_velocidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 280, 60, 30));
+        pnl_fundo_atributos.add(txt_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 60, 30));
 
-        jLabel14.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel14.setText("ATK:");
-        pnl_fundo_atributos.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, -1, -1));
+        lab_atk.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_atk.setForeground(new java.awt.Color(204, 204, 204));
+        lab_atk.setText("ATK:");
+        pnl_fundo_atributos.add(lab_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel15.setText("DEF:");
-        pnl_fundo_atributos.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, -1, -1));
+        lab_def.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_def.setForeground(new java.awt.Color(204, 204, 204));
+        lab_def.setText("DEF:");
+        pnl_fundo_atributos.add(lab_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 200, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel16.setText("SP. DEF:");
-        pnl_fundo_atributos.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 270, -1, -1));
+        lab_sp_def.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_sp_def.setForeground(new java.awt.Color(204, 204, 204));
+        lab_sp_def.setText("SP. DEF:");
+        pnl_fundo_atributos.add(lab_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel17.setText("SP. ATK:");
-        pnl_fundo_atributos.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, -1, -1));
+        lab_sp_atk.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_sp_atk.setForeground(new java.awt.Color(204, 204, 204));
+        lab_sp_atk.setText("SP. ATK:");
+        pnl_fundo_atributos.add(lab_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, -1, -1));
 
         txt_atk.setBackground(new java.awt.Color(102, 102, 102));
         txt_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_atk.setForeground(new java.awt.Color(255, 255, 255));
         txt_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 80, 70, 30));
+        pnl_fundo_atributos.add(txt_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 70, 30));
 
         txt_sp_atk.setBackground(new java.awt.Color(102, 102, 102));
         txt_sp_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_atk.setForeground(new java.awt.Color(255, 255, 255));
         txt_sp_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 140, 70, 30));
+        pnl_fundo_atributos.add(txt_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, 70, 30));
 
         txt_def.setBackground(new java.awt.Color(102, 102, 102));
         txt_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_def.setForeground(new java.awt.Color(255, 255, 255));
         txt_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 220, 70, 30));
+        pnl_fundo_atributos.add(txt_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 210, 70, 30));
 
         txt_sp_def.setBackground(new java.awt.Color(102, 102, 102));
         txt_sp_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_def.setForeground(new java.awt.Color(255, 255, 255));
         txt_sp_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pnl_fundo_atributos.add(txt_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 280, 70, 30));
+        pnl_fundo_atributos.add(txt_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, 30));
 
-        spn_HP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        pnl_fundo_atributos.add(spn_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 120, 30));
+        spn_HP_max.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        pnl_fundo_atributos.add(spn_HP_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 90, 30));
 
-        spn_MP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        pnl_fundo_atributos.add(spn_MP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 120, 30));
+        spn_MP_max.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        pnl_fundo_atributos.add(spn_MP_max, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 90, 30));
 
         txt_XP.setBackground(new java.awt.Color(102, 102, 102));
         txt_XP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_XP.setForeground(new java.awt.Color(255, 255, 255));
         txt_XP.setText("00");
-        pnl_fundo_atributos.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 140, 30));
+        pnl_fundo_atributos.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 120, 30));
 
         jPanel7.setBackground(new java.awt.Color(49, 60, 81));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -355,6 +386,22 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         pnl_fundo_atributos.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 40));
+
+        lab_HP_atual.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_HP_atual.setForeground(new java.awt.Color(204, 204, 204));
+        lab_HP_atual.setText("HP atual:");
+        pnl_fundo_atributos.add(lab_HP_atual, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 60));
+
+        lab_MP_atual.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        lab_MP_atual.setForeground(new java.awt.Color(204, 204, 204));
+        lab_MP_atual.setText("MP atual:");
+        pnl_fundo_atributos.add(lab_MP_atual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+
+        spn_HP_atual.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        pnl_fundo_atributos.add(spn_HP_atual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 90, 30));
+
+        spn_MP_atual.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        pnl_fundo_atributos.add(spn_MP_atual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 90, 30));
 
         tabbed_informacoes.addTab("Atributos", pnl_fundo_atributos);
 
@@ -391,56 +438,56 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         jLabel24.setText("Itens");
         pnl_fundo_equipamento.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 50, -1, -1));
 
-        jList1.setBackground(new java.awt.Color(51, 51, 51));
-        jList1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        list_armas.setBackground(new java.awt.Color(51, 51, 51));
+        list_armas.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        list_armas.setForeground(new java.awt.Color(255, 255, 255));
+        list_armas.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Arma 1" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setToolTipText("");
-        jList1.setSelectionBackground(new java.awt.Color(204, 0, 51));
-        jScrollPane1.setViewportView(jList1);
+        list_armas.setToolTipText("");
+        list_armas.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        jScrollPane1.setViewportView(list_armas);
 
         pnl_fundo_equipamento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, 140));
 
-        jList2.setBackground(new java.awt.Color(51, 51, 51));
-        jList2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jList2.setForeground(new java.awt.Color(255, 255, 255));
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        list_escudos.setBackground(new java.awt.Color(51, 51, 51));
+        list_escudos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        list_escudos.setForeground(new java.awt.Color(255, 255, 255));
+        list_escudos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Escudo 1" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList2.setSelectionBackground(new java.awt.Color(204, 0, 51));
-        jScrollPane2.setViewportView(jList2);
+        list_escudos.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        jScrollPane2.setViewportView(list_escudos);
 
         pnl_fundo_equipamento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 160, 140));
 
-        jList3.setBackground(new java.awt.Color(51, 51, 51));
-        jList3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jList3.setForeground(new java.awt.Color(255, 255, 255));
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        list_acessorios.setBackground(new java.awt.Color(51, 51, 51));
+        list_acessorios.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        list_acessorios.setForeground(new java.awt.Color(255, 255, 255));
+        list_acessorios.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Acessorio 1" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList3.setSelectionBackground(new java.awt.Color(204, 0, 51));
-        jScrollPane3.setViewportView(jList3);
+        list_acessorios.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        jScrollPane3.setViewportView(list_acessorios);
 
         pnl_fundo_equipamento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 150, 140));
 
-        jList4.setBackground(new java.awt.Color(51, 51, 51));
-        jList4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jList4.setForeground(new java.awt.Color(255, 255, 255));
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+        list_itens.setBackground(new java.awt.Color(51, 51, 51));
+        list_itens.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        list_itens.setForeground(new java.awt.Color(255, 255, 255));
+        list_itens.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList4.setSelectionBackground(new java.awt.Color(204, 0, 51));
-        jScrollPane4.setViewportView(jList4);
+        list_itens.setSelectionBackground(new java.awt.Color(204, 0, 51));
+        jScrollPane4.setViewportView(list_itens);
 
         pnl_fundo_equipamento.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 150, 140));
 
@@ -802,14 +849,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_equipar_arma;
     private javax.swing.JComboBox<String> combo_equipar_escudo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -823,17 +863,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -846,31 +875,53 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lab_HP_atual;
+    private javax.swing.JLabel lab_HP_max;
+    private javax.swing.JLabel lab_MP_atual;
+    private javax.swing.JLabel lab_MP_max;
+    private javax.swing.JLabel lab_XP;
+    private javax.swing.JLabel lab_atk;
+    private javax.swing.JLabel lab_classe;
     private javax.swing.JLabel lab_costas_imagem;
     private javax.swing.JLabel lab_costas_url;
+    private javax.swing.JLabel lab_def;
+    private javax.swing.JLabel lab_destreza;
     private javax.swing.JLabel lab_direita_url;
     private javax.swing.JLabel lab_direito_imagem;
     private javax.swing.JLabel lab_esquerda_url;
     private javax.swing.JLabel lab_esquerdo_imagem;
+    private javax.swing.JLabel lab_evasao;
+    private javax.swing.JLabel lab_forca;
     private javax.swing.JLabel lab_frente_imagem;
     private javax.swing.JLabel lab_frente_url;
     private javax.swing.JLabel lab_fundo;
     private javax.swing.JLabel lab_imagem;
+    private javax.swing.JLabel lab_level;
+    private javax.swing.JLabel lab_nome;
     private javax.swing.JLabel lab_perfil;
     private javax.swing.JLabel lab_perfil_imagem;
     private javax.swing.JLabel lab_perfil_url;
+    private javax.swing.JLabel lab_sp_atk;
+    private javax.swing.JLabel lab_sp_def;
     private javax.swing.JLabel lab_sprite_lateral_esquerda;
     private javax.swing.JLabel lab_titulo;
     private javax.swing.JPanel lab_titulo_fundo;
     private javax.swing.JLabel lab_titulo_sprites;
+    private javax.swing.JLabel lab_velocidade;
+    private javax.swing.JList<String> list_acessorios;
+    private javax.swing.JList<String> list_armas;
+    private javax.swing.JList<String> list_escudos;
+    private javax.swing.JList<String> list_itens;
     private javax.swing.JPanel pnl_fundo_atributos;
     private javax.swing.JPanel pnl_fundo_equipamento;
     private javax.swing.JPanel pnl_fundo_perfil;
     private javax.swing.JPanel pnl_fundo_sprites;
     private javax.swing.JPanel pnl_fundo_sprites2;
     private javax.swing.JPanel pnl_imagem_url;
-    private javax.swing.JSpinner spn_HP;
-    private javax.swing.JSpinner spn_MP;
+    private javax.swing.JSpinner spn_HP_atual;
+    private javax.swing.JSpinner spn_HP_max;
+    private javax.swing.JSpinner spn_MP_atual;
+    private javax.swing.JSpinner spn_MP_max;
     private javax.swing.JTabbedPane tabbed_informacoes;
     private javax.swing.JTextField txt_XP;
     private javax.swing.JTextField txt_atk;

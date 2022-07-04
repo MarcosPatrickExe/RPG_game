@@ -24,7 +24,7 @@ public class TecnicaDAO implements ITecnicaDAO {
          Connection conexao  = ConexaoBD_Setup.abrirConexao();
          List<Tecnica> tecnicas = new ArrayList<>();
          PreparedStatement ps;
-         String query = "SELECT * FROM Tecnica";
+         String query = "SELECT * FROM \"Tecnica\"";
          ResultSet tecnicasCadastradas; 
       
         

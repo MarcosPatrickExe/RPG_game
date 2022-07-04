@@ -114,3 +114,31 @@ public class ConexaoBD_Setup {
 */
     
 }
+
+
+
+
+/*
+   host/name/address: 
+       ec2-3-217-14-181.compute-1.amazonaws.com
+
+   port:
+       5432
+
+   Maintenance database (name):
+       d4u4qkp2hum7jj
+
+   username:
+        rqegqbmcckiazc
+
+   password:
+        d50a51752e3559cbefded88da28ef6579e8d1df07d669f12b084689194fc29e9
+
+   URI:
+      postgres://rqegqbmcckiazc:d50a51752e3559cbefded88da28ef6579e8d1df07d669f12b084689194fc29e9@ec2-3-217-14-181.compute-1.amazonaws.com:5432/d4u4qkp2hum7jj
+
+*/
+
+
+
+

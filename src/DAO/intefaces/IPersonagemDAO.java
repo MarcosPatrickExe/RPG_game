@@ -11,7 +11,7 @@ import model.Personagem;
 
 public interface IPersonagemDAO {
             
-          public boolean criar_personagem( 
+          public int criar_personagem( 
                   String nome, int nivel, 
                      int pontos_vida, int pontos_magia,
                         int velocidade, int XP, int evasao,

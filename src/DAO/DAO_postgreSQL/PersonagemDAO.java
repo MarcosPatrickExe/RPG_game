@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class PersonagemDAO implements IPersonagemDAO{
 
         @Override
-        public boolean criar_personagem ( 
+        public int criar_personagem ( 
                    String nome, int nivel, 
                      int pontos_vida, int pontos_magia,
                         int velocidade, int XP, int evasao,
@@ -34,11 +34,12 @@ public class PersonagemDAO implements IPersonagemDAO{
 
             
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
-                boolean sucesso = false;
+                int id = 0;
                 PreparedStatement preStmt = null;
+                ResultSet res = null;
 
                 try{
-                                String sql = "INSERT INTO personagem ("
+                                String sql = "INSERT INTO \"Personagem\" ("
                                                 + "nome, "
                                                 + "nivel, "
                                                 + "HP_maximo, "
@@ -55,7 +56,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                                                 + "destreza, "
                                                 + "forca, "
                                                 + "HP_atual, "
-                                                + "MP_atual "
+                                                + "MP_atual ) "
                                                 + "values ( ?, ?, ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?, ?)";
 
                                 
@@ -81,17 +82,21 @@ public class PersonagemDAO implements IPersonagemDAO{
                                 
 
                                 if ( preStmt.executeUpdate() ==1)
-                                           sucesso = true;
-
+                                        JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                                
+                                res = preStmt.getGeneratedKeys();//Recupera o ultimo registro inserido na tabela
+                                
+                                if (res.next())
+                                      id = res.getInt(1);
+                               
                                 preStmt.close();
                                 ConexaoBD_Setup.encerrarConexao(conexao);
                                 
                 }catch(SQLException sql){
                         sql.printStackTrace();
-                        sucesso = false;
 
                 }finally{
-                        return sucesso;
+                        return id;
                 }
     }
 
@@ -102,7 +107,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
 
-                String sql =  "UPDATE personagem "
+                String sql =  "UPDATE Personagem "
                             + "SET nome = ?, "
                             + "nivel = ?, "
                             + "HP_maximo= ?, "
@@ -114,10 +119,10 @@ public class PersonagemDAO implements IPersonagemDAO{
                             + "defesa = ?, "
                             + "ataque_especial = ?, "
                             + "defesa_especial = ?, "
-                            + "classe_id = ?"
-                            + "sprite_id = ?"
-                            + "destreza = ?"
-                            + "forca = ?"
+                            + "classe_id = ?, "
+                            + "sprite_id = ?, "
+                            + "destreza = ?, "
+                            + "forca = ?, "
                             + "HP_atual= ?, "
                             + "MP_atual = ?, "
                             + "WHERE ID = ? ";
@@ -157,7 +162,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
            
-                String sql = "DELETE FROM personagem WHERE ID = ?";
+                String sql = "DELETE FROM Personagem WHERE \"ID\" = ?";
                 preStmt =  conexao.prepareStatement(sql);
                 preStmt.setInt( 1, ID );
 
@@ -203,7 +208,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
               
-                String query = "SELECT * FROM personagem WHERE ID = ?";
+                String query = "SELECT * FROM Personagem WHERE \"ID\" = ?";
                 preStmt = con.prepareStatement( query );
                 preStmt.setInt(1, ID);
 
@@ -228,7 +233,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
                 
-                String query = "SELECT * FROM personagem WHERE nome = ?";
+                String query = "SELECT * FROM Personagem WHERE \"nome\" = ?";
                 preStmt = con.prepareStatement( query);
                 preStmt.setString(1, nome);
                

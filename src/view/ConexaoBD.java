@@ -187,20 +187,22 @@ public class ConexaoBD extends JFrame {
 
     private void btn_conectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conectActionPerformed
               
+                String database = this.text_database.getText() ;
+                String host = this.text_host.getText() ;
+                short port = Short.parseShort(this.text_port.getText() ) ;
+                String user = this.text_user.getText() ;
+                String password =  this.text_password.getText();
+        
+                 
                 try{        
-                        String database = this.text_database.getText() ;
-                        String host = this.text_host.getText() ;
-                        short port = Short.parseShort(this.text_port.getText() ) ;
-                        String user = this.text_user.getText() ;
-                        String password =  this.text_password.getText();
-
-
                         ConexaoBD_Setup.conexao_Setup( database, host, port, user, password);
                         Connection conexao = ConexaoBD_Setup.abrirConexao();
 
                         if ( conexao != null  ){
                                JOptionPane.showMessageDialog(null, "Conexão com o banco bem sucedida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
                                ConexaoBD_Setup.conexaoEstabelecida = true;
+                               this.btn_new_connection.setVisible(true);
+                               this.btn_conect.setEnabled(false);
                         }
 
                         ConexaoBD_Setup.encerrarConexao(conexao);
@@ -208,7 +210,8 @@ public class ConexaoBD extends JFrame {
                 }catch(ClassNotFoundException cnfe){
                          JOptionPane.showMessageDialog(null, "Erro ao tentar realizar uma conexão com o banco.....", "Error!!!", JOptionPane.ERROR_MESSAGE);
                        //  System.out.println("Erro ao tentar realizar uma conexão com o banco..... "+cnfe);
-                         
+                         ConexaoBD_Setup.conexaoEstabelecida = false;  
+                       
                 }catch(java.lang.NumberFormatException errorFormat){
                         JOptionPane.showMessageDialog(null, "Erro ao tentar realizar conversão de um formato de dado para outro.....", "Error!!!", JOptionPane.ERROR_MESSAGE);
                         errorFormat.printStackTrace();
