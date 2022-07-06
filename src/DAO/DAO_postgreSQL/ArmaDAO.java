@@ -22,7 +22,7 @@ public class ArmaDAO implements IArmaDAO{
          Connection conexao  = ConexaoBD_Setup.abrirConexao( );
          List<Arma> armas = new ArrayList<>();
          PreparedStatement ps;
-         String query = "SELECT * FROM Arma";
+         String query = "SELECT * FROM \"Arma\"";
          ResultSet armasCadastradas; 
       
         

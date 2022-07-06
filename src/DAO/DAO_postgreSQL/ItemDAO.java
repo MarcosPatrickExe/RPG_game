@@ -24,7 +24,7 @@ public class ItemDAO implements IItemDAO{
          Connection conexao  = ConexaoBD_Setup.abrirConexao();
          List<Item> itens = new ArrayList<>();
          PreparedStatement ps;
-         String query = "SELECT * FROM Itens";
+         String query = "SELECT * FROM \"Itens\"";
          ResultSet itensCadastrados; 
       
         

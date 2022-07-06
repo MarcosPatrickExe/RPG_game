@@ -19,7 +19,6 @@ public class Tecnica {
       private String precisao; // chance (em %) da tecnica ser efetuada 
 
       
-      
       public Tecnica( int ID, String nome, int custo_mana, int dano, String tipo, String descricao, String precisao) {
             this.ID = ID;
             this.nome = nome;

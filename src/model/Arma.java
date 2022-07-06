@@ -15,11 +15,10 @@ public class Arma {
     private String tipo; // corpo-a-corpo OU longo-alcance
     private String descricao;
     private float preco;
-    private byte[] imagem;
+    private String imagem;
     
-   
     
-    public Arma(int ID, String nome, int dano, String tipo, String descricao, float preco, byte[] imagem) {
+    public Arma(int ID, String nome, int dano, String tipo, String descricao, float preco, String imagem) {
             this.ID = ID;
             this.nome = nome;
             this.dano = dano;
@@ -38,7 +37,7 @@ public class Arma {
             this.tipo = arma.getString(4);
             this.descricao = arma.getString(5);
             this.preco = arma.getFloat(6);
-            this.imagem = arma.getBytes(7);
+            this.imagem = arma.getString(7);
     }
     
     
@@ -66,7 +65,7 @@ public class Arma {
         return preco;
     }
 
-    public byte[] getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
@@ -94,7 +93,7 @@ public class Arma {
         this.preco = preco;
     }
 
-    public void setImagem(byte[] imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
     

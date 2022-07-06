@@ -19,10 +19,10 @@ public class EscudoDAO implements IEscudoDAO {
    @Override
    public List<Escudo> obter_escudos () throws SQLException{
    
-         Connection conexao  = ConexaoBD_Setup.abrirConexao( );
+         Connection conexao  = ConexaoBD_Setup.abrirConexao();
          List<Escudo> escudos = new ArrayList<>();
          PreparedStatement ps;
-         String query = "SELECT * FROM Escudo";
+         String query = "SELECT * FROM \"Escudo\"";
          ResultSet escudosCadastrados; 
       
         

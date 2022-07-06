@@ -16,10 +16,10 @@ public class Escudo {
     private String tipo;
     private String descricao;
     private float preco;
-    private byte[] imagem;
+    private String imagem;
 
     
-    public Escudo(int ID, String nome, int resistencia, String tipo, String descricao, float preco, byte[] imagem) {
+    public Escudo(int ID, String nome, int resistencia, String tipo, String descricao, float preco, String imagem) {
             this.ID = ID;
             this.nome = nome;
             this.resistencia = resistencia;
@@ -31,15 +31,13 @@ public class Escudo {
     
     
     public Escudo( ResultSet escudo) throws SQLException{
-         
             this.ID = escudo.getInt(1);
             this.nome = escudo.getString(2);
             this.resistencia = escudo.getInt(3);
             this.tipo = escudo.getString(4);
             this.descricao = escudo.getString(5);
             this.preco = escudo.getFloat(6);
-            this.imagem = escudo.getBytes(7);
-        
+            this.imagem = escudo.getString(7);
     }
 
     public int getID() {
@@ -66,7 +64,7 @@ public class Escudo {
         return preco;
     }
 
-    public byte[] getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
@@ -94,7 +92,7 @@ public class Escudo {
         this.preco = preco;
     }
 
-    public void setImagem(byte[] imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
     

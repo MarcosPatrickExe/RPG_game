@@ -15,10 +15,10 @@ public class Item {
     private String nome;
     private float preco;
     private String descricao;
-    private byte[] imagem;
+    private String imagem;
 
     
-    public Item(int ID, String nome, float preco, String descricao, byte[] imagem) {
+    public Item(int ID, String nome, float preco, String descricao, String imagem) {
           this.ID = ID;
           this.nome = nome;
           this.preco = preco;
@@ -33,7 +33,7 @@ public class Item {
           this.nome = item.getString("nome");
           this.preco = item.getFloat("preco");
           this.descricao = item.getString("descricao");
-          this.imagem = item.getBytes("imagem");
+          this.imagem = item.getString("imagem");
     }
     
     
@@ -70,11 +70,11 @@ public class Item {
         this.descricao = descricao;
     }
 
-    public byte[] getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
-    public void setImagem(byte[] imagem) {
+    public void setImagem(String imagem) {
         this.imagem = imagem;
     }
    

@@ -107,7 +107,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
 
-                String sql =  "UPDATE Personagem "
+                String sql =  "UPDATE \"Personagem\" "
                             + "SET nome = ?, "
                             + "nivel = ?, "
                             + "HP_maximo= ?, "
@@ -162,7 +162,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
            
-                String sql = "DELETE FROM Personagem WHERE \"ID\" = ?";
+                String sql = "DELETE FROM \"Personagem\" WHERE \"ID\" = ?";
                 preStmt =  conexao.prepareStatement(sql);
                 preStmt.setInt( 1, ID );
 
@@ -182,7 +182,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 List<Personagem> personagens = new ArrayList<Personagem>();
                 Personagem pers;
                 
-                String query = "SELECT * from Personagem";
+                String query = "SELECT * from \"Personagem\"";
                 preStmt = con.prepareStatement( query );
                 ResultSet resultado = preStmt.executeQuery();
                
@@ -208,7 +208,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
               
-                String query = "SELECT * FROM Personagem WHERE \"ID\" = ?";
+                String query = "SELECT * FROM \"Personagem\" WHERE \"ID\" = ?";
                 preStmt = con.prepareStatement( query );
                 preStmt.setInt(1, ID);
 
@@ -233,7 +233,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
                 
-                String query = "SELECT * FROM Personagem WHERE \"nome\" = ?";
+                String query = "SELECT * FROM \"Personagem\" WHERE \"nome\" = ?";
                 preStmt = con.prepareStatement( query);
                 preStmt.setString(1, nome);
                

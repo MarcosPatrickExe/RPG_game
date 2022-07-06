@@ -69,11 +69,6 @@ public class ConexaoBD_Setup {
                         properties.put("password", password);
 
                         conexao = DriverManager.getConnection( URL, properties);
-                        
-                        if ( conexao != null) {
-                                JOptionPane.showMessageDialog(null, "Conexão com o banco estabelecida!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    
                     
                     /*
                           String URL = ConexaoBD_Setup.URL;
@@ -97,10 +92,9 @@ public class ConexaoBD_Setup {
         
     
         public static void encerrarConexao(Connection con){
-                 try{
-                        con.close();
-                        
-                 }catch(SQLException sqlE){
+                 try { con.close(); }
+                 
+                 catch (SQLException sqlE){
                         JOptionPane.showMessageDialog(null, "Houve um erro ao tentar desconectar com o banco", "Errro!!!", JOptionPane.ERROR_MESSAGE);
                         sqlE.printStackTrace();
                 }

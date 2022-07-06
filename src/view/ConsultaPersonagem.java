@@ -47,7 +47,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         this.btn_escudos.setForeground( letraSemFocus );
         this.btn_acessorios.setForeground( letraSemFocus );
         this.btn_itens.setForeground( letraSemFocus );
-                
+               
         
         List<JButton> botoesEquipamento = new ArrayList<JButton>();
         botoesEquipamento.add( this.btn_armas );

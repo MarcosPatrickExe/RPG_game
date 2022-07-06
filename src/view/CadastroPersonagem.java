@@ -4,14 +4,26 @@
  * and open the template in the editor.
  */
 package view;
+import DAO.DAO_postgreSQL.AcessorioDAO;
+import DAO.DAO_postgreSQL.ArmaDAO;
 import DAO.DAO_postgreSQL.ClasseDAO;
-
-import java.awt.Color;
+import DAO.DAO_postgreSQL.EscudoDAO;
+import DAO.DAO_postgreSQL.ItemDAO;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import model.Acessorio;
+import model.Arma;
 import model.Classe;
+import model.Escudo;
+import model.Item;
 
 /**
  *
@@ -36,24 +48,115 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         this.setLocationRelativeTo( null);
         
         ClasseDAO classeDAO = new ClasseDAO();
+        ArmaDAO armaDAO = new ArmaDAO();
+        EscudoDAO escudoDAO = new EscudoDAO();
+        AcessorioDAO acessDAO = new AcessorioDAO();
+        ItemDAO itensDAO = new ItemDAO();
+        
         
         try { 
+   // ===================== lista de classes para o personagem ==================================
+            
                 List<Classe> classes = classeDAO.obter_classes();
-
                 String[] classeNames = new String[classes.size()];
+                
                 int contador=0;
 
                 for( Classe classe : classes){
                     classeNames[contador] = classe.getNome();
                     contador++;
                 }
-                 
         
                 this.combo_classe.setModel( 
                         new DefaultComboBoxModel(classeNames)
                 );
+                
+   // ================================= lista de armas =====================================
+                contador=0;
+                
+                List<Arma> armas = armaDAO.obter_armas();
+                String[] armasNomes = new String[armas.size()];
+                
+                for( Arma arma : armas){
+                    armasNomes[contador] = arma.getNome();
+                    contador++;
+                }
+                
+                this.list_armas.setListData( armasNomes );
+                
+                
+                DefaultComboBoxModel dtm = new DefaultComboBoxModel( new String[]{"Nenhum"});// combo vazio
+                
+                this.list_armas.addListSelectionListener(
+                        
+                       new ListSelectionListener(){ // classe anonima que implementa interface "ListSelectionListener"
+                            
+                            @Override
+                            public void valueChanged(ListSelectionEvent e) {
+                                    // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                    List<String> items_selecionados = list_armas.getSelectedValuesList();
+                                    String[] itens = items_selecionados.toArray(new String[0]);
+                                    
+                                    
+                               //     for( String ite : items_selecionados){
+                                           System.out.println("nome do ultimo item: "+itens[itens.length-1]);
+                                           
+                                          
+                                           combo_equipar_arma.setModel( dtm );
+                                        
+                                           combo_equipar_arma.addItem( itens[itens.length-1] );
+                                  //  }
+                            }
+                
+                });
+   
+                
+  // ================================= lista de escudos =====================================
+                contador=0;
+                
+                List<Escudo> escudos = escudoDAO.obter_escudos();
+                String[] escudosNomes = new String[escudos.size()];
+                
+                for( Escudo escudo : escudos){
+                    escudosNomes[contador] = escudo.getNome();
+                    contador++;
+                }
+                
+                this.list_escudos.setListData( escudosNomes );
+   
+  // ================================= lista de Acessorios =====================================
+                contador=0;
+                
+                List<Acessorio> acessorios = acessDAO.obter_acessorios();
+                String[] acessoriosNomes = new String[acessorios.size()];
+                
+                for( Acessorio acessorio : acessorios){
+                    acessoriosNomes[contador] = acessorio.getNome();
+                    contador++;
+                }
+                
+                this.list_acessorios.setListData( acessoriosNomes );
+   
+                
+  // ================================= lista de Itens =====================================
+                contador=0;
+                
+                List<Item> itens = itensDAO.obter_itens();
+                String[] itensNomes = new String[itens.size()];
+                
+                for( Item item : itens){
+                    itensNomes[contador] = item.getNome();
+                    contador++;
+                }
+                
+                this.list_itens.setListData( itensNomes );
+   
+                 
         
-        }catch (SQLException ex){ ex.printStackTrace(); }
+        }catch (SQLException ex){
+            System.out.println("houve erro no acesso ao banco de dados....");
+            ex.printStackTrace(); 
+        }
         
       
        
