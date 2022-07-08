@@ -21,14 +21,14 @@ public class Personagem {
         private int ataque_especial;
         private int defesa_especial;
         private int classe_id;
-        private int sprite_id;
+        private String sprite;
         private int destreza;
         private int forca;
         private int HP_atual;
         private int MP_atual;
 
         public Personagem ( 
-                int ID, 
+          //      int ID, 
                  String nome, 
                    int nivel, 
                      int pontos_vida, 
@@ -41,14 +41,14 @@ public class Personagem {
                                    int ataque_especial, 
                                      int defesa_especial, 
                                        int classe_id, 
-                                         int sprite_id, 
+                                         String sprite, 
                                            int destreza, 
                                              int forca, 
                                                int HP_atual, 
                                                  int MP_atual) {
                 
             
-                this.ID = ID;
+               // this.ID = ID;
                 this.nome = nome;
                 this.nivel = nivel;
                 this.pontos_vida = pontos_vida;
@@ -61,7 +61,7 @@ public class Personagem {
                 this.ataque_especial = ataque_especial;
                 this.defesa_especial = defesa_especial;
                 this.classe_id = classe_id;
-                this.sprite_id = sprite_id;
+                this.sprite = sprite;
                 this.destreza = destreza;
                 this.forca = forca;
                 this.HP_atual = HP_atual;
@@ -85,7 +85,7 @@ public class Personagem {
                 this.ataque_especial = rs.getInt("ataque_especial");
                 this.defesa_especial = rs.getInt("defesa_especial");
                 this.classe_id = rs.getInt("classe_id") ;
-                this.sprite_id = rs.getInt("sprite_id");
+                this.sprite = rs.getString("sprite");
                 this.destreza = rs.getInt("destreza");
                 this.forca = rs.getInt("forca");
                 this.HP_atual = rs.getInt("HP_atual");
@@ -146,8 +146,8 @@ public class Personagem {
             return classe_id;
         }
 
-        public int getSprite_id() {
-            return sprite_id;
+        public String getSprite() {
+            return sprite;
         }
 
         public int getDestreza() {
@@ -220,8 +220,8 @@ public class Personagem {
             this.classe_id = classe_id;
         }
 
-        public void setSprite_id(int sprite_id) {
-            this.sprite_id = sprite_id;
+        public void setSprite( String sprite) {
+            this.sprite = sprite;
         }
 
         public void setDestreza(int destreza) {

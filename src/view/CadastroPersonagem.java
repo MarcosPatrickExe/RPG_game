@@ -9,6 +9,13 @@ import DAO.DAO_postgreSQL.ArmaDAO;
 import DAO.DAO_postgreSQL.ClasseDAO;
 import DAO.DAO_postgreSQL.EscudoDAO;
 import DAO.DAO_postgreSQL.ItemDAO;
+import DAO.DAO_postgreSQL.PersonagemDAO;
+import DAO.DAO_postgreSQL.Personagem_Equipamento_DAO;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -21,8 +28,13 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Acessorio;
@@ -30,6 +42,7 @@ import model.Arma;
 import model.Classe;
 import model.Escudo;
 import model.Item;
+import model.Personagem;
 
 /**
  *
@@ -42,10 +55,12 @@ interface Pessoa{
 
 }
 */
-public class CadastroPersonagem extends javax.swing.JFrame {
+public class CadastroPersonagem extends JFrame {
 
    // private boolean atributosInseridos = false;
    // private boolean equipamentosInseridos = false;
+    
+    
     
     /**
      * Creates new form CadastroPersonagem
@@ -63,7 +78,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         ItemDAO itensDAO = new ItemDAO();
         
         
-        this.btn_salvar.setEnabled(false);
+       // this.btn_salvar.setEnabled(false);
         this.lab_equipar_arma.setVisible(false);
         this.lab_equipar_escudo.setVisible(false);
         this.lab_equipar_acessorio.setVisible(false);
@@ -72,18 +87,15 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         this.combo_equipar_acessorio.setVisible(false);
         
         
-        
-        
-        
-        
         try { 
    // ===================== lista de classes para o personagem ==================================
             
                 List<Classe> classes = classeDAO.obter_classes();
-                String[] classeNames = new String[classes.size()];
+                String[] classeNames = new String [ classes.size()+1 ];
                 
-                int contador=0;
-
+                int contador=1;
+                classeNames[0] = "Selecione";
+                
                 for( Classe classe : classes){
                     classeNames[contador] = classe.getNome();
                     contador++;
@@ -237,11 +249,11 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         btn_salvar_acessorios = new javax.swing.JButton();
         pnl_fundo_sprites = new javax.swing.JPanel();
         pnl_fundo_perfil = new javax.swing.JPanel();
-        lab_perfil_imagem = new javax.swing.JLabel();
         btn_selecionar_perfil = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         lab_titulo_sprites = new javax.swing.JLabel();
         lab_perfil = new javax.swing.JLabel();
+        lab_perfil_imagem = new javax.swing.JLabel();
         btn_voltar = new javax.swing.JButton();
         lab_fundo = new javax.swing.JLabel();
 
@@ -349,7 +361,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         combo_classe.setBackground(new java.awt.Color(102, 102, 102));
         combo_classe.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         combo_classe.setForeground(new java.awt.Color(255, 255, 255));
-        combo_classe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1" }));
         pnl_fundo_atributos.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 160, 30));
 
         txt_evasao.setBackground(new java.awt.Color(102, 102, 102));
@@ -496,11 +507,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         list_armas.setBackground(new java.awt.Color(51, 51, 51));
         list_armas.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         list_armas.setForeground(new java.awt.Color(255, 255, 255));
-        list_armas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Arma 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_armas.setToolTipText("");
         list_armas.setSelectionBackground(new java.awt.Color(204, 0, 51));
         jScrollPane1.setViewportView(list_armas);
@@ -510,11 +516,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         list_escudos.setBackground(new java.awt.Color(51, 51, 51));
         list_escudos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         list_escudos.setForeground(new java.awt.Color(255, 255, 255));
-        list_escudos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Escudo 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_escudos.setSelectionBackground(new java.awt.Color(204, 0, 51));
         jScrollPane2.setViewportView(list_escudos);
 
@@ -523,11 +524,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         list_acessorios.setBackground(new java.awt.Color(51, 51, 51));
         list_acessorios.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         list_acessorios.setForeground(new java.awt.Color(255, 255, 255));
-        list_acessorios.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Acessorio 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_acessorios.setSelectionBackground(new java.awt.Color(204, 0, 51));
         jScrollPane3.setViewportView(list_acessorios);
 
@@ -536,11 +532,6 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         list_itens.setBackground(new java.awt.Color(51, 51, 51));
         list_itens.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         list_itens.setForeground(new java.awt.Color(255, 255, 255));
-        list_itens.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_itens.setSelectionBackground(new java.awt.Color(204, 0, 51));
         jScrollPane4.setViewportView(list_itens);
 
@@ -621,7 +612,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         btn_salvar_escudos.setBackground(new java.awt.Color(51, 51, 51));
         btn_salvar_escudos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn_salvar_escudos.setForeground(new java.awt.Color(204, 204, 204));
-        btn_salvar_escudos.setText("salvar armas");
+        btn_salvar_escudos.setText("salvar escudos");
         btn_salvar_escudos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_salvar_escudos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_salvar_escudos.addActionListener(new java.awt.event.ActionListener() {
@@ -634,7 +625,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         btn_salvar_acessorios.setBackground(new java.awt.Color(51, 51, 51));
         btn_salvar_acessorios.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn_salvar_acessorios.setForeground(new java.awt.Color(204, 204, 204));
-        btn_salvar_acessorios.setText("salvar armas");
+        btn_salvar_acessorios.setText("salvar acessórios");
         btn_salvar_acessorios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_salvar_acessorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_salvar_acessorios.addActionListener(new java.awt.event.ActionListener() {
@@ -642,7 +633,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
                 btn_salvar_acessoriosActionPerformed(evt);
             }
         });
-        pnl_fundo_equipamento.add(btn_salvar_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 130, 30));
+        pnl_fundo_equipamento.add(btn_salvar_acessorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 160, 30));
 
         tabbed_informacoes.addTab("Equipamento", pnl_fundo_equipamento);
 
@@ -652,13 +643,7 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
         pnl_fundo_perfil.setBackground(new java.awt.Color(51, 51, 51));
         pnl_fundo_perfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lab_perfil_imagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lab_perfil_imagem.setForeground(new java.awt.Color(204, 204, 204));
-        lab_perfil_imagem.setText("foto aqui");
-        pnl_fundo_perfil.add(lab_perfil_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 80, 30));
-
-        pnl_fundo_sprites.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 83, 240, 220));
+        pnl_fundo_sprites.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 220, 220));
 
         btn_selecionar_perfil.setBackground(new java.awt.Color(51, 51, 51));
         btn_selecionar_perfil.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -688,9 +673,14 @@ public class CadastroPersonagem extends javax.swing.JFrame {
         lab_perfil.setText("IMAGEM DO PERFIL");
         pnl_fundo_sprites.add(lab_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 45, -1, 40));
 
+        lab_perfil_imagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lab_perfil_imagem.setForeground(new java.awt.Color(204, 204, 204));
+        lab_perfil_imagem.setText("foto aqui");
+        pnl_fundo_sprites.add(lab_perfil_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 80, 30));
+
         tabbed_informacoes.addTab("Sprites (PNGs)", pnl_fundo_sprites);
 
-        getContentPane().add(tabbed_informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 950, 410));
+        getContentPane().add(tabbed_informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 410));
 
         btn_voltar.setBackground(new java.awt.Color(51, 51, 51));
         btn_voltar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
@@ -717,32 +707,46 @@ public class CadastroPersonagem extends javax.swing.JFrame {
 
     private void btn_salvar_armasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_armasActionPerformed
          
-         this.list_armas.setEnabled(false);
-         
          List<String> armas_selecionadas = list_armas.getSelectedValuesList();
-         String[] armas = armas_selecionadas.toArray( new String[0] );
-         DefaultComboBoxModel dcbm = new DefaultComboBoxModel( armas );
-         this.combo_equipar_arma.setModel(dcbm);
          
-         this.btn_salvar_armas.setEnabled(false);
-         this.lab_equipar_arma.setVisible(true);
-         this.combo_equipar_arma.setVisible(true);
+         if( !armas_selecionadas.isEmpty() ){ 
+                this.list_armas.setEnabled(false);
+                
+                String[] armas = armas_selecionadas.toArray( new String[0] );
+                DefaultComboBoxModel dcbm = new DefaultComboBoxModel( armas );
+                this.combo_equipar_arma.setModel(dcbm);
+
+                this.btn_salvar_armas.setEnabled(false);
+                this.lab_equipar_arma.setVisible(true);
+                this.combo_equipar_arma.setVisible(true);
+            
+         }else{
+              JOptionPane.showMessageDialog(null, "Por favor, selecione pelo menos uma arma da lista!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+         }
     }//GEN-LAST:event_btn_salvar_armasActionPerformed
 
     
     
     private void btn_salvar_escudosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_escudosActionPerformed
         
-         this.list_escudos.setEnabled(false);
+        List<String> escudos_selecionados = list_escudos.getSelectedValuesList();
          
-         List<String> escudos_selecionados = list_escudos.getSelectedValuesList();
-         String[] escudos = escudos_selecionados.toArray( new String[0] );
-         DefaultComboBoxModel dcbm = new DefaultComboBoxModel( escudos );
-         this.combo_equipar_escudo.setModel(dcbm);
-         
-         this.btn_salvar_escudos.setEnabled(false);
-         this.lab_equipar_escudo.setVisible(true);
-         this.combo_equipar_escudo.setVisible(true);
+        if( !escudos_selecionados.isEmpty() ){ 
+            
+                this.list_escudos.setEnabled(false);
+
+                String[] escudos = escudos_selecionados.toArray( new String[0] );
+                DefaultComboBoxModel dcbm = new DefaultComboBoxModel( escudos );
+                this.combo_equipar_escudo.setModel(dcbm);
+
+                this.btn_salvar_escudos.setEnabled(false);
+                this.lab_equipar_escudo.setVisible(true);
+                this.combo_equipar_escudo.setVisible(true);
+            
+        }else{
+                JOptionPane.showMessageDialog(null, "Por favor, selecione pelo menos 1 escudo da lista!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+        }
+        
     }//GEN-LAST:event_btn_salvar_escudosActionPerformed
 
     
@@ -750,61 +754,265 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     //forma mais simples
     private void btn_salvar_acessoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_acessoriosActionPerformed
        
-         this.list_acessorios.setEnabled(false);
-        
          List<String> acessorios_selecionados = list_acessorios.getSelectedValuesList(); // pegando acessorios selecionados
          
-         this.combo_equipar_acessorio.setModel( // inserindo valores selecionados para dentro do combo-box
-                new DefaultComboBoxModel( // recebe array de String[]
-                            acessorios_selecionados.toArray( new String[0] ) // convertendo lista List<String> com o metodo "toArray()", o qual retorna Strin[]
-                )
-         );
-         
-         this.btn_salvar_acessorios.setEnabled(false);
-         this.lab_equipar_acessorio.setVisible(true);
-         this.combo_equipar_acessorio.setVisible(true);
+         if( acessorios_selecionados.size() != 0){ 
+             
+                this.list_acessorios.setEnabled(false);
+             
+                this.combo_equipar_acessorio.setModel( // inserindo valores selecionados para dentro do combo-box
+                       new DefaultComboBoxModel( // recebe array de String[]
+                                   acessorios_selecionados.toArray( new String[0] ) // convertendo lista List<String> com o metodo "toArray()", o qual retorna Strin[]
+                       )
+                );
+
+                this.btn_salvar_acessorios.setEnabled(false);
+                this.lab_equipar_acessorio.setVisible(true);
+                this.combo_equipar_acessorio.setVisible(true);
+            
+         }else{
+              JOptionPane.showMessageDialog(null, "Por favor, selecione pelo menos 1 acessório da lista!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+         }
     }//GEN-LAST:event_btn_salvar_acessoriosActionPerformed
 
     
     
     private void btn_salvar_itensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_itensActionPerformed
-        
-        this.list_itens.setEnabled(false);
-        
-        
-        
+         
+         List<String> itens_selecionados = list_itens.getSelectedValuesList();
+         
+         if( !itens_selecionados.isEmpty() ) 
+              this.list_itens.setEnabled(false);
+         else
+              JOptionPane.showMessageDialog(null, "Por favor, selecione pelo menos 1 item da lista!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                      
     }//GEN-LAST:event_btn_salvar_itensActionPerformed
 
-    // BOTAO PRINCIPAL - SALVAR TUDO
+    
+    
+    // BOTAO PRINCIPAL - SALVAR TUDO (ATRIBUTOS, EQUIPAMENTOS E FOTO DO PERFIL DO PERSONAGEM)
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        // TODO add your handling code here:
+
+         String hp_max = this.spn_HP_max.getValue().toString();
+         String mp_max = this.spn_MP_max.getValue().toString();
+         
+        
+         if( hp_max==" " || hp_max=="0"){
+               JOptionPane.showMessageDialog(null, "O campo 'HP máximo' é obrigatório !!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+        
+         }else if( mp_max==" " || mp_max=="0" ){
+               JOptionPane.showMessageDialog(null, "O campo 'MP máximo' é obrigatório !!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+         
+         }else if( this.combo_classe.getSelectedIndex() != 0 ){ // É TRUE CASO O ITEM SELECIONADO NAO SEJA O PRIMEIRO, O QUAL TEM VALOR "Selecione"
+              ClasseDAO clasDAO = new ClasseDAO();
+              String sprite = null;
+             
+ //================================================================================================================
+              
+              // OBTENDO O ID DA CLASSE SELECIONADA:
+              int id_classe_selecionada = clasDAO.obter_classe_por_nome( 
+                                                 this.combo_classe.getSelectedItem().toString()
+                                           );
+              
+              System.out.println("ID da classe selecionada: "+ id_classe_selecionada );
+             
+              
+              // CAPTURANDO OS DADOS DA IMAGEM DE PERFIL DO PERSONAGEM CASO ELE SEJA INSERIDO
+             // if ( this.pnl_fundo_perfil.getComponents().length == 1 ){  }
+             
+             
+             
+//======================= ENCRIPTANDO IMAGEM PARA ARMAZENAMENTO NO BANCO DE DADOS ===========================================================================
+             
+             if( this.pnl_fundo_perfil.getComponents().length != 0){
+                     
+                    
+                    
+             }
+             
+             
+             
+          
+ //=================================== CADASTRO DO PERSONAGEM =============================================================================
+ 
+              PersonagemDAO personDAO = new PersonagemDAO();
+              
+              int id_novo_personagem = personDAO.adicionar_personagem(
+                      
+                   this.txt_nome.getText(),
+                    Integer.parseInt( this.txt_level.getText()),
+                     Integer.parseInt( this.spn_HP_max.getValue().toString() ),
+                      Integer.parseInt( this.spn_MP_max.getValue().toString() ),
+                       Integer.parseInt( this.txt_velocidade.getText()),
+                        Integer.parseInt( this.txt_XP.getText()),
+                         Integer.parseInt( this.txt_evasao.getText()),
+                          Integer.parseInt( this.txt_atk.getText()),
+                           Integer.parseInt( this.txt_def.getText()),
+                            Integer.parseInt( this.txt_sp_atk.getText()),
+                             Integer.parseInt( this.txt_sp_def.getText()),
+                              id_classe_selecionada,
+                               sprite,
+                                Integer.parseInt( this.txt_destreza.getText()),
+                                 Integer.parseInt( this.txt_forca.getText()),
+                                  Integer.parseInt( this.spn_HP_atual.getValue().toString() ),
+                                   Integer.parseInt( this.spn_MP_atual.getValue().toString() )
+              
+              );
+              
+              System.out.println("ID do personagem cadastrado: "+ id_novo_personagem );
+             
+              
+            
+//================================= CADASTRO DE EQUIPAMENTOS DO PERSONAGEM =========================================================================       
+       
+        Personagem_Equipamento_DAO personEquipDAO = new Personagem_Equipamento_DAO();
+
+        // CADASTRANDO O "ID" DO PERSONAGEM, "ID DOS ESCUDOS SELECIONADOS" E QUAL ESCUDO FOI EQUIPADO
+             
+        // SE UM DETERMINADO BOTAO NAO ESTIVER HABILITADO ENTAO ALGUNS ITENS DA LISTA FORAM SELECIONADOS
+              if( !this.btn_salvar_armas.isEnabled() ){
+                  
+                        String armaSelecionada = this.combo_equipar_arma.getSelectedItem().toString();
+
+                        for( String nomeArma : this.list_armas.getSelectedValuesList()){
+
+                              int id_arma = personEquipDAO.obter_id_equipamento_por_nome(nomeArma, "arma");
+
+                              if( nomeArma.equals(armaSelecionada) )
+                                  personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_arma, true, 1, "arma");
+                              else
+                                  personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_arma, false, 1, "arma");
+                        }
+             
+                        
+              }if( !this.btn_salvar_escudos.isEnabled() ){
+                        String escudoSelecionado = this.combo_equipar_escudo.getSelectedItem().toString();
+
+                        for( String nomeEscudo : this.list_escudos.getSelectedValuesList()){
+
+                              int id_escudo = personEquipDAO.obter_id_equipamento_por_nome(nomeEscudo, "escudo");
+
+                              if( nomeEscudo.equals(escudoSelecionado) )
+                                  personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_escudo, true, 1, "escudo");
+                              else
+                                  personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_escudo, false, 1, "escudo");
+                        }
+                  
+                  
+              }if( !this.btn_salvar_acessorios.isEnabled() ){
+                        String acessorioSelecionado = this.combo_equipar_acessorio.getSelectedItem().toString();
+                        
+                        for( String nomeAcessorio : this.list_acessorios.getSelectedValuesList() ){
+                              
+                               int id_acessorio = personEquipDAO.obter_id_equipamento_por_nome(nomeAcessorio, "acessorio");
+                               System.out.println("nome do acessoro: "+nomeAcessorio+" \n ID: "+ id_acessorio+" \n");
+                               
+                               if( nomeAcessorio.equals(acessorioSelecionado) )
+                                   personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_acessorio, true, 1, "acessorio");
+                               else
+                                   personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_acessorio, false, 1, "acessorio");
+                        }
+                  
+                 
+              }if( this.btn_salvar_itens.isEnabled() ){
+                        
+                        for(String nomeItem : this.list_itens.getSelectedValuesList() ){
+
+                               int id_item = personEquipDAO.obter_id_equipamento_por_nome(nomeItem, "item");
+                               personEquipDAO.add_itens_personagem(id_novo_personagem, id_item, 1);
+                        }
+                        
+              }
+ 
+ 
+ 
+              
+              
+              
+              
+    /* 
+             Component[] inputsValues = this.pnl_fundo_atributos.getComponents();
+             for( int c=0; c<inputsValues.length; c++ ){
+                System.out.println("Nome: "+inputsValues[c].getClass().getName());
+             }
+    */
+         }else{ 
+                JOptionPane.showMessageDialog(null, "Por favor selecione uma classe para o personagem!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
+         }
+        
     }//GEN-LAST:event_btn_salvarActionPerformed
 
+    
+    
     // BOTAO DE SALAR IMAGEM
     private void btn_selecionar_perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selecionar_perfilActionPerformed
          BufferedImage imagemImportada = null; //BufferedImage estende de "Image"
         
          try{
-            JFileChooser imagemSelecionada = new JFileChooser();// janela de escolha do arquivo/imagem
+                JFileChooser imagemSelecionada = new JFileChooser();// janela de escolha do arquivo/imagem
 
-            if(imagemSelecionada.showOpenDialog(this) == JFileChooser.APPROVE_OPTION )
-            
-                imagemImportada =  ImageIO.read( // retorna um "BufferedImage"
-                              imagemSelecionada.getSelectedFile()// retorna um "File"
-                );
+                if( imagemSelecionada.showOpenDialog(this) == JFileChooser.APPROVE_OPTION ){
+
+                    imagemImportada = ImageIO.read( // retorna um "BufferedImage"
+                                  imagemSelecionada.getSelectedFile()// retorna um "File"
+                    );
+                }
        
-        }catch(IOException ioe){ ioe.printStackTrace(); }
-        //Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: input == null!
+         }catch(IOException ioe){ 
+                System.out.println("\n Houve um erro na importação da imagem..... ");
+                ioe.printStackTrace(); 
+         }
+         //Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: input == null!
         
+         // REDIMENSIONANDO A IMAGEM:
+         Image imagemRedimensionada  = (imagemImportada).getScaledInstance(240, 240, Image.SCALE_DEFAULT);
+         //BufferedImage bufImage = (BufferedImage) imagemRedimensionada; // NAO PRECISA, MAS TBM FUNCIONA!
         
-        this.lab_perfil_imagem.setIcon( // ImageIcon é a classe q implementa a interface "Icon"
-                  new ImageIcon( imagemImportada )
-        );
-         
-        this.setBounds(0, 0, this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight());
-        
-    }//GEN-LAST:event_btn_selecionar_perfilActionPerformed
+       
+         JLabel imagem = new JLabel( new ImageIcon (imagemRedimensionada) ); 
 
+         Dimension tamanhoImagem = new Dimension( this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight() );
+         imagem.setSize(tamanhoImagem);
+         imagem.setPreferredSize(tamanhoImagem);
+         imagem.setMinimumSize(tamanhoImagem);
+         imagem.setMaximumSize(tamanhoImagem);
+         imagem.setLocation(0, 0);
+
+         this.pnl_fundo_perfil.add( imagem); 
+    }//GEN-LAST:event_btn_selecionar_perfilActionPerformed
+    
+        //     this.lab_perfil_imagem.setIcon( // ImageIcon é a classe q implementa a interface "Icon"
+    //              new ImageIcon( imagemImportada ) // ImageIcon recebe "BufferedImage" ou "Image"
+   //     );
+   
+        
+        /*
+            ImageLabel imagem = new ImageLabel(
+                 // new ImageIcon( imagemImportada )
+                   //    .getImage()
+            );
+        */
+       
+        /*   // FUNCIONA MAIS A IMAGEM NAO É REDIMENSIONADA:
+           ImageLabel imagem = new ImageLabel();
+           imagem.setIcon( new ImageIcon( imagemImportada ) );
+           imagem.width = this.pnl_fundo_perfil.getWidth();
+           imagem.height= this.pnl_fundo_perfil.getHeight();
+           imagem.setLocation(0, 0);
+           imagem.setText("importando imagem.....");
+           */
+
+     
+        /*  // NAO FUNCIONOU:
+           JLabel imagem = new JLabel( new ImageIcon( imagemImportada ));
+           imagem.setMaximumSize( this.pnl_fundo_perfil.getSize() );
+           imagem.setMinimumSize( this.pnl_fundo_perfil.getSize() );
+           imagem.setSize( this.pnl_fundo_perfil.getSize() );
+           imagem.setBounds(0, 0, this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight());
+           imagem.setLocation(0, 0);
+       */
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -845,26 +1053,66 @@ public class CadastroPersonagem extends javax.swing.JFrame {
     
     
     
+/*
+    private class ImageLabel extends JLabel{
+    
+         private Image imageIcon;
+         int width;
+         int height;
+         JFrame context;
+         
+    
+         public ImageLabel(JFrame context_this){ 
+             this.context = context_this;
+         };
+         
+         public ImageLabel(){
+             this.setLayout( new BorderLayout() );
+         };
+         
+         public ImageLabel(String url){
+             super(url);
+         }
+         
+         public void setIcon(Icon icon){
+          //   super.setIcon(icon);
+            
+             if( icon instanceof ImageIcon){
+                  System.out.println("imagem convertida para Image");
+                  this.imageIcon = ((ImageIcon) icon).getImage();// metodo "getImage" so eh acessivel pela classe "ImageIcon"
+             }
+         }
+         
+         @Override
+         public void paintComponent(Graphics g){
+             super.paintComponent(g);
+             g.drawImage(this.imageIcon, 0, 0, this.width, this.height, null);
+         }
+    
+    }
+*/
+    
+    
 
-      // String avg[] = new String[]{"dwdwd", "dwdwd"};
-        
-      // cor azul de fundo para pnl:  [13,17,25]
-      
-        /* // TESTANDO LAMBDA
-        
-        Pessoa pes = new Pessoa(){
-                
-            @Override
-            public short getIdade(){
-                return 1;
-            }
-        
-        };
-        
-        // OU:
-        //  Pessoa pes = (short b) -> (short) (b+1);
-                
-        */
+    // String avg[] = new String[]{"dwdwd", "dwdwd"};
+
+    // cor azul de fundo para pnl:  [13,17,25]
+
+      /* // TESTANDO LAMBDA
+
+      Pessoa pes = new Pessoa(){
+
+          @Override
+          public short getIdade(){
+              return 1;
+          }
+
+      };
+
+      // OU:
+      //  Pessoa pes = (short b) -> (short) (b+1);
+
+      */
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

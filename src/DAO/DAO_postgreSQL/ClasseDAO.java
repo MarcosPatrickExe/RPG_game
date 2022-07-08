@@ -43,4 +43,44 @@ public class ClasseDAO implements IClasseDAO{
     }
     
     
+    
+    @Override
+    public int obter_classe_por_nome (String nomeClasse) {
+        
+        int ID = 0;
+        
+        try{
+        
+            Connection conexao  = ConexaoBD_Setup.abrirConexao();
+            List<Classe> classes = new ArrayList<>();
+            PreparedStatement ps;
+            String query = "SELECT * FROM \"Classe\" WHERE \"nome\" = ?";
+            ResultSet resultado;
+
+            ps = conexao.prepareStatement(query);
+            ps.setString(1, nomeClasse);
+            resultado = ps.executeQuery();
+            
+            if( resultado.next())
+                ID = resultado.getInt("ID");
+         
+            resultado.close();
+            ps.close();
+            ConexaoBD_Setup.encerrarConexao(conexao);
+            
+        }catch( SQLException sqle){
+            sqle.printStackTrace();
+            ID=0;
+        
+        }finally{
+            return ID;
+        }
+         
+    }
+    
+    
+    
+    
+    
+    
 }

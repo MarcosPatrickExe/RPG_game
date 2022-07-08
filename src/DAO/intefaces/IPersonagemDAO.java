@@ -11,13 +11,13 @@ import model.Personagem;
 
 public interface IPersonagemDAO {
             
-          public int criar_personagem( 
+          public int adicionar_personagem( 
                   String nome, int nivel, 
                      int pontos_vida, int pontos_magia,
                         int velocidade, int XP, int evasao,
                           int ataque, int defesa, 
                             int ataque_especial, int defesa_especial,
-                               int classe_id, int sprite_id,
+                               int classe_id, String sprite,
                                  int destreza, int forca,
                                    int HP_atual, int MP_atual );
            

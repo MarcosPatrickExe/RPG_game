@@ -13,4 +13,5 @@ public interface IClasseDAO {
     
     public List<Classe> obter_classes () throws SQLException;
     
+    public int obter_classe_por_nome (String nomeClasse) throws SQLException;
 }

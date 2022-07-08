@@ -1,5 +1,4 @@
 package DAO.DAO_postgreSQL;
-
 import DAO.intefaces.IPersonagemDAO;
 import java.util.ArrayList;
 import model.Personagem;
@@ -8,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -20,13 +18,13 @@ import javax.swing.JOptionPane;
 public class PersonagemDAO implements IPersonagemDAO{
 
         @Override
-        public int criar_personagem ( 
+        public int adicionar_personagem ( 
                    String nome, int nivel, 
                      int pontos_vida, int pontos_magia,
                         int velocidade, int XP, int evasao,
                           int ataque, int defesa, 
                             int ataque_especial, int defesa_especial,
-                               int classe_id, int sprite_id,
+                               int classe_id, String sprite,
                                  int destreza, int forca,
                                    int HP_atual, int MP_atual
                                 //       ,int acessorio_id, 
@@ -34,29 +32,29 @@ public class PersonagemDAO implements IPersonagemDAO{
 
             
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
-                int id = 0;
+                int idPersonagem = 0;
                 PreparedStatement preStmt = null;
-                ResultSet res = null;
+                ResultSet ultimoPersonagem = null;
 
                 try{
                                 String sql = "INSERT INTO \"Personagem\" ("
                                                 + "nome, "
                                                 + "nivel, "
-                                                + "HP_maximo, "
-                                                + "MP_maximo, "
+                                                + "\"HP_maximo\", "
+                                                + "\"MP_maximo\", "
                                                 + "velocidade, "
-                                                + "XP, "
+                                                + "\"XP\", "
                                                 + "evasao, "
                                                 + "ataque, "
                                                 + "defesa, "
                                                 + "ataque_especial, "
                                                 + "defesa_especial, "
                                                 + "classe_id, "
-                                                + "sprite_id, "
+                                                + "sprite, "
                                                 + "destreza, "
                                                 + "forca, "
-                                                + "HP_atual, "
-                                                + "MP_atual ) "
+                                                + "\"HP_atual\", "
+                                                + "\"MP_atual\" ) "
                                                 + "values ( ?, ?, ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?, ?)";
 
                                 
@@ -74,7 +72,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                                 preStmt.setInt(10, ataque_especial);
                                 preStmt.setInt(11, defesa_especial);
                                 preStmt.setInt(12, classe_id);
-                                preStmt.setInt(13, sprite_id);
+                                preStmt.setString(13, sprite);
                                 preStmt.setInt(14, destreza);
                                 preStmt.setInt(15, forca);
                                 preStmt.setInt(16, HP_atual);
@@ -83,20 +81,34 @@ public class PersonagemDAO implements IPersonagemDAO{
 
                                 if ( preStmt.executeUpdate() ==1)
                                         JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
+                              
                                 
-                                res = preStmt.getGeneratedKeys();//Recupera o ultimo registro inserido na tabela
+                                preStmt = conexao.prepareStatement("SELECT max(\"ID\") AS \"ultimo_id\" FROM \"Personagem\" ");
+                                ultimoPersonagem = preStmt.executeQuery();
                                 
-                                if (res.next())
-                                      id = res.getInt(1);
-                               
+                                if( ultimoPersonagem.next() )
+                                    idPersonagem = ultimoPersonagem.getInt("ultimo_id");
+                                
+                                           // NAO FUNCIONA:
+                                             /*      
+                                               res = preStmt.getGeneratedKeys();//Recupera o ultimo registro inserido na tabela
+
+                                                if(res.next()){
+                                                     System.out.println("ID do ultimo personagem: "+res.getInt(1));
+                                                     id = res.getInt("ID");
+                                                }
+*                                            */
+                                           
+                                ultimoPersonagem.close();
                                 preStmt.close();
                                 ConexaoBD_Setup.encerrarConexao(conexao);
                                 
                 }catch(SQLException sql){
+                        System.err.println("Houve um erro no cadastro do personagem... ");
                         sql.printStackTrace();
 
                 }finally{
-                        return id;
+                        return idPersonagem;
                 }
     }
 
@@ -120,7 +132,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                             + "ataque_especial = ?, "
                             + "defesa_especial = ?, "
                             + "classe_id = ?, "
-                            + "sprite_id = ?, "
+                            + "sprite = ?, "
                             + "destreza = ?, "
                             + "forca = ?, "
                             + "HP_atual= ?, "
@@ -141,7 +153,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                 preStmt.setInt( 10, person.getAtaque_especial());
                 preStmt.setInt( 11, person.getDefesa_especial());
                 preStmt.setInt( 12, person.getClasse_id());
-                preStmt.setInt( 13, person.getSprite_id());
+                preStmt.setString( 13, person.getSprite());
                 preStmt.setInt( 14, person.getDestreza());
                 preStmt.setInt( 15, person.getForca());
                 preStmt.setInt( 16, person.getHP_atual());
