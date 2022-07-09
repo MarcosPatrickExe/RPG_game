@@ -854,9 +854,8 @@ public class CadastroPersonagem extends JFrame {
              if( (this.pnl_fundo_perfil.getComponents().length !=0) 
                   && (this.imagemPerfilPersonagem != null)  ){
                     
-                 
+                         // REALIZANDO A CONVERSAO DA IMAGEM PARA BYTES E DEPOIS ENCRIPTANDO ELA 
                          try{
-             
                                 byte[] imagemBytes = FileUtils.readFileToByteArray( this.imagemPerfilPersonagem );
 
                                 String base64ImageFormat = Base64.getEncoder().encodeToString( imagemBytes);
@@ -876,8 +875,6 @@ public class CadastroPersonagem extends JFrame {
              }
              
              
-             
-          
  //=================================== CADASTRO DO PERSONAGEM =============================================================================
  
               PersonagemDAO personDAO = new PersonagemDAO();
@@ -904,7 +901,7 @@ public class CadastroPersonagem extends JFrame {
               
               );
               
-              System.out.println("ID do personagem cadastrado: "+ id_novo_personagem );
+              System.out.println("ID do personagem cadastrado: "+ id_novo_personagem+". \n" );
              
               
             
@@ -928,9 +925,9 @@ public class CadastroPersonagem extends JFrame {
                               else
                                   personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_arma, false, 1, "arma");
                         }
-             
-                        
-              } if( !this.btn_salvar_escudos.isEnabled() ){
+              } 
+              
+              if( !this.btn_salvar_escudos.isEnabled() ){
                         String escudoSelecionado = this.combo_equipar_escudo.getSelectedItem().toString();
 
                         for( String nomeEscudo : this.list_escudos.getSelectedValuesList()){
@@ -942,9 +939,9 @@ public class CadastroPersonagem extends JFrame {
                               else
                                   personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_escudo, false, 1, "escudo");
                         }
-                  
-                  
-              } if( !this.btn_salvar_acessorios.isEnabled() ){
+              } 
+              
+              if( !this.btn_salvar_acessorios.isEnabled() ){
                         String acessorioSelecionado = this.combo_equipar_acessorio.getSelectedItem().toString();
                         
                         for( String nomeAcessorio : this.list_acessorios.getSelectedValuesList() ){
@@ -957,32 +954,27 @@ public class CadastroPersonagem extends JFrame {
                                else
                                    personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_acessorio, false, 1, "acessorio");
                         }
-                  
-                 
-              } if( !this.btn_salvar_itens.isEnabled() ){
+              }
+              
+              if( !this.list_itens.isEnabled() ){
                         
                         for(String nomeItem : this.list_itens.getSelectedValuesList() ){
 
                                int id_item = personEquipDAO.obter_id_equipamento_por_nome(nomeItem, "item");
-                               personEquipDAO.add_itens_personagem(id_novo_personagem, id_item, 1);
+                               System.out.println("ID do item com nome: "+id_item);
+                               
+                               boolean sucesso = personEquipDAO.add_itens_personagem(id_novo_personagem, id_item, 1);
+                               System.out.println("sucecesso ao salvar item do personagem-id: "+id_novo_personagem+"? "+sucesso);
                         }
-                        
               }
  
+              JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);                      
+              this.dispose();
               
-    /* 
-             Component[] inputsValues = this.pnl_fundo_atributos.getComponents();
-             for( int c=0; c<inputsValues.length; c++ ){
-                System.out.println("Nome: "+inputsValues[c].getClass().getName());
-             }
-    */
+    
          }else{ 
                 JOptionPane.showMessageDialog(null, "Por favor selecione uma classe para o personagem!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
          }
-        
-         
-         JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);                      
-         this.dispose();
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     

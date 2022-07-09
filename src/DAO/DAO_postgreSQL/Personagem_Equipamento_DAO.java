@@ -84,7 +84,7 @@ public class Personagem_Equipamento_DAO {
                                             + "quantidade )"
                                             + "values (?, ?, ?)";
 
-                                
+                                System.out.println("\nQuery para inserir o ID de person: "+id_personagem+" e ID de item: "+id_item+":  "+sql);
                                 preStmt =  conexao.prepareStatement( sql );
                                 preStmt.setInt(1, id_personagem);
                                 preStmt.setInt(2, id_item);

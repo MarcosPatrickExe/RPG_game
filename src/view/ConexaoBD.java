@@ -6,31 +6,40 @@
 package view;
 
 import connection.ConexaoBD_Setup;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.event.ChangeEvent;
 
 /**
  *
  * @author Patrick
  */
 public class ConexaoBD extends JFrame {
-
-      /*
-          restore and store image bytea from postgre database:
-          https://stackoverflow.com/questions/6078525/displaying-image-from-postgresql-database-bytea
-    
-    
-          https://stackoverflow.com/questions/15127100/store-and-retrieve-images-in-postgresql-using-java
-    
-    */
-    
-    
-    
-    
     /**
      * Creates new form ConexaoBD
      */
+    
+    // ONLINE DATABASE PARAMETERS
+    private static final String host_address = "ec2-3-217-14-181.compute-1.amazonaws.com";
+    private static final String maintenance_database = "d4u4qkp2hum7jj";
+    private static final String user = "rqegqbmcckiazc";
+    private static final int port = 5432;
+    private static final String password = "d50a51752e3559cbefded88da28ef6579e8d1df07d669f12b084689194fc29e9";
+    private static final String URI = "postgres://rqegqbmcckiazc:d50a51752e3559cbefded88da28ef6579e8d1df07d669f12b084689194fc29e9@ec2-3-217-14-181.compute-1.amazonaws.com:5432/d4u4qkp2hum7jj";
+    
+    
+    // LCCAL DATABASE PARAMETERS 
+    private static final String host_address2 = "localhost";
+    private static final String maintenance_database2 = "rpg_database";
+    private static final String user2 = "postgres";
+    private static final int port2 = 5432;
+    private static final String password2 = "postgres";
+   
+    
     public ConexaoBD() {
             initComponents();
             
@@ -43,8 +52,77 @@ public class ConexaoBD extends JFrame {
                     btn_new_connection.setVisible(false);
                     btn_conect.setEnabled(true);
             }
+            
+            
+            //this.lab_database_checkbox.setText("Usar banco de \n dados online?");
+            
+            // ADICIONANDO EVENTO DE MUDANCA DE ESTADO NO CHECKBOX CHAMADO "Usar banco online?":
+            this.check_use_online_database.addChangeListener(
+                
+                  new btnAlterarDatabase( // "btnAlterarDatabase" É UMA CLASSE PERSONALIADA
+                       this.check_use_online_database
+                  ) 
+            );
     }
+    
+    
+    private class btnAlterarDatabase 
+                     //  extends javax.swing.JComboBox 
+                            implements javax.swing.event.ChangeListener{
 
+        private JCheckBox esseCheckBox;
+        
+        private btnAlterarDatabase(JCheckBox btnContext){
+             this.esseCheckBox = btnContext;
+        }
+        
+        @Override
+        public void stateChanged(ChangeEvent evt) {
+           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+          //   System.out.println("classe em execucao: "+evt.getClass());// EXIBE "javax.swing.event.ChangeEvent"
+          //   System.out.println("Está marcado: "+this.esseCheckBox.isSelected());
+              if (this.esseCheckBox.isSelected())
+                  online_database_parameters();
+              else
+                  local_database_parameters();
+            
+        }
+    }
+    
+
+    private void local_database_parameters(){
+          this.text_database.setText(ConexaoBD.maintenance_database2 );
+          this.text_host.setText(ConexaoBD.host_address2);
+          this.text_port.setText( String.valueOf( ConexaoBD.port2) );
+          this.text_user.setText(ConexaoBD.user2);
+          this.text_password.setText(ConexaoBD.password2);
+          
+          this.text_database.setEnabled(true);
+          this.text_host.setEnabled(true);
+          this.text_port.setEnabled(true);
+          this.text_user.setEnabled(true);
+          this.text_password.setEnabled(true);
+    }
+    
+    
+    private void online_database_parameters(){
+          this.text_database.setText( ConexaoBD.maintenance_database );
+          this.text_host.setText( ConexaoBD.host_address);
+          this.text_port.setText( String.valueOf( ConexaoBD.port) );
+          this.text_user.setText( ConexaoBD.user);
+          this.text_password.setText( ConexaoBD.password);
+          
+          this.text_database.setEnabled(false);
+          this.text_host.setEnabled(false);
+          this.text_port.setEnabled(false);
+          this.text_user.setEnabled(false);
+          this.text_password.setEnabled(false);
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +144,8 @@ public class ConexaoBD extends JFrame {
         text_port = new javax.swing.JTextField();
         text_user = new javax.swing.JTextField();
         text_password = new javax.swing.JTextField();
+        lab_database_checkbox = new javax.swing.JLabel();
+        check_use_online_database = new javax.swing.JCheckBox();
         btn_conect = new javax.swing.JButton();
         btn_new_connection = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -87,57 +167,68 @@ public class ConexaoBD extends JFrame {
         lab_database.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_database.setForeground(new java.awt.Color(255, 255, 255));
         lab_database.setText("Nome do banco:");
-        pan_card_setup.add(lab_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 160, 30));
+        pan_card_setup.add(lab_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, 30));
 
         text_database.setBackground(new java.awt.Color(102, 102, 102));
         text_database.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         text_database.setForeground(new java.awt.Color(255, 255, 255));
         text_database.setText("rpg_database");
-        pan_card_setup.add(text_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 200, 30));
+        pan_card_setup.add(text_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 200, 30));
 
         lab_user.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_user.setForeground(new java.awt.Color(255, 255, 255));
         lab_user.setText("Usuario:");
-        pan_card_setup.add(lab_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 178, 90, 50));
+        pan_card_setup.add(lab_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 100, 50));
 
         lab_port.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_port.setForeground(new java.awt.Color(255, 255, 255));
         lab_port.setText("Porta:");
-        pan_card_setup.add(lab_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, 50));
+        pan_card_setup.add(lab_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 120, 60, 60));
 
         lab_host.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_host.setForeground(new java.awt.Color(255, 255, 255));
         lab_host.setText("Nome/IP do Host:");
-        pan_card_setup.add(lab_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 170, 50));
+        pan_card_setup.add(lab_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 170, 50));
 
         lab_password.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_password.setForeground(new java.awt.Color(255, 255, 255));
         lab_password.setText("Senha:");
-        pan_card_setup.add(lab_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, 50));
+        pan_card_setup.add(lab_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 230, 70, 50));
 
         text_host.setBackground(new java.awt.Color(102, 102, 102));
         text_host.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         text_host.setForeground(new java.awt.Color(255, 255, 255));
         text_host.setText("localhost");
-        pan_card_setup.add(text_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 200, 30));
+        pan_card_setup.add(text_host, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 200, 30));
 
         text_port.setBackground(new java.awt.Color(102, 102, 102));
         text_port.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         text_port.setForeground(new java.awt.Color(255, 255, 255));
         text_port.setText("5432");
-        pan_card_setup.add(text_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 200, 30));
+        pan_card_setup.add(text_port, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 136, 200, 30));
 
         text_user.setBackground(new java.awt.Color(102, 102, 102));
         text_user.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         text_user.setForeground(new java.awt.Color(255, 255, 255));
         text_user.setText("postgres");
-        pan_card_setup.add(text_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 188, 140, 30));
+        pan_card_setup.add(text_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 140, 30));
 
         text_password.setBackground(new java.awt.Color(102, 102, 102));
         text_password.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         text_password.setForeground(new java.awt.Color(255, 255, 255));
         text_password.setText("postgres");
-        pan_card_setup.add(text_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 140, -1));
+        pan_card_setup.add(text_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 140, 30));
+
+        lab_database_checkbox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lab_database_checkbox.setForeground(new java.awt.Color(255, 255, 255));
+        lab_database_checkbox.setText("Usar banco dedados online?\n");
+        pan_card_setup.add(lab_database_checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 70, 80));
+
+        check_use_online_database.setBackground(new java.awt.Color(51, 51, 51));
+        check_use_online_database.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        check_use_online_database.setForeground(new java.awt.Color(204, 204, 204));
+        check_use_online_database.setText("Sim");
+        pan_card_setup.add(check_use_online_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 80, 30));
 
         getContentPane().add(pan_card_setup, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 680, 290));
 
@@ -206,6 +297,8 @@ public class ConexaoBD extends JFrame {
                         }
 
                         ConexaoBD_Setup.encerrarConexao(conexao);
+                        
+                        this.dispose();
                             
                 }catch(ClassNotFoundException cnfe){
                          JOptionPane.showMessageDialog(null, "Erro ao tentar realizar uma conexão com o banco.....", "Error!!!", JOptionPane.ERROR_MESSAGE);
@@ -271,10 +364,12 @@ public class ConexaoBD extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_conect;
     private javax.swing.JButton btn_new_connection;
+    private javax.swing.JCheckBox check_use_online_database;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_database;
+    private javax.swing.JLabel lab_database_checkbox;
     private javax.swing.JLabel lab_host;
     private javax.swing.JLabel lab_password;
     private javax.swing.JLabel lab_port;
@@ -288,3 +383,12 @@ public class ConexaoBD extends JFrame {
     private javax.swing.JTextField text_user;
     // End of variables declaration//GEN-END:variables
 }
+
+/*
+       restore and store image bytea from postgre database:
+       https://stackoverflow.com/questions/6078525/displaying-image-from-postgresql-database-bytea
+
+
+       https://stackoverflow.com/questions/15127100/store-and-retrieve-images-in-postgresql-using-java
+
+ */

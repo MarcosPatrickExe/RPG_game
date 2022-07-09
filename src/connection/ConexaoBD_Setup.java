@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
+import org.postgresql.util.PSQLException;
 
 /**
  * @author Patrick
@@ -77,15 +78,18 @@ public class ConexaoBD_Setup {
  
                           conexao = DriverManager.getConnection(URL, user, pass);
                     */
-                      
-                        
+                    
+                    
+                }catch(PSQLException psqle){
+                       JOptionPane.showMessageDialog(null, "Houve um erro de conexão com o banco de dados. Verifique se os parâmetros de conexão estão corretos!!!", "Erro!!!", JOptionPane.ERROR_MESSAGE);
+                       psqle.printStackTrace();
+                
                 }catch(SQLException sqlE){
-                         JOptionPane.showMessageDialog(null, "Houve um erro de conexão com o banco de dados", "Erro!!!", JOptionPane.ERROR_MESSAGE);
-                         sqlE.printStackTrace();
+                       JOptionPane.showMessageDialog(null, "Houve um erro de conexão com o banco de dados", "Erro!!!", JOptionPane.ERROR_MESSAGE);
+                       sqlE.printStackTrace();
                         
                 }finally{
-                    
-                         return conexao;
+                       return conexao;
                 }
                 
         }
