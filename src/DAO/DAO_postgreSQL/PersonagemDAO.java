@@ -79,25 +79,25 @@ public class PersonagemDAO implements IPersonagemDAO{
                                 preStmt.setInt(17, MP_atual);
                                 
 
-                                if ( preStmt.executeUpdate() ==1)
-                                        JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);
-                              
+                                if ( preStmt.executeUpdate()==1 ){
                                 
-                                preStmt = conexao.prepareStatement("SELECT max(\"ID\") AS \"ultimo_id\" FROM \"Personagem\" ");
-                                ultimoPersonagem = preStmt.executeQuery();
-                                
-                                if( ultimoPersonagem.next() )
-                                    idPersonagem = ultimoPersonagem.getInt("ultimo_id");
-                                
-                                           // NAO FUNCIONA:
-                                             /*      
-                                               res = preStmt.getGeneratedKeys();//Recupera o ultimo registro inserido na tabela
+                                        preStmt = conexao.prepareStatement("SELECT max(\"ID\") AS \"ultimo_id\" FROM \"Personagem\" ");
+                                        ultimoPersonagem = preStmt.executeQuery();
 
-                                                if(res.next()){
-                                                     System.out.println("ID do ultimo personagem: "+res.getInt(1));
-                                                     id = res.getInt("ID");
-                                                }
-*                                            */
+                                        if( ultimoPersonagem.next() )
+                                            idPersonagem = ultimoPersonagem.getInt("ultimo_id");
+
+                                                   // NAO FUNCIONA:
+                                                     /*      
+                                                       res = preStmt.getGeneratedKeys();//Recupera o ultimo registro inserido na tabela
+
+                                                        if(res.next()){
+                                                             System.out.println("ID do ultimo personagem: "+res.getInt(1));
+                                                             id = res.getInt("ID");
+                                                        }
+        *                                            */
+                                }
+                                
                                            
                                 ultimoPersonagem.close();
                                 preStmt.close();

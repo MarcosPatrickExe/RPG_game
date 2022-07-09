@@ -46,7 +46,7 @@ public class Personagem_Equipamento_DAO {
                                             + "values (?, ?, ?, ?)";
 
                                 
-                                System.out.println("Query para inserir o ID de "+tipo_cadastro+" na coluna: "+nomeColuna+":  "+sql);
+                                System.out.println("\nQuery para inserir o ID de "+tipo_cadastro+" na coluna: "+nomeColuna+":  "+sql);
                                 preStmt =  conexao.prepareStatement( sql );
                                 preStmt.setInt(1, id_personagem);
                                 preStmt.setInt(2, id_equipamento);
@@ -81,7 +81,7 @@ public class Personagem_Equipamento_DAO {
                                 String sql =  "INSERT INTO \"Personagem_Itens\" ("
                                             + "\"Personagem_id\", "
                                             + "\"Item_id\", "
-                                            + "\"quantidade\" )"
+                                            + "quantidade )"
                                             + "values (?, ?, ?)";
 
                                 

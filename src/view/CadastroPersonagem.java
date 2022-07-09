@@ -657,7 +657,18 @@ public class CadastroPersonagem extends JFrame {
         pnl_fundo_sprites.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnl_fundo_perfil.setBackground(new java.awt.Color(51, 51, 51));
-        pnl_fundo_perfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout pnl_fundo_perfilLayout = new javax.swing.GroupLayout(pnl_fundo_perfil);
+        pnl_fundo_perfil.setLayout(pnl_fundo_perfilLayout);
+        pnl_fundo_perfilLayout.setHorizontalGroup(
+            pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        pnl_fundo_perfilLayout.setVerticalGroup(
+            pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+
         pnl_fundo_sprites.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 220, 220));
 
         btn_selecionar_perfil.setBackground(new java.awt.Color(51, 51, 51));
@@ -969,6 +980,9 @@ public class CadastroPersonagem extends JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor selecione uma classe para o personagem!!!", "Error!!!", JOptionPane.ERROR_MESSAGE);                 
          }
         
+         
+         JOptionPane.showMessageDialog(null, "O personagem foi cadastrado com sucesso!!!", "Gotcha!!!", JOptionPane.INFORMATION_MESSAGE);                      
+         this.dispose();
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     
@@ -982,7 +996,8 @@ public class CadastroPersonagem extends JFrame {
             Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException
                 at org.netbeans.lib.awtextra.AbsoluteLayout.addLayoutComponent(Unknown Source)
          */
-         
+         int larguraDoFundo = this.pnl_fundo_perfil.getWidth();
+         int alturaDoFundo = this.pnl_fundo_perfil.getHeight();
          
          try{
                 JFileChooser imagemSelecionada = new JFileChooser();// janela de escolha do arquivo/imagem
@@ -1003,22 +1018,31 @@ public class CadastroPersonagem extends JFrame {
          //Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: input == null!
         
          // REDIMENSIONANDO A IMAGEM:
-         Image imagemRedimensionada  = (imagemImportada).getScaledInstance(240, 240, Image.SCALE_DEFAULT);
+         Image imagemRedimensionada  = ((Image) imagemImportada).getScaledInstance(larguraDoFundo, alturaDoFundo, Image.SCALE_DEFAULT);
          //BufferedImage bufImage = (BufferedImage) imagemRedimensionada; // NAO PRECISA, MAS TBM FUNCIONA!
         
+         this.btn_selecionar_perfil.setEnabled(false);
          
-       
-         JLabel imagem = new JLabel( new ImageIcon (imagemRedimensionada) ); 
+         
+         JLabel imagem = null;
+         
+         try{
+                imagem = new JLabel( new ImageIcon (imagemRedimensionada) ); 
+                Dimension tamanhoImagem = new Dimension( larguraDoFundo, alturaDoFundo );
+                imagem.setSize(tamanhoImagem);
+                imagem.setPreferredSize(tamanhoImagem);
+                imagem.setMinimumSize(tamanhoImagem);
+                imagem.setMaximumSize(tamanhoImagem);
+                imagem.setLocation(0, 0);
+                imagem.setBounds(0, 0, larguraDoFundo, alturaDoFundo);
 
-         Dimension tamanhoImagem = new Dimension( this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight() );
-         imagem.setSize(tamanhoImagem);
-         imagem.setPreferredSize(tamanhoImagem);
-         imagem.setMinimumSize(tamanhoImagem);
-         imagem.setMaximumSize(tamanhoImagem);
-         imagem.setLocation(0, 0);
-         imagem.setBounds(0, 0, this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight());
+         }catch(IllegalArgumentException iae){
+                System.out.println("\n Houve um erro na criação do JLabel com imagem..... ");
+                iae.printStackTrace();
+         }
 
-         this.pnl_fundo_perfil.add(imagem, 0); 
+         
+         this.pnl_fundo_perfil.add(imagem); 
     }//GEN-LAST:event_btn_selecionar_perfilActionPerformed
     
         //     this.lab_perfil_imagem.setIcon( // ImageIcon é a classe q implementa a interface "Icon"
