@@ -23,6 +23,9 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -43,6 +46,9 @@ import model.Classe;
 import model.Escudo;
 import model.Item;
 import model.Personagem;
+import java.util.Base64;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -59,8 +65,8 @@ public class CadastroPersonagem extends JFrame {
 
    // private boolean atributosInseridos = false;
    // private boolean equipamentosInseridos = false;
-    
-    
+   
+    private File imagemPerfilPersonagem = null;
     
     /**
      * Creates new form CadastroPersonagem
@@ -302,6 +308,7 @@ public class CadastroPersonagem extends JFrame {
         txt_nome.setBackground(new java.awt.Color(102, 102, 102));
         txt_nome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_nome.setForeground(new java.awt.Color(255, 255, 255));
+        txt_nome.setText("XXX");
         txt_nome.setBorder(null);
         txt_nome.setMargin(new java.awt.Insets(5, 10, 5, 5));
         pnl_fundo_atributos.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 85, 160, 25));
@@ -366,24 +373,28 @@ public class CadastroPersonagem extends JFrame {
         txt_evasao.setBackground(new java.awt.Color(102, 102, 102));
         txt_evasao.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_evasao.setForeground(new java.awt.Color(255, 255, 255));
+        txt_evasao.setText("00");
         txt_evasao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_evasao, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 60, 30));
 
         txt_forca.setBackground(new java.awt.Color(102, 102, 102));
         txt_forca.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_forca.setForeground(new java.awt.Color(255, 255, 255));
+        txt_forca.setText("00");
         txt_forca.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 60, 30));
 
         txt_destreza.setBackground(new java.awt.Color(102, 102, 102));
         txt_destreza.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_destreza.setForeground(new java.awt.Color(255, 255, 255));
+        txt_destreza.setText("00");
         txt_destreza.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_destreza, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 60, 30));
 
         txt_velocidade.setBackground(new java.awt.Color(102, 102, 102));
         txt_velocidade.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_velocidade.setForeground(new java.awt.Color(255, 255, 255));
+        txt_velocidade.setText("00");
         txt_velocidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_velocidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 60, 30));
 
@@ -410,24 +421,28 @@ public class CadastroPersonagem extends JFrame {
         txt_atk.setBackground(new java.awt.Color(102, 102, 102));
         txt_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_atk.setForeground(new java.awt.Color(255, 255, 255));
+        txt_atk.setText("00");
         txt_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 70, 30));
 
         txt_sp_atk.setBackground(new java.awt.Color(102, 102, 102));
         txt_sp_atk.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_atk.setForeground(new java.awt.Color(255, 255, 255));
+        txt_sp_atk.setText("00");
         txt_sp_atk.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 140, 70, 30));
 
         txt_def.setBackground(new java.awt.Color(102, 102, 102));
         txt_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_def.setForeground(new java.awt.Color(255, 255, 255));
+        txt_def.setText("00");
         txt_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 210, 70, 30));
 
         txt_sp_def.setBackground(new java.awt.Color(102, 102, 102));
         txt_sp_def.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_sp_def.setForeground(new java.awt.Color(255, 255, 255));
+        txt_sp_def.setText("00");
         txt_sp_def.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnl_fundo_atributos.add(txt_sp_def, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, 30));
 
@@ -440,7 +455,7 @@ public class CadastroPersonagem extends JFrame {
         txt_XP.setBackground(new java.awt.Color(102, 102, 102));
         txt_XP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_XP.setForeground(new java.awt.Color(255, 255, 255));
-        txt_XP.setText("00");
+        txt_XP.setText("0000");
         pnl_fundo_atributos.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 120, 30));
 
         jPanel7.setBackground(new java.awt.Color(49, 60, 81));
@@ -804,7 +819,7 @@ public class CadastroPersonagem extends JFrame {
          
          }else if( this.combo_classe.getSelectedIndex() != 0 ){ // É TRUE CASO O ITEM SELECIONADO NAO SEJA O PRIMEIRO, O QUAL TEM VALOR "Selecione"
               ClasseDAO clasDAO = new ClasseDAO();
-              String sprite = null;
+              String spriteEncoded = null;// STRING QUE ARMAZENA IMAGEM NO FORMATO "base64"
              
  //================================================================================================================
               
@@ -823,10 +838,30 @@ public class CadastroPersonagem extends JFrame {
              
 //======================= ENCRIPTANDO IMAGEM PARA ARMAZENAMENTO NO BANCO DE DADOS ===========================================================================
              
-             if( this.pnl_fundo_perfil.getComponents().length != 0){
-                     
+
+ //      VERIFICANDO SE ALGUMA IMAGEM FOI INSERIDA PARA O PERFIL DO PERSONAGEM
+             if( (this.pnl_fundo_perfil.getComponents().length !=0) 
+                  && (this.imagemPerfilPersonagem != null)  ){
                     
-                    
+                 
+                         try{
+             
+                                byte[] imagemBytes = FileUtils.readFileToByteArray( this.imagemPerfilPersonagem );
+
+                                String base64ImageFormat = Base64.getEncoder().encodeToString( imagemBytes);
+
+                                spriteEncoded = base64ImageFormat;
+                                
+                         }catch(IOException ioe){
+                                System.out.println("Houve um erro de conversao da imagem em bytes.....");
+                                ioe.printStackTrace();
+                         }
+                           
+                            // OU:
+                            // ByteStreams.toByteArray(InputStream is)
+                            // IOUtils.toByteArray(InputStream input) 
+                         //    try{ byte[] imageBytes = IOUtils.toByteArray( new URL( this.imagemPerfilPersonagem.getAbsolutePath()  ) );                    
+                      //       }catch(MalformedURLException mfURLe){}; 
              }
              
              
@@ -850,7 +885,7 @@ public class CadastroPersonagem extends JFrame {
                             Integer.parseInt( this.txt_sp_atk.getText()),
                              Integer.parseInt( this.txt_sp_def.getText()),
                               id_classe_selecionada,
-                               sprite,
+                               spriteEncoded,
                                 Integer.parseInt( this.txt_destreza.getText()),
                                  Integer.parseInt( this.txt_forca.getText()),
                                   Integer.parseInt( this.spn_HP_atual.getValue().toString() ),
@@ -864,11 +899,11 @@ public class CadastroPersonagem extends JFrame {
             
 //================================= CADASTRO DE EQUIPAMENTOS DO PERSONAGEM =========================================================================       
        
-        Personagem_Equipamento_DAO personEquipDAO = new Personagem_Equipamento_DAO();
+              Personagem_Equipamento_DAO personEquipDAO = new Personagem_Equipamento_DAO();
 
-        // CADASTRANDO O "ID" DO PERSONAGEM, "ID DOS ESCUDOS SELECIONADOS" E QUAL ESCUDO FOI EQUIPADO
-             
-        // SE UM DETERMINADO BOTAO NAO ESTIVER HABILITADO ENTAO ALGUNS ITENS DA LISTA FORAM SELECIONADOS
+              // CADASTRANDO O "ID" DO PERSONAGEM, "ID DOS ESCUDOS SELECIONADOS" E QUAL ESCUDO FOI EQUIPADO
+
+              // SE UM DETERMINADO BOTAO NAO ESTIVER HABILITADO ENTAO ALGUNS ITENS DA LISTA FORAM SELECIONADOS
               if( !this.btn_salvar_armas.isEnabled() ){
                   
                         String armaSelecionada = this.combo_equipar_arma.getSelectedItem().toString();
@@ -884,7 +919,7 @@ public class CadastroPersonagem extends JFrame {
                         }
              
                         
-              }if( !this.btn_salvar_escudos.isEnabled() ){
+              } if( !this.btn_salvar_escudos.isEnabled() ){
                         String escudoSelecionado = this.combo_equipar_escudo.getSelectedItem().toString();
 
                         for( String nomeEscudo : this.list_escudos.getSelectedValuesList()){
@@ -898,13 +933,13 @@ public class CadastroPersonagem extends JFrame {
                         }
                   
                   
-              }if( !this.btn_salvar_acessorios.isEnabled() ){
+              } if( !this.btn_salvar_acessorios.isEnabled() ){
                         String acessorioSelecionado = this.combo_equipar_acessorio.getSelectedItem().toString();
                         
                         for( String nomeAcessorio : this.list_acessorios.getSelectedValuesList() ){
                               
                                int id_acessorio = personEquipDAO.obter_id_equipamento_por_nome(nomeAcessorio, "acessorio");
-                               System.out.println("nome do acessoro: "+nomeAcessorio+" \n ID: "+ id_acessorio+" \n");
+                               System.out.println("nome do acessorio: "+nomeAcessorio+" \n ID: "+ id_acessorio);
                                
                                if( nomeAcessorio.equals(acessorioSelecionado) )
                                    personEquipDAO.add_equipamentos_personagem(id_novo_personagem, id_acessorio, true, 1, "acessorio");
@@ -913,7 +948,7 @@ public class CadastroPersonagem extends JFrame {
                         }
                   
                  
-              }if( this.btn_salvar_itens.isEnabled() ){
+              } if( !this.btn_salvar_itens.isEnabled() ){
                         
                         for(String nomeItem : this.list_itens.getSelectedValuesList() ){
 
@@ -923,11 +958,6 @@ public class CadastroPersonagem extends JFrame {
                         
               }
  
- 
- 
-              
-              
-              
               
     /* 
              Component[] inputsValues = this.pnl_fundo_atributos.getComponents();
@@ -946,7 +976,14 @@ public class CadastroPersonagem extends JFrame {
     // BOTAO DE SALAR IMAGEM
     private void btn_selecionar_perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_selecionar_perfilActionPerformed
          BufferedImage imagemImportada = null; //BufferedImage estende de "Image"
-        
+
+         /*  // ERRO DE IMPORTACAO DE IMAGEM EM LAYOUT ABSOLUTO:
+         
+            Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException
+                at org.netbeans.lib.awtextra.AbsoluteLayout.addLayoutComponent(Unknown Source)
+         */
+         
+         
          try{
                 JFileChooser imagemSelecionada = new JFileChooser();// janela de escolha do arquivo/imagem
 
@@ -955,6 +992,8 @@ public class CadastroPersonagem extends JFrame {
                     imagemImportada = ImageIO.read( // retorna um "BufferedImage"
                                   imagemSelecionada.getSelectedFile()// retorna um "File"
                     );
+                    
+                    this.imagemPerfilPersonagem = imagemSelecionada.getSelectedFile();
                 }
        
          }catch(IOException ioe){ 
@@ -967,6 +1006,7 @@ public class CadastroPersonagem extends JFrame {
          Image imagemRedimensionada  = (imagemImportada).getScaledInstance(240, 240, Image.SCALE_DEFAULT);
          //BufferedImage bufImage = (BufferedImage) imagemRedimensionada; // NAO PRECISA, MAS TBM FUNCIONA!
         
+         
        
          JLabel imagem = new JLabel( new ImageIcon (imagemRedimensionada) ); 
 
@@ -976,8 +1016,9 @@ public class CadastroPersonagem extends JFrame {
          imagem.setMinimumSize(tamanhoImagem);
          imagem.setMaximumSize(tamanhoImagem);
          imagem.setLocation(0, 0);
+         imagem.setBounds(0, 0, this.pnl_fundo_perfil.getWidth(), this.pnl_fundo_perfil.getHeight());
 
-         this.pnl_fundo_perfil.add( imagem); 
+         this.pnl_fundo_perfil.add(imagem, 0); 
     }//GEN-LAST:event_btn_selecionar_perfilActionPerformed
     
         //     this.lab_perfil_imagem.setIcon( // ImageIcon é a classe q implementa a interface "Icon"

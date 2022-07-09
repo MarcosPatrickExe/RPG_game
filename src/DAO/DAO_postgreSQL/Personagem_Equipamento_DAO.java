@@ -21,15 +21,15 @@ public class Personagem_Equipamento_DAO {
                 switch(tipo_cadastro){
                     case "arma":
                            nomeTabela = "Personagem_Arma";
-                           nomeColuna = "Arma_id";
+                           nomeColuna = "Arma_id"; break;
                            
                     case "escudo":
                            nomeTabela = "Personagem_Escudo";
-                           nomeColuna = "Escudo_id";
+                           nomeColuna = "Escudo_id"; break;
                            
                     case "acessorio":
                            nomeTabela = "Personagem_Acessorio";
-                           nomeColuna = "Acessorio_id";
+                           nomeColuna = "Acessorio_id"; break;
                 }
          
          
@@ -38,14 +38,15 @@ public class Personagem_Equipamento_DAO {
                 PreparedStatement preStmt = null;
 
                 try{
-                                String sql =  "INSERT INTO \""+nomeTabela+"\" ("
-                                            + "\"Personagem_id\", "
-                                            + "\""+nomeColuna +"\", "
+                                String sql =  "INSERT INTO \""+nomeTabela+"\" (" 
+                                            + "\"Personagem_id\", " 
+                                            + "\""+nomeColuna+"\", "
                                             + "quantidade, "
                                             + "equipado ) "
                                             + "values (?, ?, ?, ?)";
 
                                 
+                                System.out.println("Query para inserir o ID de "+tipo_cadastro+" na coluna: "+nomeColuna+":  "+sql);
                                 preStmt =  conexao.prepareStatement( sql );
                                 preStmt.setInt(1, id_personagem);
                                 preStmt.setInt(2, id_equipamento);
@@ -80,7 +81,7 @@ public class Personagem_Equipamento_DAO {
                                 String sql =  "INSERT INTO \"Personagem_Itens\" ("
                                             + "\"Personagem_id\", "
                                             + "\"Item_id\", "
-                                            + "quantidade )"
+                                            + "\"quantidade\" )"
                                             + "values (?, ?, ?)";
 
                                 
@@ -113,42 +114,55 @@ public class Personagem_Equipamento_DAO {
          
                 switch( tipoEquipamento ){
                     case "arma":
-                        nomeTabela = "Arma";
+                        nomeTabela = "Arma"; break;
                         
                     case "escudo":
-                        nomeTabela = "Escudo";
+                        nomeTabela = "Escudo"; break;
                         
                     case "acessorio":
-                        nomeTabela = "Acessorio";
+                        nomeTabela = "Acessorio"; break;
                         
                     case "item":
-                        nomeTabela = "Itens";
+                        nomeTabela = "Itens"; break;
                    /*     
                     case "tecnica":
                         nomeTabela = "Tecnicas"; */
                 }
          
-         
+ /* 
+        org.postgresql.util.PSQLException: O índice da coluna está fora do intervalo: 1, número de colunas: 0.
+	at org.postgresql.core.v3.SimpleParameterList.bind(SimpleParameterList.java:70)
+	at org.postgresql.core.v3.SimpleParameterList.setStringParameter(SimpleParameterList.java:133)
+	at org.postgresql.jdbc.PgPreparedStatement.bindString(PgPreparedStatement.java:1078)
+	at org.postgresql.jdbc.PgPreparedStatement.setString(PgPreparedStatement.java:379)
+	at org.postgresql.jdbc.PgPreparedStatement.setString(PgPreparedStatement.java:365) 
+  */          
+                
                 Connection conexao  = ConexaoBD_Setup.abrirConexao();
-                String sql = "SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE \"nome\" = ?";
+                String sql = "SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE nome =\'"+nomeEquipamento+"\'";// SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE nome='?'  
                 int idEquipamento = 0;
                 PreparedStatement preStmt = null;
                 ResultSet result;
                 
+                
                 try{
+                       System.out.println("SQL QUERY para pegar o ID do "+nomeTabela+": "+sql);
                        preStmt = conexao.prepareStatement(sql);
-                       preStmt.setString(1, nomeEquipamento);
+                     //  preStmt.setString(1, nomeEquipamento);
                        result = preStmt.executeQuery();
                     
-                       if( result.next())
+                       if( result.next()){
                            idEquipamento = result.getInt("ID");
+                           System.out.println("ID do equipamento: "+idEquipamento+"");
+                       }
                        
                        result.close();
                        preStmt.close();
                        ConexaoBD_Setup.encerrarConexao(conexao);
                     
                 }catch( SQLException sqle){
-                        sqle.printStackTrace();
+                       System.out.println("Houve um erro com o banco de dados no metodo: 'obter_id_equipamento_por_nome' ");
+                       sqle.printStackTrace();
 
                 }finally{
                         return idEquipamento;
