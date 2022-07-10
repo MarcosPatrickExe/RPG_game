@@ -139,22 +139,22 @@ public class Personagem_Equipamento_DAO {
   */          
                 
                 Connection conexao  = ConexaoBD_Setup.abrirConexao();
-                String sql = "SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE nome =\'"+nomeEquipamento+"\'";// SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE nome='?'  
+                String sql = "SELECT \"ID\" FROM \""+nomeTabela+"\" WHERE nome =\'"+nomeEquipamento+"\'";
+               // 'nomeEquipamento' FOI INSERIDO DIRETAMENTE NA QUERY POIS TEM ESPACOS EM BRANCO INTERNAMENTE  
+           
                 int idEquipamento = 0;
                 PreparedStatement preStmt = null;
                 ResultSet result;
                 
                 
                 try{
-                       System.out.println("SQL QUERY para pegar o ID do "+nomeTabela+": "+sql);
                        preStmt = conexao.prepareStatement(sql);
                      //  preStmt.setString(1, nomeEquipamento);
                        result = preStmt.executeQuery();
                     
-                       if( result.next()){
+                       if( result.next())
                            idEquipamento = result.getInt("ID");
-                           System.out.println("ID do equipamento: "+idEquipamento+"");
-                       }
+                       
                        
                        result.close();
                        preStmt.close();

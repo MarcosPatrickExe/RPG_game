@@ -111,10 +111,13 @@ public class PersonagemDAO implements IPersonagemDAO{
                         return idPersonagem;
                 }
     }
+        
 
+//========================================================================================================
      
+        
     @Override
-    public void atualiza_personagemPorID (int ID, Personagem person) throws SQLException {
+    public void atualiza_personagem_por_ID (int ID, Personagem person) throws SQLException {
            
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
@@ -167,9 +170,10 @@ public class PersonagemDAO implements IPersonagemDAO{
                 ConexaoBD_Setup.encerrarConexao(conexao);
     }
 
+//========================================================================================================
     
     @Override
-    public void excluir_personagemPorID (int ID) throws SQLException{
+    public void excluir_personagem_por_ID (int ID) throws SQLException{
       
                 Connection conexao  = ConexaoBD_Setup.abrirConexao( );
                 PreparedStatement preStmt = null;
@@ -185,80 +189,169 @@ public class PersonagemDAO implements IPersonagemDAO{
                 ConexaoBD_Setup.encerrarConexao(conexao);
     }
 
+//========================================================================================================
     
     @Override
-    public List<Personagem> obter_personagens() throws SQLException{
+    public List<Personagem> obter_personagens() {
                 
                 Connection con = ConexaoBD_Setup.abrirConexao();
                 PreparedStatement preStmt = null;
-                List<Personagem> personagens = new ArrayList<Personagem>();
+                List<Personagem> personagens = null;
                 Personagem pers;
-                
                 String query = "SELECT * from \"Personagem\"";
-                preStmt = con.prepareStatement( query );
-                ResultSet resultado = preStmt.executeQuery();
-               
-                while ( resultado.next() ){
-                    pers = new Personagem( resultado );
+                
+                try{
+                    preStmt = con.prepareStatement( query );
+                    ResultSet resultado = preStmt.executeQuery();
+                    personagens = new ArrayList<Personagem>();
 
-                    personagens.add ( pers );
+                    while ( resultado.next() ){
+                            pers = new Personagem( resultado );
+                            personagens.add(pers);
+                    }
+
+                    resultado.close();
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
+                    
+                }catch(SQLException sqle){
+                    System.out.println("Houve um problema ao tentar recuperar todos os personagens...");
+                    sqle.printStackTrace();
+                }finally{
+                    return personagens;
                 }
-                
-                resultado.close();
-                preStmt.close();
-                ConexaoBD_Setup.encerrarConexao(con);
-                
-                
-                return personagens;
     }
     
+//========================================================================================================
+  
+    @Override
+    public List<Personagem> obter_personagens_por_classe(String nomeClasse) {
+                
+                Connection con = ConexaoBD_Setup.abrirConexao();
+                PreparedStatement preStmt = null;
+                List<Personagem> personagens = null;
+                Personagem pers;
+                int id_classe;
+               // String subQuery = "SELECT \"ID\" FROM \"Classe\" WHERE \"nome\"=?";
+                ClasseDAO classDAO = new ClasseDAO();
+                String query = "SELECT * from \"Personagem\" WHERE \"classe_id\"= ?";
+                
+                try{
+               //     preStmt = con.prepareStatement(subQuery);
+              /*      preStmt.setString(1, nomeClasse);
+                    if( preStmt.executeQuery().next() )
+                       idClasse = preStmt.getInt(1); 
+                    */
+                    id_classe = classDAO.obter_id_classe_por_nome(nomeClasse);
+                    
+                    if(id_classe != 0){
+                            preStmt = con.prepareStatement( query );
+                            preStmt.setInt(1, id_classe);
+                            ResultSet resultado = preStmt.executeQuery();
+                            
+                   //VERIFICANDO SE O RESULTSET TEM UMA OU MAIS LINHAS. SE TIVER, ELE IRA PREENCHER A LISTA: 
+                            personagens = new ArrayList<Personagem>();
+                            while ( resultado.next() ){
+                                    pers = new Personagem( resultado );
+                                    personagens.add(pers);
+                            }
+                            
+                 
+                            if (personagens.size()==0){
+                                personagens.add(0, null);
+                             // ISSO INDICA QUE A CLASSE PESQUISADA EXISTE, 
+                             // POREM, NAO HÁ NENHUM PERSONAGEM CADASTRADO COM ELA
+                            }
+
+                            resultado.close();
+                            preStmt.close();
+                            ConexaoBD_Setup.encerrarConexao(con);
+                    }else{
+                         JOptionPane.showMessageDialog(null, "A referida classe não existe no banco de dados!!!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                }catch(SQLException sqle){
+                    System.out.println("Houve um problema ao tentar recuperar todos os personagens por classe...");
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return personagens;
+                }
+    }
+    
+//========================================================================================================
 
     @Override
-    public Personagem obter_Personagem_por_ID (int ID)  throws SQLException{
+    public Personagem obter_personagem_por_ID (int ID) {
                
                 Connection con = ConexaoBD_Setup.abrirConexao();
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
-              
                 String query = "SELECT * FROM \"Personagem\" WHERE \"ID\" = ?";
-                preStmt = con.prepareStatement( query );
-                preStmt.setInt(1, ID);
-
-                ResultSet resultado = preStmt.executeQuery();
-
-                if( resultado.isFirst() )
-                        pers = new Personagem( resultado );
                 
-               resultado.close();
-               preStmt.close();
-               ConexaoBD_Setup.encerrarConexao(con);
+                try{
+                    preStmt = con.prepareStatement( query );
+                    preStmt.setInt(1, ID);
+                    ResultSet resultado = preStmt.executeQuery();
+
+                    if( resultado.next() )
+                            pers = new Personagem( resultado );
+
+                    resultado.close();
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
                
-               return pers;
+                }catch(SQLException sqle){
+                    System.out.println("Houve um problema ao tentar recuperar o personagem através do seu ID...");
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return pers;
+                }
     }
 
-    
+//========================================================================================================
     
     @Override
-    public Personagem obter_Personagem_por_nome(String nome) throws SQLException{
-      
+    public Personagem obter_personagem_por_nome(String nome) {
+           
                 Connection con = ConexaoBD_Setup.abrirConexao();
                 PreparedStatement preStmt = null;
                 Personagem pers = null;
+                String query = "SELECT * FROM \"Personagem\" WHERE \"nome\" ='"+nome+"'";
                 
-                String query = "SELECT * FROM \"Personagem\" WHERE \"nome\" = ?";
-                preStmt = con.prepareStatement( query);
-                preStmt.setString(1, nome);
-               
-                ResultSet resultado = preStmt.executeQuery();
+                try{
+                    preStmt = con.prepareStatement( query);
+                    //preStmt.setString(1, nome);
+
+                    ResultSet resultado = preStmt.executeQuery();
+
+                    if( resultado.next())
+                         pers = new Personagem( resultado ); 
+                        /*
+                             try{
+                                  Thread.sleep(10000);
+
+                                     System.out.println("Tamanho da imagem que chegou: "+
+                                       pers.getSprite()
+                                               .length()
+                                 );
+                             }catch(InterruptedException ie){
+                                  ie.printStackTrace();
+                             }
+                        */    
+                    
+                    resultado.close();
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
                 
-                if( resultado.isFirst())
-                     pers = new Personagem( resultado ); 
-                
-                resultado.close();
-                preStmt.close();
-                ConexaoBD_Setup.encerrarConexao(con);
-                
-                return pers;
+                }catch(SQLException sqle){
+                    System.out.println("Houve um problema ao tentar recuperar o personagem através do seu nome...");
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return pers;
+                }
     }
     
         

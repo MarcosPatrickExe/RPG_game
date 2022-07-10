@@ -662,14 +662,14 @@ public class CadastroPersonagem extends JFrame {
         pnl_fundo_perfil.setLayout(pnl_fundo_perfilLayout);
         pnl_fundo_perfilLayout.setHorizontalGroup(
             pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
         pnl_fundo_perfilLayout.setVerticalGroup(
             pnl_fundo_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        pnl_fundo_sprites.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 220, 220));
+        pnl_fundo_sprites.add(pnl_fundo_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 76, 240, 240));
 
         btn_selecionar_perfil.setBackground(new java.awt.Color(51, 51, 51));
         btn_selecionar_perfil.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -682,7 +682,7 @@ public class CadastroPersonagem extends JFrame {
                 btn_selecionar_perfilActionPerformed(evt);
             }
         });
-        pnl_fundo_sprites.add(btn_selecionar_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 317, 120, 30));
+        pnl_fundo_sprites.add(btn_selecionar_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 327, 120, 30));
 
         jPanel6.setBackground(new java.awt.Color(49, 60, 81));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -697,7 +697,7 @@ public class CadastroPersonagem extends JFrame {
         lab_perfil.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lab_perfil.setForeground(new java.awt.Color(204, 204, 204));
         lab_perfil.setText("IMAGEM DO PERFIL");
-        pnl_fundo_sprites.add(lab_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 45, -1, 40));
+        pnl_fundo_sprites.add(lab_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 41, -1, 40));
 
         lab_perfil_imagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lab_perfil_imagem.setForeground(new java.awt.Color(204, 204, 204));
@@ -706,7 +706,7 @@ public class CadastroPersonagem extends JFrame {
 
         tabbed_informacoes.addTab("Sprites (PNGs)", pnl_fundo_sprites);
 
-        getContentPane().add(tabbed_informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 410));
+        getContentPane().add(tabbed_informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 420));
 
         btn_voltar.setBackground(new java.awt.Color(51, 51, 51));
         btn_voltar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
@@ -835,7 +835,7 @@ public class CadastroPersonagem extends JFrame {
  //================================================================================================================
               
               // OBTENDO O ID DA CLASSE SELECIONADA:
-              int id_classe_selecionada = clasDAO.obter_classe_por_nome( 
+              int id_classe_selecionada = clasDAO.obter_id_classe_por_nome( 
                                                  this.combo_classe.getSelectedItem().toString()
                                            );
               
@@ -1013,8 +1013,8 @@ public class CadastroPersonagem extends JFrame {
          Image imagemRedimensionada  = ((Image) imagemImportada).getScaledInstance(larguraDoFundo, alturaDoFundo, Image.SCALE_DEFAULT);
          //BufferedImage bufImage = (BufferedImage) imagemRedimensionada; // NAO PRECISA, MAS TBM FUNCIONA!
         
+         //DESABILITANDO BOTAO DE SALVAR IMAGEM CASO A MESMA JA ESTEJA INSERIDA
          this.btn_selecionar_perfil.setEnabled(false);
-         
          
          JLabel imagem = null;
          

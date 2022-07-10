@@ -22,15 +22,17 @@ public interface IPersonagemDAO {
                                    int HP_atual, int MP_atual );
            
           
-          public void atualiza_personagemPorID( int ID, Personagem person ) throws SQLException;
+          public void atualiza_personagem_por_ID( int ID, Personagem person ) throws SQLException;
           
-          public void excluir_personagemPorID( int ID) throws SQLException;
+          public void excluir_personagem_por_ID( int ID) throws SQLException;
     
           public List<Personagem> obter_personagens () throws SQLException;
           
-          public Personagem obter_Personagem_por_ID ( int ID) throws SQLException;
+          public Personagem obter_personagem_por_ID ( int ID) throws SQLException;
           
-          public Personagem obter_Personagem_por_nome (String nome) throws SQLException;
+          public Personagem obter_personagem_por_nome (String nome);
+          
+          public List<Personagem> obter_personagens_por_classe( String nomeClasse );
 }
 
 

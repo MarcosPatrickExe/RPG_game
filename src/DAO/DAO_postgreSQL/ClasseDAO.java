@@ -45,12 +45,11 @@ public class ClasseDAO implements IClasseDAO{
     
     
     @Override
-    public int obter_classe_por_nome (String nomeClasse) {
+    public int obter_id_classe_por_nome (String nomeClasse) {
         
         int ID = 0;
         
         try{
-        
             Connection conexao  = ConexaoBD_Setup.abrirConexao();
             List<Classe> classes = new ArrayList<>();
             PreparedStatement ps;
@@ -70,7 +69,6 @@ public class ClasseDAO implements IClasseDAO{
             
         }catch( SQLException sqle){
             sqle.printStackTrace();
-            ID=0;
         
         }finally{
             return ID;

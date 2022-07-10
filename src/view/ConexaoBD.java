@@ -146,6 +146,7 @@ public class ConexaoBD extends JFrame {
         text_password = new javax.swing.JTextField();
         lab_database_checkbox = new javax.swing.JLabel();
         check_use_online_database = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
         btn_conect = new javax.swing.JButton();
         btn_new_connection = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -221,14 +222,19 @@ public class ConexaoBD extends JFrame {
 
         lab_database_checkbox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lab_database_checkbox.setForeground(new java.awt.Color(255, 255, 255));
-        lab_database_checkbox.setText("Usar banco dedados online?\n");
-        pan_card_setup.add(lab_database_checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 70, 80));
+        lab_database_checkbox.setText("Usar banco de");
+        pan_card_setup.add(lab_database_checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 100, 50));
 
         check_use_online_database.setBackground(new java.awt.Color(51, 51, 51));
         check_use_online_database.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         check_use_online_database.setForeground(new java.awt.Color(204, 204, 204));
         check_use_online_database.setText("Sim");
-        pan_card_setup.add(check_use_online_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 80, 30));
+        pan_card_setup.add(check_use_online_database, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 250, 90, 30));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("dados online?");
+        pan_card_setup.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 210, -1, 50));
 
         getContentPane().add(pan_card_setup, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 680, 290));
 
@@ -367,6 +373,7 @@ public class ConexaoBD extends JFrame {
     private javax.swing.JCheckBox check_use_online_database;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_database;
     private javax.swing.JLabel lab_database_checkbox;
