@@ -248,7 +248,7 @@ public class Menu_Inicial extends javax.swing.JFrame {
         lab_duelo_rapido.setText("(Disponível em breve.....)");
         getContentPane().add(lab_duelo_rapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, -1));
 
-        lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
+        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         lab_fundo.setMaximumSize(new java.awt.Dimension(991, 596));
         lab_fundo.setMinimumSize(new java.awt.Dimension(991, 596));
         lab_fundo.setPreferredSize(new java.awt.Dimension(991, 596));

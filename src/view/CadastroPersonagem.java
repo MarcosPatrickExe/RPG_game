@@ -368,7 +368,7 @@ public class CadastroPersonagem extends JFrame {
         combo_classe.setBackground(new java.awt.Color(102, 102, 102));
         combo_classe.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         combo_classe.setForeground(new java.awt.Color(255, 255, 255));
-        pnl_fundo_atributos.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 160, 30));
+        pnl_fundo_atributos.add(combo_classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 144, 160, 30));
 
         txt_evasao.setBackground(new java.awt.Color(102, 102, 102));
         txt_evasao.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -721,7 +721,7 @@ public class CadastroPersonagem extends JFrame {
         });
         getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, 190, 50));
 
-        lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
+        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 990, 520));
 
         pack();

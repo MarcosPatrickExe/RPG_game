@@ -747,7 +747,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
 
         getContentPane().add(pnl_fundo_atributos_equip, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 560, 200, 100));
 
-        lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
+        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         lab_fundo.setText(" ");
         getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 620));
 

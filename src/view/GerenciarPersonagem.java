@@ -102,7 +102,7 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 80));
 
-        lab_fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
+        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 66, 910, 490));
 
         pack();

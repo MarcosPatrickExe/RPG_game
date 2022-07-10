@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package view;
-
 import connection.ConexaoBD_Setup;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -66,6 +65,7 @@ public class ConexaoBD extends JFrame {
     }
     
     
+    // CLASSE QUE IMPLEMENTA EVENTO DO BOTAO DE CHECK BOX:
     private class btnAlterarDatabase 
                      //  extends javax.swing.JComboBox 
                             implements javax.swing.event.ChangeListener{
@@ -149,9 +149,9 @@ public class ConexaoBD extends JFrame {
         jLabel3 = new javax.swing.JLabel();
         btn_conect = new javax.swing.JButton();
         btn_new_connection = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnl_fundo_titulo = new javax.swing.JPanel();
         lab_titulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lab_fundo_imagem = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -264,20 +264,20 @@ public class ConexaoBD extends JFrame {
         });
         getContentPane().add(btn_new_connection, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 160, 40));
 
-        jPanel1.setBackground(new java.awt.Color(36, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(204, 102, 0), new java.awt.Color(204, 102, 0), null, null));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnl_fundo_titulo.setBackground(new java.awt.Color(36, 0, 0));
+        pnl_fundo_titulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(204, 102, 0), new java.awt.Color(204, 102, 0), null, null));
+        pnl_fundo_titulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lab_titulo.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 55)); // NOI18N
         lab_titulo.setForeground(new java.awt.Color(255, 255, 255));
         lab_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_titulo.setText("Configurar banco de dados");
-        jPanel1.add(lab_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -10, -1, 80));
+        pnl_fundo_titulo.add(lab_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -10, -1, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 70));
+        getContentPane().add(pnl_fundo_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 70));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Patrick\\Pictures\\Background menu RPG.jpg")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 510));
+        lab_fundo_imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
+        getContentPane().add(lab_fundo_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -372,17 +372,17 @@ public class ConexaoBD extends JFrame {
     private javax.swing.JButton btn_new_connection;
     private javax.swing.JCheckBox check_use_online_database;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_database;
     private javax.swing.JLabel lab_database_checkbox;
+    private javax.swing.JLabel lab_fundo_imagem;
     private javax.swing.JLabel lab_host;
     private javax.swing.JLabel lab_password;
     private javax.swing.JLabel lab_port;
     private javax.swing.JLabel lab_titulo;
     private javax.swing.JLabel lab_user;
     private javax.swing.JPanel pan_card_setup;
+    private javax.swing.JPanel pnl_fundo_titulo;
     private javax.swing.JTextField text_database;
     private javax.swing.JTextField text_host;
     private javax.swing.JTextField text_password;
