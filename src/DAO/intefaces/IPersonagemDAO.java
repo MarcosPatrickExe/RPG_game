@@ -37,6 +37,10 @@ public interface IPersonagemDAO {
           public boolean deletar_personagem_por_ID ( int idSelecionado );
           
           public boolean deletar_personagem_por_nome ( String nomePersonagem );
+          
+          public boolean atualizar_personagem_atributos ( Personagem pers);
+          
+          public boolean atualizar_imagem_personagem ( String imagem);
 }
 
 

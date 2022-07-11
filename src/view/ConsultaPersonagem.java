@@ -779,8 +779,8 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         String[] nomes = new String[ personagens.size()];
         int contador = 0;
         
-        System.out.println("tamanho da lista: "+personagens.size());
-        System.out.println("primeiro da lista: "+personagens.get(0).getNome());
+      //  System.out.println("tamanho da lista: "+personagens.size());
+      //  System.out.println("primeiro da lista: "+personagens.get(0).getNome());
         
         for(Personagem personagen : personagens){
                 nomes[contador] = personagen.getNome();

@@ -285,9 +285,9 @@ public class CadastroPersonagem extends JFrame {
         getContentPane().add(lab_titulo_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 70));
 
         btn_salvar.setBackground(new java.awt.Color(51, 51, 51));
-        btn_salvar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_salvar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btn_salvar.setForeground(new java.awt.Color(204, 204, 204));
-        btn_salvar.setText("Salvar tudo");
+        btn_salvar.setText("salvar tudo");
         btn_salvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +295,7 @@ public class CadastroPersonagem extends JFrame {
                 btn_salvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 510, 190, 50));
+        getContentPane().add(btn_salvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 190, 40));
 
         tabbed_informacoes.setBackground(new java.awt.Color(49, 60, 81));
         tabbed_informacoes.setForeground(new java.awt.Color(204, 204, 204));
@@ -755,9 +755,9 @@ public class CadastroPersonagem extends JFrame {
         getContentPane().add(tabbed_informacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 950, 420));
 
         btn_voltar.setBackground(new java.awt.Color(51, 51, 51));
-        btn_voltar.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 36)); // NOI18N
+        btn_voltar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btn_voltar.setForeground(new java.awt.Color(204, 204, 204));
-        btn_voltar.setText("Voltar");
+        btn_voltar.setText("voltar");
         btn_voltar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_voltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -765,7 +765,7 @@ public class CadastroPersonagem extends JFrame {
                 btn_voltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, 190, 50));
+        getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 520, 190, 40));
 
         lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 990, 520));

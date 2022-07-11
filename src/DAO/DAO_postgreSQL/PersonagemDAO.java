@@ -348,6 +348,7 @@ public class PersonagemDAO implements IPersonagemDAO{
 //========================================================================================================
 
     
+    @Override
     public boolean deletar_personagem_por_ID ( int idSelecionado ){
     
                 Connection con = ConexaoBD_Setup.abrirConexao();
@@ -379,6 +380,7 @@ public class PersonagemDAO implements IPersonagemDAO{
 //========================================================================================================
 
  
+    @Override
     public boolean deletar_personagem_por_nome ( String nomePersonagem ){
     
                 Connection con = ConexaoBD_Setup.abrirConexao();
@@ -401,6 +403,87 @@ public class PersonagemDAO implements IPersonagemDAO{
                 }finally{
                     return deletado;
                 }
+    }
+    
+ 
+//========================================================================================================
+ 
+    
+    @Override
+    public boolean atualizar_personagem_atributos ( Personagem pers){
+            
+                Connection con = ConexaoBD_Setup.abrirConexao();
+                PreparedStatement preStmt = null;
+                boolean atualizado = false;
+                String sql = "UPDATE \"Personagem\" "
+                            + "SET nome = '"+pers.getNome()+"', "
+                            + "nivel = ?, "
+                            + "\"HP_maximo\"= ?, "
+                            + "\"MP_maximo\" = ?, "
+                            + "velocidade = ?, "
+                            + "\"XP\" = ?, "
+                            + "evasao = ?, "
+                            + "ataque = ?, "
+                            + "defesa = ?, "
+                            + "ataque_especial = ?, "
+                            + "defesa_especial = ?, "
+                            + "classe_id = ?, "
+                          //  + "sprite = ?, "
+                            + "destreza = ?, "
+                            + "forca = ?, "
+                            + "\"HP_atual\"= ?, "
+                            + "\"MP_atual\" = ? "
+                            + "WHERE \"ID\" = ? ";
+                
+                try{
+                    preStmt = con.prepareStatement(sql);
+             //       preStmt.setString(1, pers.getNome());
+                    preStmt.setInt(1, pers.getNivel());
+                    preStmt.setInt(2, pers.getPontos_vida());
+                    preStmt.setInt(3, pers.getPontos_magia());
+                    preStmt.setInt(4, pers.getVelocidade());
+                    preStmt.setInt(5, pers.getXP());
+                    preStmt.setInt(6, pers.getEvasao());
+                    preStmt.setInt(7, pers.getAtaque());
+                    preStmt.setInt(8, pers.getDefesa());
+                    preStmt.setInt(9, pers.getAtaque_especial());
+                    preStmt.setInt(10, pers.getDefesa_especial());
+                    preStmt.setInt(11, pers.getClasse_id());
+            //        preStmt.setString(13, pers.getSprite());
+                    preStmt.setInt(12, pers.getDestreza());
+                    preStmt.setInt(13, pers.getForca());
+                    preStmt.setInt(14, pers.getHP_atual());
+                    preStmt.setInt(15, pers.getMP_atual());
+                    preStmt.setInt(16, pers.getID());
+                    
+                    
+                    if( preStmt.executeUpdate() ==0 ){
+                          
+                            System.out.println("No Atualizado!! retornou 0");
+                    }
+                    
+                    if( preStmt.executeUpdate() >0 ){
+                            atualizado = true;
+                            System.out.println("Atualizado!!");
+                    }
+                    
+                    System.out.println("Atualizado? "+atualizado);
+
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
+               
+                }catch(SQLException sqle){
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return atualizado;
+                }
+    }
+    
+    
+    @Override
+    public boolean atualizar_imagem_personagem ( String imagem){
+        return false;
     }
     
 }

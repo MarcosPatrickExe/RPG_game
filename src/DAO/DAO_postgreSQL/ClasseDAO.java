@@ -17,29 +17,36 @@ import model.Classe;
 public class ClasseDAO implements IClasseDAO{
 
     @Override
-    public List<Classe> obter_classes() throws SQLException {
+    public List<Classe> obter_classes(){
               //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
-         Connection conexao  = ConexaoBD_Setup.abrirConexao();
-         List<Classe> classes = new ArrayList<>();
-         PreparedStatement ps;
-         String query = "SELECT * FROM \"Classe\"";
-         ResultSet classesCadastradas;
-    
-         ps = conexao.prepareStatement(query);
-         classesCadastradas = ps.executeQuery();
-         
-         while( classesCadastradas.next() ){
-             classes.add( 
-                     new Classe( classesCadastradas ) 
-             );
-         }
-         
-         ps.close();
-         classesCadastradas.close();
-         ConexaoBD_Setup.encerrarConexao(conexao);
-        
-         return classes;
+           
+            List<Classe> classes = null;
+            
+            try{
+                Connection conexao  = ConexaoBD_Setup.abrirConexao();
+                classes = new ArrayList<>();
+                PreparedStatement ps;
+                String query = "SELECT * FROM \"Classe\"";
+                ResultSet classesCadastradas;
+
+                ps = conexao.prepareStatement(query);
+                classesCadastradas = ps.executeQuery();
+
+                while( classesCadastradas.next() ){
+                    classes.add( 
+                            new Classe( classesCadastradas ) 
+                    );
+                }
+
+                ps.close();
+                classesCadastradas.close();
+                ConexaoBD_Setup.encerrarConexao(conexao);
+
+            }catch(SQLException e){
+                e.printStackTrace();
+            }finally{
+                return classes;
+            }
     }
     
     

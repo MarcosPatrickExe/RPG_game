@@ -28,7 +28,7 @@ public class Personagem {
         private int MP_atual;
 
         public Personagem ( 
-          //      int ID, 
+              int ID, 
                  String nome, 
                    int nivel, 
                      int pontos_vida, 

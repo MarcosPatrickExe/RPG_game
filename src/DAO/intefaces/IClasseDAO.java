@@ -11,7 +11,7 @@ import model.Classe;
 
 public interface IClasseDAO {
     
-    public List<Classe> obter_classes () throws SQLException;
+    public List<Classe> obter_classes () ;
     
     public int obter_id_classe_por_nome (String nomeClasse) throws SQLException;
 }
