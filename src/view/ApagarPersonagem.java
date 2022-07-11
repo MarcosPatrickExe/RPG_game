@@ -5,6 +5,7 @@
  */
 package view;
 import DAO.DAO_postgreSQL.PersonagemDAO;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,9 @@ public class ApagarPersonagem extends javax.swing.JFrame {
     /**
      * Creates new form ApagarPersonagem
      */
+    
+    private final Color vermelhoEscuro = new Color(30,0,0);
+    private final Color vermelhoClaro = new Color(54,0,0);
     private PersonagemDAO personDAO = null;
     
     
@@ -76,6 +80,7 @@ public class ApagarPersonagem extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btn_voltar = new javax.swing.JButton();
         pnl_fundo_ID_personagem = new javax.swing.JPanel();
         lab_frase1 = new javax.swing.JLabel();
         combo_id_personagem = new javax.swing.JComboBox<>();
@@ -86,7 +91,8 @@ public class ApagarPersonagem extends javax.swing.JFrame {
         lab_frase4 = new javax.swing.JLabel();
         btn_botao_direito = new javax.swing.JButton();
         combo_nome_personagem = new javax.swing.JComboBox<>();
-        btn_voltar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,77 +105,9 @@ public class ApagarPersonagem extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 55)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apagar personagem");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, -10, 330, 80));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -10, 330, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 70));
-
-        pnl_fundo_ID_personagem.setBackground(new java.awt.Color(30, 0, 0));
-        pnl_fundo_ID_personagem.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lab_frase1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lab_frase1.setForeground(new java.awt.Color(255, 255, 255));
-        lab_frase1.setText("Selecione o ID do personagem");
-        pnl_fundo_ID_personagem.add(lab_frase1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, 50));
-
-        combo_id_personagem.setBackground(new java.awt.Color(102, 102, 102));
-        combo_id_personagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        combo_id_personagem.setForeground(new java.awt.Color(255, 255, 255));
-        combo_id_personagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1" }));
-        pnl_fundo_ID_personagem.add(combo_id_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 210, 30));
-
-        btn_botao_esquerdo.setBackground(new java.awt.Color(51, 51, 51));
-        btn_botao_esquerdo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btn_botao_esquerdo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_botao_esquerdo.setText("Apagar personagem");
-        btn_botao_esquerdo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_botao_esquerdo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_botao_esquerdo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_botao_esquerdoActionPerformed(evt);
-            }
-        });
-        pnl_fundo_ID_personagem.add(btn_botao_esquerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 265, 190, 40));
-
-        lab_frase2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lab_frase2.setForeground(new java.awt.Color(255, 255, 255));
-        lab_frase2.setText("que deseja remover:");
-        pnl_fundo_ID_personagem.add(lab_frase2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 40));
-
-        pnl_fundo_nome_personagem.setBackground(new java.awt.Color(44, 0, 0));
-        pnl_fundo_nome_personagem.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lab_frase3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lab_frase3.setForeground(new java.awt.Color(255, 255, 255));
-        lab_frase3.setText("Selecione o nome do personagem");
-        pnl_fundo_nome_personagem.add(lab_frase3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 280, 50));
-
-        lab_frase4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        lab_frase4.setForeground(new java.awt.Color(255, 255, 255));
-        lab_frase4.setText("que deseja remover:");
-        pnl_fundo_nome_personagem.add(lab_frase4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 170, 60));
-
-        btn_botao_direito.setBackground(new java.awt.Color(51, 51, 51));
-        btn_botao_direito.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btn_botao_direito.setForeground(new java.awt.Color(255, 255, 255));
-        btn_botao_direito.setText("Apagar personagem");
-        btn_botao_direito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_botao_direito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_botao_direito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_botao_direitoActionPerformed(evt);
-            }
-        });
-        pnl_fundo_nome_personagem.add(btn_botao_direito, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 265, 190, 40));
-
-        combo_nome_personagem.setBackground(new java.awt.Color(102, 102, 102));
-        combo_nome_personagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        combo_nome_personagem.setForeground(new java.awt.Color(255, 255, 255));
-        combo_nome_personagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        pnl_fundo_nome_personagem.add(combo_nome_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 210, 30));
-
-        pnl_fundo_ID_personagem.add(pnl_fundo_nome_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 340, 320));
-
-        getContentPane().add(pnl_fundo_ID_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 670, 320));
 
         btn_voltar.setBackground(new java.awt.Color(51, 51, 51));
         btn_voltar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -183,6 +121,108 @@ public class ApagarPersonagem extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 457, 160, 40));
+
+        pnl_fundo_ID_personagem.setBackground(new java.awt.Color(30, 0, 0));
+        pnl_fundo_ID_personagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnl_fundo_ID_personagemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnl_fundo_ID_personagemMouseExited(evt);
+            }
+        });
+        pnl_fundo_ID_personagem.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lab_frase1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lab_frase1.setForeground(new java.awt.Color(255, 255, 255));
+        lab_frase1.setText("Selecione o ID do personagem");
+        pnl_fundo_ID_personagem.add(lab_frase1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 40));
+
+        combo_id_personagem.setBackground(new java.awt.Color(102, 102, 102));
+        combo_id_personagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        combo_id_personagem.setForeground(new java.awt.Color(255, 255, 255));
+        combo_id_personagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1" }));
+        pnl_fundo_ID_personagem.add(combo_id_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 210, 30));
+
+        btn_botao_esquerdo.setBackground(new java.awt.Color(51, 51, 51));
+        btn_botao_esquerdo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btn_botao_esquerdo.setForeground(new java.awt.Color(255, 255, 255));
+        btn_botao_esquerdo.setText("Apagar personagem");
+        btn_botao_esquerdo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_botao_esquerdo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_botao_esquerdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_botao_esquerdoActionPerformed(evt);
+            }
+        });
+        pnl_fundo_ID_personagem.add(btn_botao_esquerdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 190, 30));
+
+        lab_frase2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lab_frase2.setForeground(new java.awt.Color(255, 255, 255));
+        lab_frase2.setText("que deseja remover:");
+        pnl_fundo_ID_personagem.add(lab_frase2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 40));
+
+        getContentPane().add(pnl_fundo_ID_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 330, 280));
+
+        pnl_fundo_nome_personagem.setBackground(new java.awt.Color(30, 0, 0));
+        pnl_fundo_nome_personagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnl_fundo_nome_personagemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnl_fundo_nome_personagemMouseExited(evt);
+            }
+        });
+        pnl_fundo_nome_personagem.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lab_frase3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lab_frase3.setForeground(new java.awt.Color(255, 255, 255));
+        lab_frase3.setText("Selecione o nome do personagem");
+        pnl_fundo_nome_personagem.add(lab_frase3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 280, 60));
+
+        lab_frase4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lab_frase4.setForeground(new java.awt.Color(255, 255, 255));
+        lab_frase4.setText("que deseja remover:");
+        pnl_fundo_nome_personagem.add(lab_frase4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 170, 60));
+
+        btn_botao_direito.setBackground(new java.awt.Color(51, 51, 51));
+        btn_botao_direito.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btn_botao_direito.setForeground(new java.awt.Color(255, 255, 255));
+        btn_botao_direito.setText("Apagar personagem");
+        btn_botao_direito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_botao_direito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_botao_direito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_botao_direitoActionPerformed(evt);
+            }
+        });
+        pnl_fundo_nome_personagem.add(btn_botao_direito, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 190, 30));
+
+        combo_nome_personagem.setBackground(new java.awt.Color(102, 102, 102));
+        combo_nome_personagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        combo_nome_personagem.setForeground(new java.awt.Color(255, 255, 255));
+        combo_nome_personagem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnl_fundo_nome_personagem.add(combo_nome_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 210, 30));
+
+        jLabel3.setText("OU");
+        pnl_fundo_nome_personagem.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-23, 56, 30, 50));
+
+        getContentPane().add(pnl_fundo_nome_personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 340, 280));
+
+        jPanel2.setBackground(new java.awt.Color(102, 0, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 510));
@@ -236,6 +276,25 @@ public class ApagarPersonagem extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_botao_direitoActionPerformed
 
+    private void pnl_fundo_ID_personagemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_fundo_ID_personagemMouseEntered
+          this.pnl_fundo_ID_personagem.setBackground( this.vermelhoClaro ); 
+    }//GEN-LAST:event_pnl_fundo_ID_personagemMouseEntered
+
+    private void pnl_fundo_ID_personagemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_fundo_ID_personagemMouseExited
+          this.pnl_fundo_ID_personagem.setBackground( this.vermelhoEscuro);
+    }//GEN-LAST:event_pnl_fundo_ID_personagemMouseExited
+
+    
+    private void pnl_fundo_nome_personagemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_fundo_nome_personagemMouseEntered
+         this.pnl_fundo_nome_personagem.setBackground( this.vermelhoClaro);
+    }//GEN-LAST:event_pnl_fundo_nome_personagemMouseEntered
+
+    private void pnl_fundo_nome_personagemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_fundo_nome_personagemMouseExited
+         this.pnl_fundo_nome_personagem.setBackground( this.vermelhoEscuro );
+    }//GEN-LAST:event_pnl_fundo_nome_personagemMouseExited
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -279,7 +338,9 @@ public class ApagarPersonagem extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_nome_personagem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lab_frase1;
     private javax.swing.JLabel lab_frase2;
     private javax.swing.JLabel lab_frase3;

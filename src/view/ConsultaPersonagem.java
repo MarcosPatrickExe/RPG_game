@@ -3,6 +3,7 @@ package view;
 import DAO.DAO_postgreSQL.PersonagemDAO;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -40,7 +41,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
     private String nomeColuna;
     private PersonagemDAO person = null;
     private JLabel imagemLabel = null;
-    
+    private JLabel imagemInexistente = new JLabel();
     /**
      * Creates new form Consulta_Personagem
      */
@@ -57,13 +58,12 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         this.pnl_fundo_atributos_equip.setVisible(false);
         
         
-        
         this.person = new PersonagemDAO();
         this.imagemLabel = new JLabel();
 
         nomeColuna = "*";
         exibirCampoValorBusca(false);// OCULTANDO CAMPO DE TEXTO/VALOR
-        this.list_personagens.setEnabled(false);
+        //this.list_personagens.setEnabled(false);
         
         this.combo_pesquisar_por.addItemListener( new SelecaoAlterada() ); // O 'THIS' AQUI DENTRO APONTA PARA A CLASSE PRIVADA 'SelecaoAlterada'
         this.list_personagens.addListSelectionListener( new SelecaoItemLista() );
@@ -75,6 +75,9 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         this.progress_XP.setForeground( ConsultaPersonagem.xpBar );
       
       //  this.txtarea_descricao.setBackground( corBotaoNaoSelecionado);
+      
+        //this.imagemInexistente.setText("");
+        
       
         this.btn_armas.setForeground( letraSemFocus );
         this.btn_escudos.setForeground( letraSemFocus );
@@ -90,9 +93,8 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         
         
         for(JButton but : botoesEquipamento){
-          
+            
             but.addMouseListener(
-                   
                  new java.awt.event.MouseAdapter() {
                             
                     @Override
@@ -183,10 +185,10 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
              //    String[] personagensSelecionados = (String[]) listaPersonagens.getSelectedValuesList().toArray();//toArray() retorna "Object[]" que pode ser convertido para qualquer classe do JDK
              // ERRO DE CONVERSAO DE TIPO (Object to String[]) LOGO ACIMA
                  
-                 List<String> lista =  listaPersonagens.getSelectedValuesList();
+                 List<String> lista = listaPersonagens.getSelectedValuesList();
              
                  if( lista.size() > 1)
-                     System.out.println("Ñ pode selecionar mais de um personagem...");
+                     JOptionPane.showMessageDialog(null, "Ñ pode selecionar mais de um personagem...", "OOOPS!", JOptionPane.ERROR_MESSAGE);
                  else if( lista.size() == 1)
                      exibirDadosPersonagem( lista.get(0) );
             }
@@ -221,51 +223,45 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
       
   
      //------------ EXIBINDO IMAGEM DO PERSONAGEM --------------
-      /* 
-          String imagem;        
-                  
-          if(personModel != null){
-              imagem = personModel
-                                .getSprite();
+            
+          if(personModel.getSprite() != null){
+                String imagem = personModel.getSprite();
           
-                
-       //         System.out.println("Tamanho da imagem que chegou: "+String.valueOf(
-         //               imagem.length()
-       //            )
-     //           );
-
                 byte[] decodedBytesImage = null;
                 //FileUtils.writeByteArrayToFile(new File(outputFileName), decodedBytes); //CASO FOSSE NECESSARIO EXPORTAR IMAGEM
 
                 try{
-                    decodedBytesImage = Base64
-                                           .getDecoder()
-                                              .decode(imagem);
+                    decodedBytesImage = Base64.getDecoder().decode(imagem);
+                    
                 }catch(IllegalArgumentException iae){
-                    System.out.println("Erro no formato da imagem passada como argumento para o metodo 'decode'!!!");
-                    iae.printStackTrace();
+                    System.out.println("Erro no formato da imagem passada como argumento para o metodo 'decode'!!!"+iae);
                 }
 
-
-                this.imagemLabel.setIcon( 
-                        new ImageIcon( decodedBytesImage )
-                );
-
                 Dimension tamanhoImagem = new Dimension( this.pnl_imagem_perfil.getWidth(), this.pnl_imagem_perfil.getHeight() );
+                
+                Image imagemRedimensionada = new ImageIcon( decodedBytesImage )
+                                                    .getImage() // REDIMENSIONANDO A IMAGEM
+                                                       .getScaledInstance( 
+                                                             tamanhoImagem.width, 
+                                                               tamanhoImagem.height, 
+                                                                  Image.SCALE_DEFAULT
+                                                        );
+                
+                this.imagemLabel.setIcon( 
+                       new ImageIcon( imagemRedimensionada )
+                );
+                
                 this.imagemLabel.setSize(tamanhoImagem);
                 this.imagemLabel.setPreferredSize(tamanhoImagem);
                 this.imagemLabel.setMinimumSize(tamanhoImagem);
                 this.imagemLabel.setMaximumSize(tamanhoImagem);
                 this.imagemLabel.setLocation(0, 0);
                 this.imagemLabel.setBounds(0, 0, tamanhoImagem.width, tamanhoImagem.height);
-                this.imagemLabel.setBackground( mpBar);
+                this.imagemLabel.setBackground( new Color(255, 0, 0));
 
                 this.pnl_imagem_perfil.add( imagemLabel);
-                
-                
-                
           }
-        */
+        
     }
     
     
@@ -493,7 +489,18 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         pnl_fundo_sobre.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnl_imagem_perfil.setBackground(new java.awt.Color(51, 51, 51));
-        pnl_imagem_perfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout pnl_imagem_perfilLayout = new javax.swing.GroupLayout(pnl_imagem_perfil);
+        pnl_imagem_perfil.setLayout(pnl_imagem_perfilLayout);
+        pnl_imagem_perfilLayout.setHorizontalGroup(
+            pnl_imagem_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+        pnl_imagem_perfilLayout.setVerticalGroup(
+            pnl_imagem_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+
         pnl_fundo_sobre.add(pnl_imagem_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 240));
 
         lab_nome.setFont(new java.awt.Font("Gill Sans MT Condensed", 1, 36)); // NOI18N
@@ -771,6 +778,9 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
     private String[] obterSomenteNomesPersonagens( List<Personagem> personagens){
         String[] nomes = new String[ personagens.size()];
         int contador = 0;
+        
+        System.out.println("tamanho da lista: "+personagens.size());
+        System.out.println("primeiro da lista: "+personagens.get(0).getNome());
         
         for(Personagem personagen : personagens){
                 nomes[contador] = personagen.getNome();

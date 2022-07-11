@@ -23,16 +23,17 @@ public class Menu_Inicial extends javax.swing.JFrame {
     public static double widthScreen;  //   1366.0  
     public static double heightScreen; //768.0
     private Color corPadrao = new Color(60,63,65);
-    
     private JFrame ConexaoBD = new ConexaoBD();
     
     /**
      * Creates new form Menu_Inicial
      */
+    
     public Menu_Inicial() {
           initComponents();
-    
-          Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+          super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+          
+         // Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
      //     widthScreen = dim.getWidth();   // descomentar somente na versao final
       //    heightScreen = dim.getHeight(); // descomentar somente na versao final
          
@@ -40,9 +41,6 @@ public class Menu_Inicial extends javax.swing.JFrame {
      //    super.setExtendedState( super.getExtendedState() | JFrame.MAXIMIZED_BOTH);
          //System.out.println("width:  "+dim.getWidth()+"  \n height:  "+dim.getHeight());
          //this.getContentPane().setBackground(Color.gray); //colocando cor preta no fundo
-         
-         URL url_image;
-         Image img;
          
        
      //    setBounds(300, 100, 990, 560);
@@ -268,16 +266,16 @@ public class Menu_Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_iniciar_campanhaMouseEntered
 
     private void btn_iniciar_campanhaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_iniciar_campanhaMouseExited
-               btn_iniciar_campanha.setBackground( CorPersonalizada.CINZA.cor );
+             btn_iniciar_campanha.setBackground( CorPersonalizada.CINZA.cor );
     }//GEN-LAST:event_btn_iniciar_campanhaMouseExited
 
     private void btn_gerenciar_personagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerenciar_personagemActionPerformed
-            //  JOptionPane.showMessageDialog(rootPane, "Clicou!");
-            new GerenciarPersonagem().setVisible(true);
+             //  JOptionPane.showMessageDialog(rootPane, "Clicou!");
+             new GerenciarPersonagem().setVisible(true);
     }//GEN-LAST:event_btn_gerenciar_personagemActionPerformed
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
-             super.dispose();
+             dispose();
              System.exit(0);
     }//GEN-LAST:event_btn_sairActionPerformed
 

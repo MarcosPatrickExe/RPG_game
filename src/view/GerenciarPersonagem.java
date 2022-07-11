@@ -16,7 +16,7 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
     public GerenciarPersonagem() {
         initComponents();
         
-        super.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        super.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         super.setLocationRelativeTo( null);
     }
 

@@ -260,6 +260,12 @@ public class CadastroPersonagem extends JFrame {
         lab_titulo_sprites = new javax.swing.JLabel();
         lab_perfil = new javax.swing.JLabel();
         lab_perfil_imagem = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         btn_voltar = new javax.swing.JButton();
         lab_fundo = new javax.swing.JLabel();
 
@@ -699,10 +705,50 @@ public class CadastroPersonagem extends JFrame {
         lab_perfil.setText("IMAGEM DO PERFIL");
         pnl_fundo_sprites.add(lab_perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 41, -1, 40));
 
-        lab_perfil_imagem.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lab_perfil_imagem.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         lab_perfil_imagem.setForeground(new java.awt.Color(204, 204, 204));
-        lab_perfil_imagem.setText("foto aqui");
-        pnl_fundo_sprites.add(lab_perfil_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 80, 30));
+        lab_perfil_imagem.setText("proporção");
+        pnl_fundo_sprites.add(lab_perfil_imagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 125, -1, 30));
+
+        jLabel3.setFont(new java.awt.Font("Eras Medium ITC", 1, 26)); // NOI18N
+        jLabel3.setText("recomendada:");
+        pnl_fundo_sprites.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 190, 50));
+
+        jLabel5.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        jLabel5.setText("Resolução");
+        pnl_fundo_sprites.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, 50));
+
+        jLabel6.setFont(new java.awt.Font("Eras Medium ITC", 1, 26)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("indicável:");
+        pnl_fundo_sprites.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, 40));
+
+        jLabel7.setFont(new java.awt.Font("Eras Medium ITC", 1, 36)); // NOI18N
+        jLabel7.setText("480x480");
+        pnl_fundo_sprites.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 185, -1, 60));
+
+        jPanel1.setBackground(new java.awt.Color(51, 18, 0));
+
+        jLabel4.setFont(new java.awt.Font("Eras Medium ITC", 0, 48)); // NOI18N
+        jLabel4.setText("1:1 ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(585, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4))
+        );
+
+        pnl_fundo_sprites.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 950, 50));
 
         tabbed_informacoes.addTab("Sprites (PNGs)", pnl_fundo_sprites);
 
@@ -728,7 +774,7 @@ public class CadastroPersonagem extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
-        super.dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_voltarActionPerformed
 
     private void btn_salvar_armasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvar_armasActionPerformed
@@ -993,7 +1039,8 @@ public class CadastroPersonagem extends JFrame {
          
          try{
                 JFileChooser imagemSelecionada = new JFileChooser();// janela de escolha do arquivo/imagem
-
+                imagemSelecionada.setSize(400, 500);
+                
                 if( imagemSelecionada.showOpenDialog(this) == JFileChooser.APPROVE_OPTION ){
 
                     imagemImportada = ImageIO.read( // retorna um "BufferedImage"
@@ -1003,7 +1050,7 @@ public class CadastroPersonagem extends JFrame {
                     this.imagemPerfilPersonagem = imagemSelecionada.getSelectedFile();
                 }
        
-         }catch(IOException ioe){ 
+         }catch(IOException ioe){
                 System.out.println("\n Houve um erro na importação da imagem..... ");
                 ioe.printStackTrace(); 
          }
@@ -1192,6 +1239,12 @@ public class CadastroPersonagem extends JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

@@ -254,13 +254,15 @@ public class PersonagemDAO implements IPersonagemDAO{
                             while ( resultado.next() ){
                                     pers = new Personagem( resultado );
                                     personagens.add(pers);
+                                    System.out.println("Tamanho da lista: "+personagens.size()+" // nome do personagem: "+personagens.get(0).getNome());
                             }
                             
-                 
+                            
                             if (personagens.size()==0){
                                 personagens.add(0, null);
                              // ISSO INDICA QUE A CLASSE PESQUISADA EXISTE, 
                              // POREM, NAO HÁ NENHUM PERSONAGEM CADASTRADO COM ELA
+                                System.out.println("Tamanho da lista2: "+personagens.size()+" // nome do personagem: "+personagens.get(0).getNome());
                             }
 
                             resultado.close();
@@ -328,18 +330,6 @@ public class PersonagemDAO implements IPersonagemDAO{
 
                     if( resultado.next())
                          pers = new Personagem( resultado ); 
-                        /*
-                             try{
-                                  Thread.sleep(10000);
-
-                                     System.out.println("Tamanho da imagem que chegou: "+
-                                       pers.getSprite()
-                                               .length()
-                                 );
-                             }catch(InterruptedException ie){
-                                  ie.printStackTrace();
-                             }
-                        */    
                     
                     resultado.close();
                     preStmt.close();
