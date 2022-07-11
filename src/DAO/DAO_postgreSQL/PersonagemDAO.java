@@ -346,7 +346,7 @@ public class PersonagemDAO implements IPersonagemDAO{
                     ConexaoBD_Setup.encerrarConexao(con);
                 
                 }catch(SQLException sqle){
-                    System.out.println("Houve um problema ao tentar recuperar o personagem através do seu nome...");
+                  //  System.out.println("Houve um problema ao tentar recuperar o personagem através do seu nome...");
                     sqle.printStackTrace();
                     
                 }finally{
@@ -354,6 +354,63 @@ public class PersonagemDAO implements IPersonagemDAO{
                 }
     }
     
-        
+    
+//========================================================================================================
+
+    
+    public boolean deletar_personagem_por_ID ( int idSelecionado ){
+    
+                Connection con = ConexaoBD_Setup.abrirConexao();
+                PreparedStatement preStmt = null;
+                boolean deletado = false;
+                String query = "DELETE FROM \"Personagem\" WHERE \"ID\" = ?";
+                
+                try{
+                    preStmt = con.prepareStatement( query );
+                    preStmt.setInt(1, idSelecionado);
+                   
+
+                    if( preStmt.executeUpdate()==1 )
+                            deletado = true;
+
+                 
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
+               
+                }catch(SQLException sqle){
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return deletado;
+                }
+    }
+ 
+    
+//========================================================================================================
+
+ 
+    public boolean deletar_personagem_por_nome ( String nomePersonagem ){
+    
+                Connection con = ConexaoBD_Setup.abrirConexao();
+                PreparedStatement preStmt = null;
+                boolean deletado = false;
+                String query = "DELETE FROM \"Personagem\" WHERE \"nome\"='"+nomePersonagem+"'";
+                
+                try{
+                    preStmt = con.prepareStatement( query );
+
+                    if( preStmt.executeUpdate()==1 )
+                            deletado = true;
+
+                    preStmt.close();
+                    ConexaoBD_Setup.encerrarConexao(con);
+               
+                }catch(SQLException sqle){
+                    sqle.printStackTrace();
+                    
+                }finally{
+                    return deletado;
+                }
+    }
     
 }

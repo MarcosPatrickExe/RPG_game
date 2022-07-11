@@ -33,6 +33,10 @@ public interface IPersonagemDAO {
           public Personagem obter_personagem_por_nome (String nome);
           
           public List<Personagem> obter_personagens_por_classe( String nomeClasse );
+          
+          public boolean deletar_personagem_por_ID ( int idSelecionado );
+          
+          public boolean deletar_personagem_por_nome ( String nomePersonagem );
 }
 
 

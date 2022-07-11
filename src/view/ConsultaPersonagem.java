@@ -49,6 +49,15 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
     public ConsultaPersonagem() {
         initComponents();
         super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        super.setLocationRelativeTo(null);
+        
+        this.pnl_fundo_equipamento.setVisible(false);
+        this.list_equipamentos.setVisible(false);
+        this.txtarea_descricao.setVisible(false);
+        this.pnl_fundo_atributos_equip.setVisible(false);
+        
+        
+        
         this.person = new PersonagemDAO();
         this.imagemLabel = new JLabel();
 
@@ -315,6 +324,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         lab_def_dado = new javax.swing.JLabel();
         lab_sp_atk_dado = new javax.swing.JLabel();
         lab_sp_atk = new javax.swing.JLabel();
+        lab_fundo = new javax.swing.JLabel();
         pnl_fundo_equipamento = new javax.swing.JPanel();
         pnl_fundo_titulo_equipamento = new javax.swing.JPanel();
         lab_equipamento = new javax.swing.JLabel();
@@ -339,7 +349,6 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lab_fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultar personagem");
@@ -593,6 +602,10 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
 
         getContentPane().add(pnl_fundo_sobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 650, 260));
 
+        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
+        lab_fundo.setText(" ");
+        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 620));
+
         pnl_fundo_equipamento.setBackground(new java.awt.Color(22, 0, 0));
         pnl_fundo_equipamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -659,7 +672,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         list_equipamentos.setBackground(new java.awt.Color(22, 0, 0));
         list_equipamentos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         list_equipamentos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        list_equipamentos.setForeground(new java.awt.Color(0, 204, 255));
+        list_equipamentos.setForeground(new java.awt.Color(51, 255, 255));
         list_equipamentos.setSelectionBackground(new java.awt.Color(204, 0, 51));
         list_equipamentos.setSelectionForeground(new java.awt.Color(51, 0, 0));
         jScrollPane2.setViewportView(list_equipamentos);
@@ -669,7 +682,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         txtarea_descricao.setBackground(new java.awt.Color(22, 0, 0));
         txtarea_descricao.setColumns(20);
         txtarea_descricao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtarea_descricao.setForeground(new java.awt.Color(0, 204, 255));
+        txtarea_descricao.setForeground(new java.awt.Color(51, 255, 255));
         txtarea_descricao.setRows(5);
         txtarea_descricao.setText("\n");
         txtarea_descricao.setAlignmentX(2.5F);
@@ -747,10 +760,6 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
 
         getContentPane().add(pnl_fundo_atributos_equip, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 560, 200, 100));
 
-        lab_fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/background game.jpg"))); // NOI18N
-        lab_fundo.setText(" ");
-        getContentPane().add(lab_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 620));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -763,8 +772,8 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         String[] nomes = new String[ personagens.size()];
         int contador = 0;
         
-        for(Personagem person : personagens){
-                nomes[contador] = person.getNome();
+        for(Personagem personagen : personagens){
+                nomes[contador] = personagen.getNome();
                 contador++;
         }
         

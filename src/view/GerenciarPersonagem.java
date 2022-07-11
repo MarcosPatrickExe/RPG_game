@@ -16,8 +16,8 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
     public GerenciarPersonagem() {
         initComponents();
         
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE );
-        this.setLocationRelativeTo( null);
+        super.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        super.setLocationRelativeTo( null);
     }
 
     /**
@@ -74,7 +74,11 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
         btn_excluir.setText("Excluir personagem");
         btn_excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
         btn_excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_excluir.setEnabled(false);
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_excluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 400, 140));
 
         btn_consulta.setBackground(new java.awt.Color(102, 102, 102));
@@ -122,6 +126,10 @@ public class GerenciarPersonagem extends javax.swing.JFrame { //java.awt.Frame
     private void btn_criarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_criarActionPerformed
           new CadastroPersonagem().setVisible(true);
     }//GEN-LAST:event_btn_criarActionPerformed
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+          new ApagarPersonagem().setVisible(true);
+    }//GEN-LAST:event_btn_excluirActionPerformed
 
     /**
      * @param args the command line arguments
