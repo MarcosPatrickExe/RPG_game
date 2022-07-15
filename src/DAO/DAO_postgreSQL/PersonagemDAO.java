@@ -416,26 +416,32 @@ public class PersonagemDAO implements IPersonagemDAO{
                 PreparedStatement preStmt = null;
                 boolean atualizado = false;
                 String sql = "UPDATE \"Personagem\" "
-                            + "SET nome = '"+pers.getNome()+"', "
-                            + "nivel = ?, "
-                            + "\"HP_maximo\"= ?, "
-                            + "\"MP_maximo\" = ?, "
-                            + "velocidade = ?, "
-                            + "\"XP\" = ?, "
-                            + "evasao = ?, "
-                            + "ataque = ?, "
-                            + "defesa = ?, "
-                            + "ataque_especial = ?, "
-                            + "defesa_especial = ?, "
-                            + "classe_id = ?, "
+                            + "SET \"nome\"='"+pers.getNome()+"', "
+                            + "\"nivel\"= "+pers.getNivel()+", "
+                            + "\"HP_maximo\"="+pers.getPontos_vida()+", "
+                            + "\"MP_maximo\" ="+pers.getPontos_magia()+", "
+                            + "\"velocidade\" ="+pers.getVelocidade()+", "
+                            + "\"XP\" = "+pers.getXP()+", "
+                            + "\"evasao\" = "+pers.getEvasao()+", "
+                            + "\"ataque\" = "+pers.getAtaque()+", "
+                            + "\"defesa\" = "+pers.getDefesa()+", "
+                            + "\"ataque_especial\" ="+pers.getAtaque_especial()+", "
+                            + "\"defesa_especial\" ="+pers.getDefesa_especial()+", "
+                            + "\"classe_id\" = "+pers.getClasse_id()+", "
                           //  + "sprite = ?, "
-                            + "destreza = ?, "
-                            + "forca = ?, "
-                            + "\"HP_atual\"= ?, "
-                            + "\"MP_atual\" = ? "
-                            + "WHERE \"ID\" = ? ";
+                            + "\"destreza\" = "+pers.getDestreza()+", "
+                            + "\"forca\" = "+pers.getForca()+", "
+                            + "\"HP_atual\"= "+pers.getHP_atual()+", "
+                            + "\"MP_atual\" = "+pers.getMP_atual()
+                            + " WHERE \"ID\" = "+pers.getID();
+                
+                
+              //  String sql2 = "UPDATE \"Personagem\" SET nome='"+pers.getNome()+"', niv  ";
+                
+                
                 
                 try{
+                    /*
                     preStmt = con.prepareStatement(sql);
              //       preStmt.setString(1, pers.getNome());
                     preStmt.setInt(1, pers.getNivel());
@@ -455,10 +461,10 @@ public class PersonagemDAO implements IPersonagemDAO{
                     preStmt.setInt(14, pers.getHP_atual());
                     preStmt.setInt(15, pers.getMP_atual());
                     preStmt.setInt(16, pers.getID());
-                    
+                    */
                     
                     if( preStmt.executeUpdate() ==0 ){
-                          
+                            System.out.println(sql);
                             System.out.println("No Atualizado!! retornou 0");
                     }
                     

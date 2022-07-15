@@ -605,7 +605,7 @@ public class ConsultaPersonagem extends javax.swing.JFrame {
         lab_sp_atk.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         lab_sp_atk.setForeground(new java.awt.Color(255, 255, 255));
         lab_sp_atk.setText("SP. ATK:");
-        pnl_fundo_sobre.add(lab_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 70, 30));
+        pnl_fundo_sobre.add(lab_sp_atk, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 70, 50));
 
         getContentPane().add(pnl_fundo_sobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 650, 260));
 

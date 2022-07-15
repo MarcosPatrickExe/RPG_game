@@ -314,7 +314,6 @@ public class CadastroPersonagem extends JFrame {
         txt_nome.setBackground(new java.awt.Color(102, 102, 102));
         txt_nome.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_nome.setForeground(new java.awt.Color(255, 255, 255));
-        txt_nome.setText("XXX");
         txt_nome.setBorder(null);
         txt_nome.setMargin(new java.awt.Insets(5, 10, 5, 5));
         pnl_fundo_atributos.add(txt_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 85, 160, 25));
@@ -461,7 +460,6 @@ public class CadastroPersonagem extends JFrame {
         txt_XP.setBackground(new java.awt.Color(102, 102, 102));
         txt_XP.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txt_XP.setForeground(new java.awt.Color(255, 255, 255));
-        txt_XP.setText("0000");
         pnl_fundo_atributos.add(txt_XP, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 120, 30));
 
         jPanel7.setBackground(new java.awt.Color(49, 60, 81));

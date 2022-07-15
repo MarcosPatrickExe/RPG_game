@@ -86,6 +86,41 @@ public class ClasseDAO implements IClasseDAO{
     
     
     
+    @Override
+    public String[] obter_nomes_classes () {
+        String[] nomes = null;
+        
+        try{
+            Connection conexao  = ConexaoBD_Setup.abrirConexao();
+            
+            PreparedStatement ps;
+            String query = "SELECT \"nome\" FROM \"Classe\" ORDER BY \"ID\" ASC";
+            ResultSet resultado;
+
+           // OS 2 ULTIMOS PARAMETROS PERMITEM QUE O RESULSET SEJA LIDO DE TRÁS PRA FRENTE E/OU DE FRENTE PARA TRÁS
+            ps = conexao.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            resultado = ps.executeQuery();
+            
+            resultado.last();// MOVENDO O PONTEIRO PARA A ULTIMA LINHA
+            nomes = new String[ resultado.getRow() ]; 
+            resultado.beforeFirst();// MOVENDO O PONTEIRO PARA ANTES DA PRIMEIRA LINHA
+            
+            if( resultado.next())
+                nomes[ resultado.getRow()-1 ] = resultado.getString("nome");
+               
+            resultado.close();
+            ps.close();
+            ConexaoBD_Setup.encerrarConexao(conexao);
+            
+        }catch( SQLException sqle){
+            sqle.printStackTrace();
+        
+        }finally{
+            return nomes;
+        }
+         
+    }
+    
     
     
 }
